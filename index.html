@@ -150,6 +150,10 @@ header{position:relative;z-index:10;padding:28px 48px 0;display:flex;align-items
 .card-desc{font-size:0.84rem;color:var(--text-muted);line-height:1.65;margin-bottom:16px;}
 .card-tags{display:flex;flex-wrap:wrap;gap:5px;}
 .tag{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:4px;background:rgba(255,255,255,0.05);color:var(--text-muted);border:1px solid var(--border);}
+.card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
+.card-email{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--text-muted);text-decoration:none;padding:5px 11px;border-radius:20px;border:1px solid var(--border);background:transparent;transition:color 0.2s,border-color 0.2s,background 0.2s;}
+.card-email:hover{color:var(--orange);border-color:rgba(255,140,0,0.45);background:rgba(255,140,0,0.07);}
+.card-email i{font-size:11px;}
 .ic-orange{background:rgba(255,140,0,0.12);color:#ff8c00;}
 .ic-purple{background:rgba(139,63,220,0.12);color:#a855f7;}
 .ic-pink{background:rgba(212,36,122,0.12);color:#ec4899;}
@@ -726,6 +730,8 @@ var LANGS = {
     nameCoCreate:'Co-creazione Uomo-AI',
     ctaContactText:'Non trovi quello che cerchi o vuoi discutere un progetto?',
     ctaContactLink:'Scrivici a hello@piirz.com',
+    emailSubjectPrefix:'Richiesta approfondimento su',
+    emailLabel:'Richiedi info',
     descSwarmOS:'Piattaforma proprietaria di orchestrazione agenti AI per l\'automazione enterprise. Gestisce agenti ibridi (LLM, API, RAG), workflow auditabili e dashboard BI con architettura privacy-by-design.',
     descAIDiscovery:'Analisi strutturata in 3-6 settimane per identificare le opportunità AI ad alto valore. Produce una roadmap concreta con valutazione di costi, impatti, rischi e ROI.',
     descAITutor:'Assistente AI addestrato sull\'AI Discovery aziendale. Guida il team nell\'adozione quotidiana dei nuovi processi riducendo frizioni e resistenze interne.',
@@ -846,6 +852,8 @@ var LANGS = {
     nameCoCreate:'Human-AI Co-creation',
     ctaContactText:'Cannot find what you are looking for or want to discuss a project?',
     ctaContactLink:'Write to hello@piirz.com',
+    emailSubjectPrefix:'Information request about',
+    emailLabel:'Request info',
     descSwarmOS:'Proprietary AI agent orchestration platform for enterprise automation. Manages hybrid agents (LLMs, APIs, RAG), auditable workflows and BI dashboards with privacy-by-design architecture.',
     descAIDiscovery:'Structured 3-6 week analysis to identify high-value AI opportunities. Delivers a concrete roadmap with cost, impact, risk and ROI assessment for each initiative.',
     descAITutor:'AI assistant trained exclusively on your company\'s AI Discovery results. Guides the team in daily adoption of new processes, reducing friction and internal resistance.',
@@ -966,6 +974,8 @@ var LANGS = {
     nameCoCreate:'Co-création Humain-IA',
     ctaContactText:'Vous ne trouvez pas ce que vous cherchez ou souhaitez discuter un projet?',
     ctaContactLink:'Écrivez-nous à hello@piirz.com',
+    emailSubjectPrefix:'Demande d\'informations sur',
+    emailLabel:'Demander des infos',
     descSwarmOS:'Plateforme propriétaire d\'orchestration d\'agents IA pour l\'automatisation enterprise. Gère des agents hybrides (LLM, API, RAG), des workflows auditables et des tableaux de bord BI.',
     descAIDiscovery:'Analyse structurée de 3 à 6 semaines pour identifier les opportunités IA à haute valeur. Produit une feuille de route concrète avec évaluation des coûts, impacts, risques et ROI.',
     descAITutor:'Assistant IA formé exclusivement sur les résultats de votre AI Discovery. Guide l\'équipe dans l\'adoption quotidienne des nouveaux processus, réduisant les résistances internes.',
@@ -1086,6 +1096,8 @@ var LANGS = {
     nameCoCreate:'Mensch-KI-Ko-Kreation',
     ctaContactText:'Nicht gefunden oder möchten Sie ein Projekt besprechen?',
     ctaContactLink:'Schreiben Sie uns: hello@piirz.com',
+    emailSubjectPrefix:'Informationsanfrage zu',
+    emailLabel:'Info anfragen',
     descSwarmOS:'Proprietäre KI-Agenten-Orchestrierungsplattform für Enterprise-Automatisierung. Verwaltet hybride Agenten (LLMs, APIs, RAG), auditierbare Workflows und BI-Dashboards.',
     descAIDiscovery:'Strukturierte 3-6-Wochen-Analyse zur Identifizierung hochwertiger KI-Chancen. Liefert eine konkrete Roadmap mit Kosten-, Impact-, Risiko- und ROI-Bewertung.',
     descAITutor:'KI-Assistent, der ausschließlich auf den Ergebnissen Ihrer AI Discovery trainiert wurde. Führt das Team bei der täglichen Adoption neuer Prozesse und reduziert internen Widerstand.',
@@ -1206,6 +1218,8 @@ var LANGS = {
     nameCoCreate:'Co-creación Humano-IA',
     ctaContactText:'No encuentras lo que buscas o quieres hablar de un proyecto?',
     ctaContactLink:'Eschíbenos a hello@piirz.com',
+    emailSubjectPrefix:'Solicitud de información sobre',
+    emailLabel:'Pedir información',
     descSwarmOS:'Plataforma propietaria de orquestación de agentes IA para automatización enterprise. Gestiona agentes híbridos (LLMs, APIs, RAG), flujos de trabajo auditables y dashboards BI.',
     descAIDiscovery:'Análisis estructurado de 3-6 semanas para identificar oportunidades de IA de alto valor. Produce una hoja de ruta con evaluación de costes, impactos, riesgos y ROI.',
     descAITutor:'Asistente IA entrenado exclusivamente en los resultados de tu AI Discovery. Guía al equipo en la adopción diaria de nuevos procesos, reduciendo fricciones y resistencia interna.',
@@ -1288,6 +1302,8 @@ function applyLang(code) {
   // Rebuild autocomplete suggestions after lang change
   buildSuggestions();
   filterCards();
+  // Update card email links and labels
+  if (typeof updateCardEmails === 'function') { updateCardEmails(); }
 }
 
 // LANG SELECTOR TOGGLE
@@ -1434,6 +1450,33 @@ btnReset.addEventListener('click', function(){
   activeFilters={category:'all'}; chips.forEach(function(c){c.classList.remove('active');}); document.querySelector('.chip-all').classList.add('active');
   searchInput.value=''; searchQuery=''; searchClear.classList.remove('visible'); hideAC(); filterCards();
 });
+
+// CARD EMAIL FOOTER — build once on load
+allCards.forEach(function(card) {
+  var nameEl = card.querySelector('.card-name');
+  var productName = nameEl ? nameEl.textContent.trim() : '';
+  var footer = document.createElement('div');
+  footer.className = 'card-footer';
+  var emailLink = document.createElement('a');
+  emailLink.className = 'card-email';
+  emailLink.setAttribute('data-product-name', productName);
+  emailLink.innerHTML = '<i class="fa-regular fa-envelope"></i> <span class="email-label"></span>';
+  footer.appendChild(emailLink);
+  // Move card-tags inside footer wrapper, then append footer
+  var tagsEl = card.querySelector('.card-tags');
+  if (tagsEl) { card.insertBefore(footer, tagsEl.nextSibling); } else { card.appendChild(footer); }
+});
+
+function updateCardEmails() {
+  var T = LANGS[currentLang];
+  document.querySelectorAll('.card-email').forEach(function(link) {
+    var productName = link.getAttribute('data-product-name');
+    var subject = encodeURIComponent(T.emailSubjectPrefix + ' ' + productName);
+    link.href = 'mailto:hello@piirz.com?subject=' + subject;
+    var labelEl = link.querySelector('.email-label');
+    if (labelEl) { labelEl.textContent = T.emailLabel; }
+  });
+}
 
 // INIT
 applyLang(detectBrowserLang());
