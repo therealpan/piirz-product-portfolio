@@ -1,0 +1,18 @@
+name = "piirz-portfolio-api"
+main = "src/index.js"
+compatibility_date = "2024-12-01"
+
+[vars]
+ADMIN_USER = "admin"
+# Set ADMIN_PASS via `wrangler secret put ADMIN_PASS`
+
+[[kv_namespaces]]
+binding = "LOGS"
+id = "placeholder" # Run: wrangler kv namespace create LOGS
+
+[[r2_buckets]]
+binding = "ATTACHMENTS"
+bucket_name = "piirz-attachments"
+
+[site]
+bucket = "../" # Serve static site from root

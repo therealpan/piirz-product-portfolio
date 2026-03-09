@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PiirZ Admin — Product Manager</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --bg:#0a0b0f; --surface:#12141a; --surface2:#1a1d26;
+  --border:rgba(255,255,255,0.08); --text:#e8eaf0;
+  --text-muted:#6b7280; --text-dim:#9ca3af;
+  --orange:#ff8c00; --orange2:#ff6b00;
+  --purple:#8b3fdc; --pink:#d4247a;
+  --green:#22c55e; --red:#ef4444;
+  --grad:linear-gradient(135deg,#ff8c00,#d4247a,#8b3fdc);
+  --grad2:linear-gradient(135deg,#ff6b00,#ff8c00);
+  --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* LOGIN */
+.login-page{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;}
+.login-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:40px;width:100%;max-width:380px;text-align:center;}
+.login-box h1{font-family:'Syne',sans-serif;font-size:1.4rem;margin-bottom:8px;}
+.login-box p{color:var(--text-muted);font-size:0.85rem;margin-bottom:28px;}
+.login-box .logo{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;}
+.form-group{margin-bottom:16px;text-align:left;}
+.form-group label{display:block;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;}
+.form-group input{width:100%;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s;}
+.form-group input:focus{border-color:var(--orange);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 24px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.btn-primary{background:var(--grad2);color:white;width:100%;}
+.btn-primary:hover{box-shadow:0 4px 20px rgba(255,107,0,0.4);}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text-dim);}
+.btn-ghost:hover{border-color:var(--orange);color:var(--text);}
+.btn-sm{padding:6px 14px;font-size:12px;}
+.btn-danger{background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);color:var(--red);}
+.btn-danger:hover{background:rgba(239,68,68,0.2);}
+.login-error{color:var(--red);font-size:12px;margin-top:12px;display:none;}
+
+/* LAYOUT */
+.app{display:none;}
+.app.active{display:flex;min-height:100vh;}
+.sidebar{width:260px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;position:fixed;top:0;left:0;bottom:0;z-index:100;}
+.sidebar-header{padding:20px;border-bottom:1px solid var(--border);}
+.sidebar-header .logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.sidebar-header .sub{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-top:2px;}
+.sidebar-nav{flex:1;padding:12px 0;overflow-y:auto;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all 0.15s;border-left:3px solid transparent;}
+.nav-item:hover{color:var(--text);background:rgba(255,255,255,0.03);}
+.nav-item.active{color:var(--orange);border-left-color:var(--orange);background:rgba(255,140,0,0.06);}
+.nav-item i{width:18px;text-align:center;font-size:14px;}
+.sidebar-footer{padding:16px 20px;border-top:1px solid var(--border);}
+.sidebar-footer .user{font-size:12px;color:var(--text-muted);margin-bottom:8px;}
+
+.main{flex:1;margin-left:260px;padding:32px;min-height:100vh;}
+.page{display:none;}
+.page.active{display:block;}
+.page-title{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:4px;}
+.page-desc{color:var(--text-muted);font-size:0.85rem;margin-bottom:28px;}
+
+/* PRODUCT LIST */
+.product-search{display:flex;gap:12px;margin-bottom:20px;}
+.product-search input{flex:1;padding:10px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;}
+.product-search input:focus{border-color:var(--orange);}
+.product-table{width:100%;border-collapse:separate;border-spacing:0;}
+.product-table th{text-align:left;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);padding:10px 14px;border-bottom:1px solid var(--border);}
+.product-table td{padding:12px 14px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;}
+.product-table tr:hover td{background:rgba(255,255,255,0.02);}
+.product-table .icon-cell{width:42px;}
+.product-table .card-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;}
+.product-table .name-cell{font-weight:600;}
+.product-table .cat-cell{color:var(--text-muted);font-size:12px;}
+.product-table .status-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:3px 8px;border-radius:10px;}
+.status-has{background:rgba(34,197,94,0.12);color:var(--green);}
+.status-empty{background:rgba(255,255,255,0.04);color:var(--text-muted);}
+.product-table .actions-cell{text-align:right;}
+
+/* EDITOR */
+.editor-back{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);cursor:pointer;margin-bottom:20px;transition:color 0.2s;}
+.editor-back:hover{color:var(--orange);}
+.editor-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+.editor-tabs{display:flex;gap:4px;margin-bottom:24px;border-bottom:1px solid var(--border);padding-bottom:0;}
+.editor-tab{padding:10px 18px;font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;margin-bottom:-1px;}
+.editor-tab:hover{color:var(--text);}
+.editor-tab.active{color:var(--orange);border-bottom-color:var(--orange);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+.field-group{margin-bottom:20px;}
+.field-group label{display:block;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;}
+.field-group input,.field-group textarea,.field-group select{width:100%;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border-color 0.2s;resize:vertical;}
+.field-group input:focus,.field-group textarea:focus{border-color:var(--orange);}
+.field-group textarea{min-height:100px;}
+.lang-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.lang-field-label{display:flex;align-items:center;gap:6px;margin-bottom:4px;}
+.lang-field-label .flag{font-size:14px;}
+.save-bar{position:sticky;bottom:0;background:var(--surface2);border-top:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;margin:-32px;margin-top:24px;padding:16px 32px;z-index:50;}
+.save-bar .save-msg{font-size:12px;color:var(--green);display:none;}
+
+/* ATTACHMENTS PANEL */
+.attach-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.attach-row{display:flex;align-items:center;gap:12px;padding:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;}
+.attach-row .attach-info{flex:1;}
+.attach-row .attach-name{font-weight:600;font-size:13px;}
+.attach-row .attach-meta{font-size:11px;color:var(--text-muted);}
+.upload-zone{border:2px dashed var(--border);border-radius:var(--radius);padding:32px;text-align:center;color:var(--text-muted);font-size:13px;cursor:pointer;transition:border-color 0.2s,background 0.2s;}
+.upload-zone:hover,.upload-zone.drag-over{border-color:var(--orange);background:rgba(255,140,0,0.04);}
+.upload-zone i{font-size:24px;margin-bottom:8px;display:block;color:var(--text-muted);}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:32px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
+.stat-card .stat-label{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+.stat-card .stat-value{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.log-table{width:100%;border-collapse:separate;border-spacing:0;}
+.log-table th{text-align:left;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);padding:8px 12px;border-bottom:1px solid var(--border);}
+.log-table td{padding:8px 12px;border-bottom:1px solid var(--border);font-size:12px;}
+.log-table .event-badge{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:600;}
+.event-detail_view{background:rgba(59,130,246,0.12);color:#60a5fa;}
+.event-info_request{background:rgba(255,140,0,0.12);color:var(--orange);}
+.event-attachment_download{background:rgba(139,63,220,0.12);color:var(--purple);}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-size:13px;display:none;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,0.5);}
+.toast.show{display:flex;align-items:center;gap:8px;}
+.toast.success{border-color:rgba(34,197,94,0.3);}
+.toast.error{border-color:rgba(239,68,68,0.3);}
+
+@media(max-width:768px){
+  .sidebar{width:100%;position:relative;border-right:none;border-bottom:1px solid var(--border);}
+  .sidebar-nav{display:flex;overflow-x:auto;padding:8px 12px;}
+  .nav-item{border-left:none;border-bottom:2px solid transparent;white-space:nowrap;padding:8px 14px;}
+  .nav-item.active{border-bottom-color:var(--orange);border-left:none;}
+  .main{margin-left:0;padding:20px;}
+  .app.active{flex-direction:column;}
+  .lang-fields{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-page" id="loginPage">
+  <div class="login-box">
+    <div class="logo">PiirZ Admin</div>
+    <p>Product Portfolio Manager</p>
+    <form id="loginForm">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="loginUser" autocomplete="username" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPass" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn btn-primary"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+      <div class="login-error" id="loginError">Invalid credentials</div>
+    </form>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">PiirZ Admin</div>
+      <div class="sub">Product Manager</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-item active" data-page="products"><i class="fa-solid fa-boxes-stacked"></i> Products</div>
+      <div class="nav-item" data-page="logs"><i class="fa-solid fa-chart-line"></i> Analytics</div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user"><i class="fa-solid fa-user"></i> <span id="currentUser">admin</span></div>
+      <button class="btn btn-ghost btn-sm" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- PRODUCTS PAGE -->
+    <div class="page active" id="page-products">
+      <h1 class="page-title">Products</h1>
+      <p class="page-desc">Manage your AI product portfolio. Edit details, descriptions, and attachments.</p>
+      <div class="product-search">
+        <input type="text" id="productSearch" placeholder="Search products...">
+      </div>
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th class="icon-cell"></th>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Details</th>
+            <th>Attachments</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="productTableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- PRODUCT EDITOR -->
+    <div class="page" id="page-editor">
+      <div class="editor-back" id="editorBack"><i class="fa-solid fa-arrow-left"></i> Back to Products</div>
+      <div class="editor-header" id="editorHeader"></div>
+      <div class="editor-tabs">
+        <div class="editor-tab active" data-tab="general">General</div>
+        <div class="editor-tab" data-tab="details">Details</div>
+        <div class="editor-tab" data-tab="attachments">Attachments</div>
+      </div>
+      <div id="editorContent"></div>
+      <div class="save-bar">
+        <span class="save-msg" id="saveMsg"><i class="fa-solid fa-check"></i> Saved</span>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-ghost btn-sm" id="cancelBtn">Cancel</button>
+          <button class="btn btn-primary btn-sm" id="saveBtn"><i class="fa-solid fa-floppy-disk"></i> Save changes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOGS PAGE -->
+    <div class="page" id="page-logs">
+      <h1 class="page-title">Analytics</h1>
+      <p class="page-desc">Track product views, info requests, and attachment downloads.</p>
+      <div class="stats-grid" id="statsGrid"></div>
+      <h2 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;">Recent Events</h2>
+      <table class="log-table">
+        <thead>
+          <tr><th>Time</th><th>Event</th><th>Product</th><th>Country</th><th>Details</th></tr>
+        </thead>
+        <tbody id="logTableBody"></tbody>
+      </table>
+      <div style="text-align:center;padding:20px;">
+        <button class="btn btn-ghost btn-sm" id="loadMoreLogs">Load more</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+
+/* ═══ CONFIG ═══ */
+var API_BASE = ''; // Set when Worker is deployed, e.g. 'https://piirz-api.workers.dev'
+
+/* ═══ STATE ═══ */
+var token = localStorage.getItem('piirz_token') || '';
+var DB = null;
+var editingKey = null;
+var editingProduct = null;
+var currentTab = 'general';
+
+/* ═══ INIT ═══ */
+if (token) {
+  showApp();
+} else {
+  document.getElementById('loginPage').style.display = 'flex';
+}
+
+/* ═══ AUTH ═══ */
+document.getElementById('loginForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var user = document.getElementById('loginUser').value;
+  var pass = document.getElementById('loginPass').value;
+  api('POST', '/api/auth/login', { username: user, password: pass })
+    .then(function(data){
+      token = data.token;
+      localStorage.setItem('piirz_token', token);
+      showApp();
+    })
+    .catch(function(){
+      document.getElementById('loginError').style.display = 'block';
+    });
+});
+
+document.getElementById('logoutBtn').addEventListener('click', function(){
+  token = '';
+  localStorage.removeItem('piirz_token');
+  location.reload();
+});
+
+/* ═══ API ═══ */
+function api(method, path, body) {
+  var opts = {
+    method: method,
+    headers: { 'Content-Type': 'application/json' },
+  };
+  if (token) opts.headers['Authorization'] = 'Bearer ' + token;
+  if (body) opts.body = JSON.stringify(body);
+  return fetch(API_BASE + path, opts)
+    .then(function(r){
+      if (r.status === 401) { token = ''; localStorage.removeItem('piirz_token'); location.reload(); }
+      return r.json();
+    })
+    .then(function(data){
+      if (data.error) throw new Error(data.error);
+      return data;
+    });
+}
+
+function apiUpload(file, productKey) {
+  var form = new FormData();
+  form.append('file', file);
+  form.append('productKey', productKey);
+  return fetch(API_BASE + '/api/upload', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + token },
+    body: form,
+  }).then(function(r){ return r.json(); });
+}
+
+/* ═══ SHOW APP ═══ */
+function showApp() {
+  document.getElementById('loginPage').style.display = 'none';
+  document.getElementById('app').classList.add('active');
+  loadProducts();
+}
+
+/* ═══ NAV ═══ */
+document.querySelectorAll('.nav-item').forEach(function(item){
+  item.addEventListener('click', function(){
+    document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+    item.classList.add('active');
+    showPage(item.dataset.page);
+  });
+});
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('page-' + id).classList.add('active');
+  if (id === 'logs') loadLogs();
+}
+
+/* ═══ PRODUCTS LIST ═══ */
+function loadProducts() {
+  // Try API first, fallback to static JSON
+  var loadFn = API_BASE
+    ? api('GET', '/api/products')
+    : fetch('../data/products.json').then(function(r){ return r.json(); });
+
+  loadFn.then(function(data){
+    DB = data;
+    renderProductTable();
+  }).catch(function(err){ toast('Failed to load products: ' + err.message, 'error'); });
+}
+
+function renderProductTable(filter) {
+  var tbody = document.getElementById('productTableBody');
+  var q = (filter || '').toLowerCase();
+  var html = '';
+
+  DB.products.forEach(function(p){
+    var name = p.name.en || p.name.it || p.key;
+    if (q && name.toLowerCase().indexOf(q) < 0 && p.key.toLowerCase().indexOf(q) < 0) return;
+
+    var hasDetails = p.details && Object.values(p.details).some(function(d){ return d && d.html; });
+    var hasAttach = p.attachments && p.attachments.length > 0;
+
+    html += '<tr data-key="' + p.key + '">' +
+      '<td class="icon-cell"><div class="card-icon ic-' + p.iconColor + '"><i class="' + p.icon + '"></i></div></td>' +
+      '<td class="name-cell">' + escapeHtml(name) + '<br><span style="font-size:10px;color:var(--text-muted)">' + p.key + '</span></td>' +
+      '<td class="cat-cell">' + escapeHtml(p.category.en || p.category.it || '') + '</td>' +
+      '<td><span class="status-badge ' + (hasDetails ? 'status-has' : 'status-empty') + '">' +
+        (hasDetails ? '<i class="fa-solid fa-check"></i> Has content' : 'Empty') + '</span></td>' +
+      '<td><span class="status-badge ' + (hasAttach ? 'status-has' : 'status-empty') + '">' +
+        (hasAttach ? '<i class="fa-solid fa-check"></i> ' + p.attachments.length + ' files' : 'None') + '</span></td>' +
+      '<td class="actions-cell"><button class="btn btn-ghost btn-sm edit-btn" data-key="' + p.key + '"><i class="fa-solid fa-pen"></i> Edit</button></td>' +
+    '</tr>';
+  });
+
+  tbody.innerHTML = html;
+
+  // Bind edit buttons
+  tbody.querySelectorAll('.edit-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ openEditor(btn.dataset.key); });
+  });
+}
+
+document.getElementById('productSearch').addEventListener('input', function(){
+  renderProductTable(this.value);
+});
+
+/* ═══ PRODUCT EDITOR ═══ */
+var LANGS = [
+  { code:'it', flag:'\uD83C\uDDEE\uD83C\uDDF9', name:'Italiano' },
+  { code:'en', flag:'\uD83C\uDDEC\uD83C\uDDE7', name:'English' },
+  { code:'fr', flag:'\uD83C\uDDEB\uD83C\uDDF7', name:'Français' },
+  { code:'de', flag:'\uD83C\uDDE9\uD83C\uDDEA', name:'Deutsch' },
+  { code:'es', flag:'\uD83C\uDDEA\uD83C\uDDF8', name:'Español' }
+];
+
+function openEditor(key) {
+  var p = DB.products.find(function(x){ return x.key === key; });
+  if (!p) return;
+  editingKey = key;
+  editingProduct = JSON.parse(JSON.stringify(p)); // deep clone
+  currentTab = 'general';
+
+  // Header
+  document.getElementById('editorHeader').innerHTML =
+    '<div class="card-icon ic-' + p.iconColor + '" style="width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;">' +
+      '<i class="' + p.icon + '"></i></div>' +
+    '<div><div style="font-family:Syne,sans-serif;font-size:1.2rem;font-weight:700;">' + escapeHtml(p.name.en || p.name.it) + '</div>' +
+      '<div style="font-size:11px;color:var(--text-muted)">' + p.key + '</div></div>';
+
+  renderEditorTab();
+  showPage('editor');
+}
+
+document.getElementById('editorBack').addEventListener('click', function(){ showPage('products'); });
+document.getElementById('cancelBtn').addEventListener('click', function(){ showPage('products'); });
+
+document.querySelectorAll('.editor-tab').forEach(function(tab){
+  tab.addEventListener('click', function(){
+    currentTab = tab.dataset.tab;
+    document.querySelectorAll('.editor-tab').forEach(function(t){ t.classList.remove('active'); });
+    tab.classList.add('active');
+    renderEditorTab();
+  });
+});
+
+function renderEditorTab() {
+  var container = document.getElementById('editorContent');
+  var p = editingProduct;
+  var html = '';
+
+  if (currentTab === 'general') {
+    html += '<div class="field-group"><label>Icon Class (FontAwesome)</label><input type="text" id="field-icon" value="' + escapeAttr(p.icon) + '"></div>';
+    html += '<div class="field-group"><label>Icon Color</label><select id="field-iconColor">';
+    ['orange','purple','pink','blue','green','teal','red','yellow'].forEach(function(c){
+      html += '<option value="' + c + '"' + (p.iconColor === c ? ' selected' : '') + '>' + c + '</option>';
+    });
+    html += '</select></div>';
+    html += '<div class="field-group"><label>Tags (comma-separated)</label><input type="text" id="field-tags" value="' + escapeAttr(p.tags.join(',')) + '"></div>';
+    html += '<div class="field-group"><label>Tech Tags (comma-separated)</label><input type="text" id="field-techTags" value="' + escapeAttr(p.techTags.join(',')) + '"></div>';
+
+    // Name per language
+    html += '<div class="field-group"><label>Product Name</label><div class="lang-fields">';
+    LANGS.forEach(function(l){
+      html += '<div><div class="lang-field-label"><span class="flag">' + l.flag + '</span> ' + l.name + '</div>' +
+        '<input type="text" data-field="name" data-lang="' + l.code + '" value="' + escapeAttr(p.name[l.code] || '') + '"></div>';
+    });
+    html += '</div></div>';
+
+    // Category per language
+    html += '<div class="field-group"><label>Category</label><div class="lang-fields">';
+    LANGS.forEach(function(l){
+      html += '<div><div class="lang-field-label"><span class="flag">' + l.flag + '</span> ' + l.name + '</div>' +
+        '<input type="text" data-field="category" data-lang="' + l.code + '" value="' + escapeAttr(p.category[l.code] || '') + '"></div>';
+    });
+    html += '</div></div>';
+
+    // Description per language
+    html += '<div class="field-group"><label>Description</label><div class="lang-fields">';
+    LANGS.forEach(function(l){
+      html += '<div><div class="lang-field-label"><span class="flag">' + l.flag + '</span> ' + l.name + '</div>' +
+        '<textarea data-field="description" data-lang="' + l.code + '" rows="3">' + escapeHtml(p.description[l.code] || '') + '</textarea></div>';
+    });
+    html += '</div></div>';
+  }
+
+  else if (currentTab === 'details') {
+    html += '<p style="color:var(--text-muted);font-size:13px;margin-bottom:20px;">Rich content shown in the product detail modal. Supports HTML.</p>';
+    LANGS.forEach(function(l){
+      var det = (p.details && p.details[l.code]) || { html: '', links: [], images: [] };
+      html += '<div class="field-group"><label><span class="flag">' + l.flag + '</span> ' + l.name + ' — HTML Content</label>' +
+        '<textarea data-field="details-html" data-lang="' + l.code + '" rows="6" style="font-family:monospace;font-size:12px;">' + escapeHtml(det.html || '') + '</textarea></div>';
+    });
+  }
+
+  else if (currentTab === 'attachments') {
+    html += '<p style="color:var(--text-muted);font-size:13px;margin-bottom:20px;">Files available for download on the product detail page.</p>';
+    html += '<div class="attach-list" id="attachList">';
+    if (p.attachments && p.attachments.length > 0) {
+      p.attachments.forEach(function(att, i){
+        html += '<div class="attach-row">' +
+          '<div class="attach-info"><div class="attach-name">' + escapeHtml(att.name) + '</div>' +
+          '<div class="attach-meta">' + (att.type || '').toUpperCase() + (att.size ? ' · ' + formatSize(att.size) : '') + '</div></div>' +
+          '<button class="btn btn-danger btn-sm remove-attach" data-idx="' + i + '"><i class="fa-solid fa-trash"></i></button></div>';
+      });
+    } else {
+      html += '<div style="text-align:center;color:var(--text-muted);padding:20px;font-size:13px;">No attachments yet</div>';
+    }
+    html += '</div>';
+    html += '<div class="upload-zone" id="uploadZone"><i class="fa-solid fa-cloud-arrow-up"></i><br>Click or drag file to upload</div>';
+    html += '<input type="file" id="fileInput" style="display:none" multiple>';
+  }
+
+  container.innerHTML = html;
+
+  // Bind attachment actions
+  if (currentTab === 'attachments') {
+    var uploadZone = document.getElementById('uploadZone');
+    var fileInput = document.getElementById('fileInput');
+    uploadZone.addEventListener('click', function(){ fileInput.click(); });
+    uploadZone.addEventListener('dragover', function(e){ e.preventDefault(); uploadZone.classList.add('drag-over'); });
+    uploadZone.addEventListener('dragleave', function(){ uploadZone.classList.remove('drag-over'); });
+    uploadZone.addEventListener('drop', function(e){
+      e.preventDefault(); uploadZone.classList.remove('drag-over');
+      handleFiles(e.dataTransfer.files);
+    });
+    fileInput.addEventListener('change', function(){ handleFiles(fileInput.files); });
+    container.querySelectorAll('.remove-attach').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var idx = parseInt(btn.dataset.idx);
+        editingProduct.attachments.splice(idx, 1);
+        renderEditorTab();
+      });
+    });
+  }
+}
+
+function handleFiles(files) {
+  if (!API_BASE) {
+    toast('API not configured — upload disabled in static mode', 'error');
+    return;
+  }
+  Array.from(files).forEach(function(file){
+    apiUpload(file, editingKey).then(function(data){
+      if (data.ok) {
+        if (!editingProduct.attachments) editingProduct.attachments = [];
+        editingProduct.attachments.push(data.attachment);
+        renderEditorTab();
+        toast('Uploaded: ' + file.name, 'success');
+      }
+    }).catch(function(err){ toast('Upload failed: ' + err.message, 'error'); });
+  });
+}
+
+/* ═══ SAVE ═══ */
+document.getElementById('saveBtn').addEventListener('click', function(){
+  collectEditorFields();
+
+  if (API_BASE) {
+    api('PUT', '/api/products/' + editingKey, editingProduct)
+      .then(function(){
+        // Update local DB
+        var idx = DB.products.findIndex(function(p){ return p.key === editingKey; });
+        if (idx >= 0) DB.products[idx] = JSON.parse(JSON.stringify(editingProduct));
+        toast('Product saved', 'success');
+        showSaveMsg();
+      })
+      .catch(function(err){ toast('Save failed: ' + err.message, 'error'); });
+  } else {
+    // Static mode — update local DB only and download JSON
+    var idx = DB.products.findIndex(function(p){ return p.key === editingKey; });
+    if (idx >= 0) DB.products[idx] = JSON.parse(JSON.stringify(editingProduct));
+    DB.meta.lastModified = new Date().toISOString();
+
+    // Download updated JSON
+    var blob = new Blob([JSON.stringify(DB, null, 2)], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'products.json';
+    a.click();
+    toast('Downloaded products.json — replace data/products.json manually', 'success');
+    showSaveMsg();
+  }
+});
+
+function collectEditorFields() {
+  var p = editingProduct;
+
+  // General fields
+  var iconEl = document.getElementById('field-icon');
+  if (iconEl) p.icon = iconEl.value;
+  var colorEl = document.getElementById('field-iconColor');
+  if (colorEl) p.iconColor = colorEl.value;
+  var tagsEl = document.getElementById('field-tags');
+  if (tagsEl) p.tags = tagsEl.value.split(',').map(function(t){ return t.trim(); }).filter(Boolean);
+  var techEl = document.getElementById('field-techTags');
+  if (techEl) p.techTags = techEl.value.split(',').map(function(t){ return t.trim(); }).filter(Boolean);
+
+  // Language fields
+  document.querySelectorAll('[data-field][data-lang]').forEach(function(el){
+    var field = el.dataset.field;
+    var lang = el.dataset.lang;
+    if (field === 'name') p.name[lang] = el.value;
+    else if (field === 'category') p.category[lang] = el.value;
+    else if (field === 'description') p.description[lang] = el.value;
+    else if (field === 'details-html') {
+      if (!p.details) p.details = {};
+      if (!p.details[lang]) p.details[lang] = { html: '', links: [], images: [] };
+      p.details[lang].html = el.value;
+    }
+  });
+}
+
+function showSaveMsg() {
+  var msg = document.getElementById('saveMsg');
+  msg.style.display = 'inline-flex';
+  setTimeout(function(){ msg.style.display = 'none'; }, 3000);
+}
+
+/* ═══ LOGS ═══ */
+function loadLogs() {
+  if (!API_BASE) {
+    document.getElementById('statsGrid').innerHTML =
+      '<div class="stat-card"><div class="stat-label">Status</div><div style="color:var(--text-muted);font-size:13px;margin-top:8px;">Analytics require the Cloudflare Worker API to be deployed.</div></div>';
+    document.getElementById('logTableBody').innerHTML = '';
+    return;
+  }
+
+  api('GET', '/api/logs/stats').then(function(stats){
+    var html =
+      '<div class="stat-card"><div class="stat-label">Total Events</div><div class="stat-value">' + stats.total + '</div></div>' +
+      '<div class="stat-card"><div class="stat-label">Detail Views</div><div class="stat-value">' + (stats.byType.detail_view || 0) + '</div></div>' +
+      '<div class="stat-card"><div class="stat-label">Info Requests</div><div class="stat-value">' + (stats.byType.info_request || 0) + '</div></div>' +
+      '<div class="stat-card"><div class="stat-label">Downloads</div><div class="stat-value">' + (stats.byType.attachment_download || 0) + '</div></div>';
+    document.getElementById('statsGrid').innerHTML = html;
+  }).catch(function(){ });
+
+  api('GET', '/api/logs?limit=50').then(function(data){
+    var html = '';
+    data.logs.forEach(function(log){
+      var time = log.receivedAt ? new Date(log.receivedAt).toLocaleString() : log.ts || '';
+      var product = log.product || '-';
+      var pName = DB ? (function(){ var p = DB.products.find(function(x){ return x.key === product; }); return p ? (p.name.en || p.name.it) : product; })() : product;
+      html += '<tr><td>' + escapeHtml(time) + '</td>' +
+        '<td><span class="event-badge event-' + log.event + '">' + (log.event || '').replace(/_/g,' ') + '</span></td>' +
+        '<td>' + escapeHtml(pName) + '</td>' +
+        '<td>' + (log.country || '-') + '</td>' +
+        '<td style="color:var(--text-muted);font-size:11px;">' + (log.extra || '') + '</td></tr>';
+    });
+    document.getElementById('logTableBody').innerHTML = html || '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);">No events logged yet</td></tr>';
+  }).catch(function(){ });
+}
+
+/* ═══ UTILS ═══ */
+function escapeHtml(s) { return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escapeAttr(s) { return (s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function formatSize(bytes) { return bytes < 1024 ? bytes + ' B' : bytes < 1048576 ? (bytes/1024).toFixed(0) + ' KB' : (bytes/1048576).toFixed(1) + ' MB'; }
+
+function toast(msg, type) {
+  var el = document.getElementById('toast');
+  el.className = 'toast show ' + (type || '');
+  el.innerHTML = (type === 'success' ? '<i class="fa-solid fa-check" style="color:var(--green)"></i>' :
+    type === 'error' ? '<i class="fa-solid fa-triangle-exclamation" style="color:var(--red)"></i>' : '') + ' ' + escapeHtml(msg);
+  clearTimeout(el._timer);
+  el._timer = setTimeout(function(){ el.className = 'toast'; }, 4000);
+}
+
+})();
+</script>
+</body>
+</html>
