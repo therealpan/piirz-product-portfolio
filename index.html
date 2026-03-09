@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PiirZ Digital — Prodotti &amp; Capacità</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --bg: #050608;
+  --surface: #0f1118;
+  --surface2: #161921;
+  --border: rgba(255,255,255,0.07);
+  --text: #e8eaf0;
+  --text-muted: #6b7280;
+  --text-dim: #9ca3af;
+  --orange: #ff8c00;
+  --orange2: #ff6b00;
+  --purple: #8b3fdc;
+  --pink: #d4247a;
+  --grad: linear-gradient(135deg, #ff8c00, #d4247a, #8b3fdc);
+  --grad2: linear-gradient(135deg, #ff6b00, #ff8c00);
+  --glow: 0 0 40px rgba(255,140,0,0.15);
+  --radius: 14px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse 800px 600px at 20% 10%, rgba(139,63,220,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 600px 400px at 80% 80%, rgba(255,107,0,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 400px 400px at 50% 50%, rgba(212,36,122,0.04) 0%, transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+/* HEADER */
+header {
+  position:relative;
+  z-index:10;
+  padding:32px 48px 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo img {
+  height:52px;
+  filter:drop-shadow(0 0 20px rgba(255,140,0,0.3));
+  transition:filter 0.3s;
+}
+.logo img:hover { filter:drop-shadow(0 0 30px rgba(255,140,0,0.5)); }
+.header-badge {
+  font-family:'Syne',sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  border:1px solid var(--border);
+  padding:6px 14px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.03);
+}
+/* HERO */
+.hero {
+  position:relative;
+  z-index:1;
+  text-align:center;
+  padding:64px 48px 48px;
+}
+.hero-tag {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:var(--orange);
+  margin-bottom:20px;
+  opacity:0;
+  animation:fadeUp 0.6s 0.1s ease forwards;
+}
+.hero-tag::before,.hero-tag::after {
+  content:'';
+  height:1px;
+  width:32px;
+  background:var(--grad2);
+  opacity:0.6;
+}
+.hero h1 {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.2rem,5vw,3.8rem);
+  font-weight:800;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  margin-bottom:16px;
+  opacity:0;
+  animation:fadeUp 0.6s 0.2s ease forwards;
+}
+.hero h1 span {
+  background:var(--grad);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero p {
+  font-size:1.05rem;
+  color:var(--text-muted);
+  font-weight:300;
+  max-width:560px;
+  margin:0 auto;
+  line-height:1.7;
+  opacity:0;
+  animation:fadeUp 0.6s 0.3s ease forwards;
+}
+/* SEARCH */
+.search-wrap {
+  position:relative;
+  z-index:20;
+  max-width:620px;
+  margin:40px auto 0;
+  opacity:0;
+  animation:fadeUp 0.6s 0.4s ease forwards;
+}
+.search-box {
+  display:flex;
+  align-items:center;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:50px;
+  padding:14px 20px;
+  gap:12px;
+  transition:border-color 0.3s,box-shadow 0.3s;
+}
+.search-box:focus-within {
+  border-color:rgba(255,140,0,0.5);
+  box-shadow:0 0 0 3px rgba(255,140,0,0.08),var(--glow);
+}
+.search-box i { color:var(--orange); font-size:15px; flex-shrink:0; }
+.search-box input {
+  flex:1;
+  background:none;
+  border:none;
+  outline:none;
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  font-size:0.95rem;
+}
+.search-box input::placeholder { color:var(--text-muted); }
+.search-clear {
+  background:none;
+  border:none;
+  color:var(--text-muted);
+  cursor:pointer;
+  padding:4px;
+  border-radius:50%;
+  display:none;
+  transition:color 0.2s;
+  font-size:13px;
+}
+.search-clear:hover { color:var(--text); }
+.search-clear.visible { display:block; }
+/* Autocomplete */
+.autocomplete {
+  position:absolute;
+  top:calc(100% + 8px);
+  left:0;right:0;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 16px 48px rgba(0,0,0,0.5);
+  display:none;
+  z-index:100;
+}
+.autocomplete.open { display:block; }
+.ac-item {
+  padding:12px 18px;
+  cursor:pointer;
+  font-size:0.88rem;
+  color:var(--text-dim);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  transition:background 0.15s,color 0.15s;
+  border-bottom:1px solid var(--border);
+}
+.ac-item:last-child { border-bottom:none; }
+.ac-item:hover,.ac-item.active { background:rgba(255,140,0,0.08); color:var(--text); }
+.ac-item i { color:var(--orange); font-size:12px; width:14px; }
+.ac-item .hl { color:var(--orange); font-weight:600; }
+/* FILTERS */
+.filters-section {
+  position:relative;
+  z-index:5;
+  padding:32px 48px 0;
+  opacity:0;
+  animation:fadeUp 0.6s 0.5s ease forwards;
+}
+.filters-label {
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  margin-bottom:14px;
+}
+.filter-groups { display:flex; flex-wrap:wrap; gap:24px; }
+.filter-group { display:flex; flex-direction:column; gap:8px; }
+.filter-group-label {
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  opacity:0.6;
+}
+.filter-chips { display:flex; flex-wrap:wrap; gap:7px; }
+.chip {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:500;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,0.03);
+  color:var(--text-muted);
+  cursor:pointer;
+  transition:all 0.2s ease;
+  white-space:nowrap;
+  user-select:none;
+}
+.chip i { font-size:10px; }
+.chip:hover {
+  border-color:rgba(255,140,0,0.4);
+  color:var(--text);
+  background:rgba(255,140,0,0.06);
+  transform:translateY(-1px);
+}
+.chip.active {
+  background:rgba(255,140,0,0.15);
+  border-color:var(--orange);
+  color:var(--orange);
+  box-shadow:0 0 12px rgba(255,140,0,0.15);
+}
+.chip-all.active {
+  background:var(--grad2);
+  border-color:transparent;
+  color:white;
+  box-shadow:0 4px 16px rgba(255,107,0,0.3);
+}
+/* FILTER ACTIONS */
+.filter-actions {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px 48px;
+  position:relative;
+  z-index:5;
+}
+.results-count { font-size:13px; color:var(--text-muted); }
+.results-count strong { color:var(--orange); }
+.btn-reset {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  background:none;
+  border:1px solid var(--border);
+  color:var(--text-muted);
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;
+  font-weight:500;
+  padding:6px 14px;
+  border-radius:20px;
+  cursor:pointer;
+  transition:all 0.2s;
+}
+.btn-reset:hover { border-color:rgba(255,255,255,0.2); color:var(--text); }
+/* SECTION DIVIDER */
+.section-divider {
+  position:relative;
+  z-index:5;
+  padding:0 48px 24px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.section-divider span {
+  font-family:'Syne',sans-serif;
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  white-space:nowrap;
+}
+.section-divider::before,.section-divider::after {
+  content:'';flex:1;height:1px;background:var(--border);
+}
+/* GRID */
+.grid-section {
+  position:relative;
+  z-index:1;
+  padding:8px 48px 80px;
+}
+.products-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+  gap:16px;
+}
+/* CARD */
+.card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:24px;
+  transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
+  position:relative;
+  overflow:hidden;
+  animation:cardIn 0.4s ease both;
+}
+.card::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:var(--grad);
+  opacity:0;
+  transition:opacity 0.3s;
+  pointer-events:none;
+  border-radius:inherit;
+}
+.card:hover {
+  border-color:rgba(255,140,0,0.35);
+  transform:translateY(-3px);
+  box-shadow:0 12px 40px rgba(0,0,0,0.4),0 0 30px rgba(255,140,0,0.08);
+}
+.card:hover::before { opacity:0.03; }
+.card.hidden { display:none; }
+.card-header { display:flex; align-items:flex-start; gap:14px; margin-bottom:14px; }
+.card-icon {
+  width:42px; height:42px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:17px;
+  flex-shrink:0;
+}
+.card-name {
+  font-family:'Syne',sans-serif;
+  font-size:1rem;
+  font-weight:700;
+  color:var(--text);
+  line-height:1.3;
+  margin-bottom:4px;
+}
+.card-category {
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+}
+.card-desc {
+  font-size:0.84rem;
+  color:var(--text-muted);
+  line-height:1.65;
+  margin-bottom:16px;
+}
+.card-tags { display:flex; flex-wrap:wrap; gap:5px; }
+.tag {
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:3px 9px;
+  border-radius:4px;
+  background:rgba(255,255,255,0.05);
+  color:var(--text-muted);
+  border:1px solid var(--border);
+}
+/* Icon colors */
+.ic-orange { background:rgba(255,140,0,0.12); color:#ff8c00; }
+.ic-purple { background:rgba(139,63,220,0.12); color:#a855f7; }
+.ic-pink   { background:rgba(212,36,122,0.12); color:#ec4899; }
+.ic-blue   { background:rgba(59,130,246,0.12); color:#60a5fa; }
+.ic-green  { background:rgba(34,197,94,0.12);  color:#4ade80; }
+.ic-teal   { background:rgba(20,184,166,0.12); color:#2dd4bf; }
+.ic-red    { background:rgba(239,68,68,0.12);  color:#f87171; }
+.ic-yellow { background:rgba(234,179,8,0.12);  color:#facc15; }
+/* Empty state */
+.empty-state {
+  grid-column:1/-1;
+  text-align:center;
+  padding:80px 24px;
+  display:none;
+}
+.empty-state.show { display:block; }
+.empty-state i { font-size:48px; color:var(--border); margin-bottom:16px; display:block; }
+.empty-state h3 { font-family:'Syne',sans-serif; font-size:1.2rem; margin-bottom:8px; }
+.empty-state p { color:var(--text-muted); font-size:0.9rem; }
+/* Animations */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes cardIn {
+  from { opacity:0; transform:translateY(12px) scale(0.98); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+/* Scrollbar */
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1); border-radius:3px; }
+/* Responsive */
+@media (max-width:768px) {
+  header,.filters-section,.filter-actions,.grid-section,.section-divider { padding-left:20px; padding-right:20px; }
+  .hero { padding:48px 20px 32px; }
+  .products-grid { grid-template-columns:1fr; }
+  .filter-groups { gap:16px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="data:image/png;base64,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" alt="PiirZ Digital">
+  </div>
+  <div class="header-badge">Portafoglio Prodotti 2025</div>
+</header>
+
+<section class="hero">
+  <div class="hero-tag"><i class="fa-solid fa-bolt"></i> AI &middot; ML &middot; XR &middot; Computer Vision</div>
+  <h1>Prodotti &amp; <span>Capacit&agrave; Progettuali</span></h1>
+  <p>Soluzioni AI su misura per ogni settore. Dalla strategia all&rsquo;implementazione, dall&rsquo;agente intelligente alla piattaforma enterprise.</p>
+  <div class="search-wrap">
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Cerca prodotti, tecnologie, settori&hellip;" autocomplete="off">
+      <button class="search-clear" id="searchClear"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="autocomplete" id="autocomplete"></div>
+  </div>
+</section>
+
+<section class="filters-section">
+  <div class="filters-label">Filtra per</div>
+  <div class="filter-groups">
+    <div class="filter-group">
+      <div class="filter-group-label">Categoria</div>
+      <div class="filter-chips">
+        <span class="chip chip-all active" data-filter="all" data-type="category"><i class="fa-solid fa-border-all"></i> Tutti</span>
+        <span class="chip" data-filter="piattaforma" data-type="category"><i class="fa-solid fa-server"></i> Piattaforme</span>
+        <span class="chip" data-filter="consulenza" data-type="category"><i class="fa-solid fa-chess"></i> Consulenza</span>
+        <span class="chip" data-filter="prodotto" data-type="category"><i class="fa-solid fa-box"></i> Prodotti</span>
+        <span class="chip" data-filter="sicurezza" data-type="category"><i class="fa-solid fa-shield"></i> Sicurezza</span>
+        <span class="chip" data-filter="formazione" data-type="category"><i class="fa-solid fa-graduation-cap"></i> Formazione</span>
+        <span class="chip" data-filter="capacita" data-type="category"><i class="fa-solid fa-wand-magic-sparkles"></i> Capacit&agrave;</span>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-group-label">Settore</div>
+      <div class="filter-chips">
+        <span class="chip" data-filter="turismo" data-type="sector"><i class="fa-solid fa-plane"></i> Turismo</span>
+        <span class="chip" data-filter="cultura" data-type="sector"><i class="fa-solid fa-landmark"></i> Cultura</span>
+        <span class="chip" data-filter="enterprise" data-type="sector"><i class="fa-solid fa-building"></i> Enterprise</span>
+        <span class="chip" data-filter="finance" data-type="sector"><i class="fa-solid fa-chart-line"></i> Finance</span>
+        <span class="chip" data-filter="sanita" data-type="sector"><i class="fa-solid fa-heart-pulse"></i> Sanit&agrave;</span>
+        <span class="chip" data-filter="retail" data-type="sector"><i class="fa-solid fa-store"></i> Retail</span>
+        <span class="chip" data-filter="pubblica-amministrazione" data-type="sector"><i class="fa-solid fa-building-columns"></i> PA</span>
+        <span class="chip" data-filter="immobiliare" data-type="sector"><i class="fa-solid fa-house"></i> Real Estate</span>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-group-label">Tecnologia</div>
+      <div class="filter-chips">
+        <span class="chip" data-filter="llm" data-type="tech"><i class="fa-solid fa-brain"></i> LLM</span>
+        <span class="chip" data-filter="computer-vision" data-type="tech"><i class="fa-solid fa-eye"></i> Computer Vision</span>
+        <span class="chip" data-filter="ml" data-type="tech"><i class="fa-solid fa-microchip"></i> ML</span>
+        <span class="chip" data-filter="xr" data-type="tech"><i class="fa-solid fa-vr-cardboard"></i> XR / AR / VR</span>
+        <span class="chip" data-filter="agenti" data-type="tech"><i class="fa-solid fa-robot"></i> AI Agents</span>
+        <span class="chip" data-filter="rag" data-type="tech"><i class="fa-solid fa-database"></i> RAG</span>
+        <span class="chip" data-filter="avatar" data-type="tech"><i class="fa-solid fa-user-astronaut"></i> Avatar AI</span>
+        <span class="chip" data-filter="voce" data-type="tech"><i class="fa-solid fa-microphone"></i> Voce</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="filter-actions">
+  <div class="results-count">Mostrando <strong id="countNum">35</strong> soluzioni</div>
+  <button class="btn-reset" id="btnReset"><i class="fa-solid fa-rotate-left"></i> Reset filtri</button>
+</div>
+
+<div class="section-divider"><span>Prodotti Esistenti</span></div>
+<section class="grid-section">
+<div class="products-grid" id="grid">
+
+<div class="card" data-tags="piattaforma,enterprise,agenti,llm,rag">
+  <div class="card-header">
+    <div class="card-icon ic-orange"><i class="fa-solid fa-hexagon-nodes"></i></div>
+    <div>
+      <div class="card-name">SwarmOS</div>
+      <div class="card-category">Piattaforma &middot; Enterprise</div>
+    </div>
+  </div>
+  <p class="card-desc">Piattaforma proprietaria di orchestrazione agenti AI per l&rsquo;automazione enterprise. Gestisce agenti ibridi (LLM, API, RAG), workflow auditabili e dashboard BI con architettura privacy-by-design.</p>
+  <div class="card-tags"><span class="tag">Agenti AI</span><span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">BI</span><span class="tag">Enterprise</span></div>
+</div>
+
+<div class="card" data-tags="consulenza,enterprise,agenti,llm">
+  <div class="card-header">
+    <div class="card-icon ic-purple"><i class="fa-solid fa-compass-drafting"></i></div>
+    <div>
+      <div class="card-name">AI Discovery</div>
+      <div class="card-category">Consulenza &middot; Strategy</div>
+    </div>
+  </div>
+  <p class="card-desc">Analisi strutturata in 3-6 settimane per identificare le opportunit&agrave; AI ad alto valore. Produce una roadmap concreta con valutazione di costi, impatti, rischi e ROI.</p>
+  <div class="card-tags"><span class="tag">Roadmap</span><span class="tag">ROI</span><span class="tag">Assessment</span></div>
+</div>
+
+<div class="card" data-tags="prodotto,formazione,enterprise,llm,rag">
+  <div class="card-header">
+    <div class="card-icon ic-blue"><i class="fa-solid fa-chalkboard-user"></i></div>
+    <div>
+      <div class="card-name">AI Tutor</div>
+      <div class="card-category">Prodotto &middot; Adoption</div>
+    </div>
+  </div>
+  <p class="card-desc">Assistente AI addestrato sull&rsquo;AI Discovery aziendale. Guida il team nell&rsquo;adozione quotidiana dei nuovi processi riducendo frizioni e resistenze interne.</p>
+  <div class="card-tags"><span class="tag">Adoption</span><span class="tag">RAG</span><span class="tag">Change Mgmt</span></div>
+</div>
+
+<div class="card" data-tags="consulenza,enterprise,agenti">
+  <div class="card-header">
+    <div class="card-icon ic-teal"><i class="fa-solid fa-layer-group"></i></div>
+    <div>
+      <div class="card-name">AI Implementation Framework</div>
+      <div class="card-category">Consulenza &middot; Framework</div>
+    </div>
+  </div>
+  <p class="card-desc">Consulenza esecutiva a quattro fasi (Contesto &rarr; Intelligenza &rarr; Integrazione &rarr; Evoluzione) per convertire esigenze aziendali in sistemi AI implementabili e governati.</p>
+  <div class="card-tags"><span class="tag">Governance</span><span class="tag">Framework</span><span class="tag">C-Level</span></div>
+</div>
+
+<div class="card" data-tags="consulenza,sicurezza,enterprise">
+  <div class="card-header">
+    <div class="card-icon ic-pink"><i class="fa-solid fa-building-shield"></i></div>
+    <div>
+      <div class="card-name">Strategic Architecture Advisory</div>
+      <div class="card-category">Consulenza &middot; Governance</div>
+    </div>
+  </div>
+  <p class="card-desc">Advisory su AI, governance e cybersecurity. Si interviene prima dell&rsquo;adozione tecnologica, stabilendo struttura, chiarezza e framework di controllo per enti pubblici e privati.</p>
+  <div class="card-tags"><span class="tag">Advisory</span><span class="tag">Governance</span><span class="tag">Cybersecurity</span></div>
+</div>
+
+<div class="card" data-tags="sicurezza,enterprise,ml">
+  <div class="card-header">
+    <div class="card-icon ic-red"><i class="fa-solid fa-shield-virus"></i></div>
+    <div>
+      <div class="card-name">AI Red Team &amp; Backdoor Detection</div>
+      <div class="card-category">Sicurezza &middot; Audit</div>
+    </div>
+  </div>
+  <p class="card-desc">Audit specializzato per ambienti digitali critici: rilevamento backdoor, model poisoning, prompt injection e anomalie comportamentali nei sistemi AI. Include remediation e hardening.</p>
+  <div class="card-tags"><span class="tag">Red Team</span><span class="tag">Audit</span><span class="tag">ML Security</span></div>
+</div>
+
+<div class="card" data-tags="piattaforma,sicurezza,enterprise,computer-vision,llm">
+  <div class="card-header">
+    <div class="card-icon ic-yellow"><i class="fa-solid fa-gavel"></i></div>
+    <div>
+      <div class="card-name">AI Compliance Platform</div>
+      <div class="card-category">Piattaforma &middot; Legal</div>
+    </div>
+  </div>
+  <p class="card-desc">Monitoraggio automatico di compliance, copyright e brand protection su contenuti digitali tramite AI Vision, LLM e knowledge graph con alert real-time e reportistica per audit.</p>
+  <div class="card-tags"><span class="tag">Copyright</span><span class="tag">AI Vision</span><span class="tag">Compliance</span></div>
+</div>
+
+<div class="card" data-tags="prodotto,avatar,voce,llm">
+  <div class="card-header">
+    <div class="card-icon ic-purple"><i class="fa-solid fa-user-tie"></i></div>
+    <div>
+      <div class="card-name">Digital Ambassador</div>
+      <div class="card-category">Prodotto &middot; Brand</div>
+    </div>
+  </div>
+  <p class="card-desc">Human digitale AI come ambassador di brand con vita social propria, presenza mediatica organica e audit delle conversazioni per insight reali sugli stakeholder.</p>
+  <div class="card-tags"><span class="tag">Digital Human</span><span class="tag">Social AI</span><span class="tag">Brand</span></div>
+</div>
+
+<div class="card" data-tags="prodotto,turismo,agenti,voce,llm,computer-vision">
+  <div class="card-header">
+    <div class="card-icon ic-orange"><i class="fa-solid fa-map-location-dot"></i></div>
+    <div>
+      <div class="card-name">Ella Voyage</div>
+      <div class="card-category">Prodotto &middot; Turismo</div>
+    </div>
+  </div>
+  <p class="card-desc">Companion AI per il turismo su WhatsApp/Messenger: consigli personalizzati, riconoscimento visivo, traduzione real-time e dashboard BI per operatori e destinazioni turistiche.</p>
+  <div class="card-tags"><span class="tag">WhatsApp</span><span class="tag">Tourism AI</span><span class="tag">BI</span></div>
+</div>
+
+<div class="card" data-tags="prodotto,cultura,avatar,voce,llm,rag">
+  <div class="card-header">
+    <div class="card-icon ic-teal"><i class="fa-solid fa-palette"></i></div>
+    <div>
+      <div class="card-name">Parla con l&rsquo;Arte</div>
+      <div class="card-category">Prodotto &middot; Cultura</div>
+    </div>
+  </div>
+  <p class="card-desc">Ogni opera diventa una presenza accessibile via chat, voce, telefono e avatar interattivo. Basata sulla conoscenza curatoriale documentata dell&rsquo;istituzione, senza invenzioni.</p>
+  <div class="card-tags"><span class="tag">Avatar</span><span class="tag">Musei</span><span class="tag">Knowledge Base</span></div>
+</div>
+
+<div class="card" data-tags="prodotto,cultura,avatar,voce,llm">
+  <div class="card-header">
+    <div class="card-icon ic-pink"><i class="fa-solid fa-book-open-reader"></i></div>
+    <div>
+      <div class="card-name">Parla con i Libri</div>
+      <div class="card-category">Prodotto &middot; Cultura</div>
+    </div>
+  </div>
+  <p class="card-desc">Avatar AI vocale degli autori letterari per conversazioni interattive su testi, personaggi e ispirazione. Rivolto a lettori, studenti e istituzioni culturali ed editoriali.</p>
+  <div class="card-tags"><span class="tag">Voce AI</span><span class="tag">Editoria</span><span class="tag">Cultura</span></div>
+</div>
+
+<div class="card" data-tags="prodotto,turismo,agenti,computer-vision,llm">
+  <div class="card-header">
+    <div class="card-icon ic-blue"><i class="fa-solid fa-camera-retro"></i></div>
+    <div>
+      <div class="card-name">Bepi Creator</div>
+      <div class="card-category">Prodotto &middot; Turismo</div>
+    </div>
+  </div>
+  <p class="card-desc">Guide di viaggio iper-personalizzate per tema e destinazione, con agente AI multimodale che analizza le foto scattate dal turista fornendo approfondimenti contestuali in tempo reale.</p>
+  <div class="card-tags"><span class="tag">Multimodale</span><span class="tag">Travel Guide</span><span class="tag">Vision</span></div>
+</div>
+
+<div class="card" data-tags="prodotto,sanita,agenti,voce,llm,computer-vision">
+  <div class="card-header">
+    <div class="card-icon ic-green"><i class="fa-solid fa-hand-holding-heart"></i></div>
+    <div>
+      <div class="card-name">Mira</div>
+      <div class="card-category">Prodotto &middot; Welfare</div>
+    </div>
+  </div>
+  <p class="card-desc">Assistente AI per anziani con compagnia conversazionale, rilevamento cadute, monitoraggio comportamentale, promemoria farmaci e integrazione con il network familiare e sanitario.</p>
+  <div class="card-tags"><span class="tag">Eldercare</span><span class="tag">Safety</span><span class="tag">IoT</span></div>
+</div>
+
+<div class="card" data-tags="piattaforma,enterprise,retail,llm,rag,agenti">
+  <div class="card-header">
+    <div class="card-icon ic-orange"><i class="fa-solid fa-comments-dollar"></i></div>
+    <div>
+      <div class="card-name">Conversational BI</div>
+      <div class="card-category">Piattaforma &middot; Data</div>
+    </div>
+  </div>
+  <p class="card-desc">Interfaccia conversazionale per interrogare dati aziendali in linguaggio naturale, con integrazione e-commerce (Shopify), generazione di report e visualizzazioni on-demand.</p>
+  <div class="card-tags"><span class="tag">NL Query</span><span class="tag">Shopify</span><span class="tag">BI</span></div>
+</div>
+
+<div class="card" data-tags="prodotto,immobiliare,llm,rag,agenti">
+  <div class="card-header">
+    <div class="card-icon ic-yellow"><i class="fa-solid fa-house-circle-check"></i></div>
+    <div>
+      <div class="card-name">Ricerca Conversazionale Semantica</div>
+      <div class="card-category">Prodotto &middot; Real Estate</div>
+    </div>
+  </div>
+  <p class="card-desc">Motore AI per piattaforme con database di contenuti: interrogazione in linguaggio naturale, ranking semantico, lead capture e gestione multi-canale (email, WhatsApp, Telegram).</p>
+  <div class="card-tags"><span class="tag">Semantic Search</span><span class="tag">Lead Capture</span><span class="tag">API</span></div>
+</div>
+
+<div class="card" data-tags="prodotto,immobiliare,agenti,llm">
+  <div class="card-header">
+    <div class="card-icon ic-teal"><i class="fa-solid fa-file-contract"></i></div>
+    <div>
+      <div class="card-name">AI Due Diligence Real Estate</div>
+      <div class="card-category">Prodotto &middot; Real Estate</div>
+    </div>
+  </div>
+  <p class="card-desc">Applicazione web AI per la due diligence immobiliare: analisi documentale automatizzata, integrazione catastale, generazione report PDF e dashboard personale per gli operatori.</p>
+  <div class="card-tags"><span class="tag">Due Diligence</span><span class="tag">Documento AI</span><span class="tag">Catasto</span></div>
+</div>
+
+<div class="card" data-tags="formazione,enterprise,agenti">
+  <div class="card-header">
+    <div class="card-icon ic-purple"><i class="fa-solid fa-certificate"></i></div>
+    <div>
+      <div class="card-name">PiirZ Academy</div>
+      <div class="card-category">Formazione &middot; Education</div>
+    </div>
+  </div>
+  <p class="card-desc">Formazione pratica su orchestrazione agenti, design di sistemi AI e governance. Workshop, certificazioni e programmi personalizzati per team tecnici ed executive leadership.</p>
+  <div class="card-tags"><span class="tag">Workshop</span><span class="tag">Certificazione</span><span class="tag">Executive</span></div>
+</div>
+
+</div>
+</section>
+
+<div class="section-divider"><span>Capacit&agrave; Progettuali</span></div>
+<section class="grid-section" style="padding-top:0">
+<div class="products-grid" id="grid2">
+
+<div class="card" data-tags="capacita,retail,enterprise,agenti,llm">
+  <div class="card-header">
+    <div class="card-icon ic-orange"><i class="fa-solid fa-bullseye-arrow"></i></div>
+    <div>
+      <div class="card-name">Sales AI Agent</div>
+      <div class="card-category">Capacit&agrave; &middot; Sales Automation</div>
+    </div>
+  </div>
+  <p class="card-desc">Agente conversazionale che qualifica lead, gestisce obiezioni e accompagna il prospect lungo il funnel in autonomia su qualsiasi canale. Integrazione nativa con CRM e pipeline commerciali.</p>
+  <div class="card-tags"><span class="tag">CRM</span><span class="tag">Lead Gen</span><span class="tag">Omnichannel</span></div>
+</div>
+
+<div class="card" data-tags="capacita,enterprise,retail,agenti,ml">
+  <div class="card-header">
+    <div class="card-icon ic-blue"><i class="fa-solid fa-network-wired"></i></div>
+    <div>
+      <div class="card-name">Franchising Intelligence</div>
+      <div class="card-category">Capacit&agrave; &middot; Network Management</div>
+    </div>
+  </div>
+  <p class="card-desc">Sistema di monitoraggio e governance per reti in franchising: analisi performance per punto vendita, compliance operativa, formazione automatizzata degli affiliati e alert su anomalie.</p>
+  <div class="card-tags"><span class="tag">Franchise</span><span class="tag">Network AI</span><span class="tag">Compliance</span></div>
+</div>
+
+<div class="card" data-tags="capacita,retail,computer-vision,ml">
+  <div class="card-header">
+    <div class="card-icon ic-teal"><i class="fa-solid fa-eye"></i></div>
+    <div>
+      <div class="card-name">Computer Vision per il Retail</div>
+      <div class="card-category">Capacit&agrave; &middot; In-Store Analytics</div>
+    </div>
+  </div>
+  <p class="card-desc">Analisi del comportamento in-store: flussi di clienti, heatmap di attenzione sugli scaffali, rilevamento code e ottimizzazione del layout. Architettura privacy-by-design.</p>
+  <div class="card-tags"><span class="tag">Heatmap</span><span class="tag">People Counting</span><span class="tag">Privacy</span></div>
+</div>
+
+<div class="card" data-tags="capacita,enterprise,ml">
+  <div class="card-header">
+    <div class="card-icon ic-red"><i class="fa-solid fa-gear"></i></div>
+    <div>
+      <div class="card-name">Predictive Maintenance ML</div>
+      <div class="card-category">Capacit&agrave; &middot; Industria</div>
+    </div>
+  </div>
+  <p class="card-desc">Modelli di machine learning per la manutenzione predittiva in contesti industriali e infrastrutturali. Riduce i fermi macchina anticipando guasti prima che si verifichino.</p>
+  <div class="card-tags"><span class="tag">Industry 4.0</span><span class="tag">IoT</span><span class="tag">Predictive</span></div>
+</div>
+
+<div class="card" data-tags="capacita,formazione,xr,enterprise">
+  <div class="card-header">
+    <div class="card-icon ic-purple"><i class="fa-solid fa-vr-cardboard"></i></div>
+    <div>
+      <div class="card-name">XR Training &amp; Simulation</div>
+      <div class="card-category">Capacit&agrave; &middot; XR / Formazione</div>
+    </div>
+  </div>
+  <p class="card-desc">Ambienti in realt&agrave; aumentata o virtuale per la formazione professionale in settori ad alto rischio (industria, sanit&agrave;, sicurezza). Scenari simulati e assessment integrato.</p>
+  <div class="card-tags"><span class="tag">AR</span><span class="tag">VR</span><span class="tag">Simulazione</span><span class="tag">Safety</span></div>
+</div>
+
+<div class="card" data-tags="capacita,sanita,agenti,llm,ml">
+  <div class="card-header">
+    <div class="card-icon ic-green"><i class="fa-solid fa-stethoscope"></i></div>
+    <div>
+      <div class="card-name">AI per la Sanit&agrave; e il Welfare</div>
+      <div class="card-category">Capacit&agrave; &middot; Healthcare</div>
+    </div>
+  </div>
+  <p class="card-desc">Supporto clinico, triage conversazionale, monitoraggio remoto del paziente e gestione della continuit&agrave; assistenziale. Piena conformit&agrave; GDPR e normative sanitarie europee.</p>
+  <div class="card-tags"><span class="tag">Triage</span><span class="tag">Telemedicina</span><span class="tag">GDPR</span></div>
+</div>
+
+<div class="card" data-tags="capacita,enterprise,llm,ml,computer-vision">
+  <div class="card-header">
+    <div class="card-icon ic-yellow"><i class="fa-solid fa-file-waveform"></i></div>
+    <div>
+      <div class="card-name">Multimodal Document Intelligence</div>
+      <div class="card-category">Capacit&agrave; &middot; Document AI</div>
+    </div>
+  </div>
+  <p class="card-desc">Estrazione, classificazione e analisi automatica di documenti complessi (contratti, fatture, atti) tramite LLM e visione artificiale. Output strutturato e audit trail completo.</p>
+  <div class="card-tags"><span class="tag">OCR AI</span><span class="tag">Contratti</span><span class="tag">Audit Trail</span></div>
+</div>
+
+<div class="card" data-tags="capacita,formazione,llm,agenti">
+  <div class="card-header">
+    <div class="card-icon ic-blue"><i class="fa-solid fa-user-graduate"></i></div>
+    <div>
+      <div class="card-name">Adaptive Learning Platform</div>
+      <div class="card-category">Capacit&agrave; &middot; EdTech</div>
+    </div>
+  </div>
+  <p class="card-desc">Piattaforme di apprendimento adattivo che personalizzano contenuti, ritmo e valutazione in base al profilo dell&rsquo;utente. Per scuole, universit&agrave; e formazione aziendale.</p>
+  <div class="card-tags"><span class="tag">EdTech</span><span class="tag">Adattivo</span><span class="tag">Assessment</span></div>
+</div>
+
+<div class="card" data-tags="capacita,enterprise,retail,ml,llm">
+  <div class="card-header">
+    <div class="card-icon ic-pink"><i class="fa-solid fa-chart-mixed"></i></div>
+    <div>
+      <div class="card-name">Sentiment &amp; Brand Intelligence</div>
+      <div class="card-category">Capacit&agrave; &middot; Marketing</div>
+    </div>
+  </div>
+  <p class="card-desc">Monitoraggio continuo della reputazione di brand su social, news e forum. Dashboard real-time con trend analysis, alert e reportistica per il management. NLP avanzato multilingue.</p>
+  <div class="card-tags"><span class="tag">Social Listening</span><span class="tag">NLP</span><span class="tag">Dashboard</span></div>
+</div>
+
+<div class="card" data-tags="capacita,finance,sicurezza,ml,agenti">
+  <div class="card-header">
+    <div class="card-icon ic-orange"><i class="fa-solid fa-money-bill-transfer"></i></div>
+    <div>
+      <div class="card-name">AI per AML e Compliance Finanziaria</div>
+      <div class="card-category">Capacit&agrave; &middot; Finance / RegTech</div>
+    </div>
+  </div>
+  <p class="card-desc">Rilevamento pattern anomali in transazioni, supporto alle segnalazioni antiriciclaggio e automazione KYC. Esperienza documentata con banche centrali e istituzioni finanziarie internazionali.</p>
+  <div class="card-tags"><span class="tag">AML</span><span class="tag">KYC</span><span class="tag">RegTech</span></div>
+</div>
+
+<div class="card" data-tags="capacita,pubblica-amministrazione,turismo,ml,agenti">
+  <div class="card-header">
+    <div class="card-icon ic-teal"><i class="fa-solid fa-city"></i></div>
+    <div>
+      <div class="card-name">AI per Smart City e PA</div>
+      <div class="card-category">Capacit&agrave; &middot; GovTech</div>
+    </div>
+  </div>
+  <p class="card-desc">Ottimizzazione dei servizi ai cittadini, analisi predittiva della domanda, gestione intelligente delle risorse urbane e supporto decisionale per policy maker. Soluzioni GDPR-native.</p>
+  <div class="card-tags"><span class="tag">GovTech</span><span class="tag">Smart City</span><span class="tag">Predictive</span></div>
+</div>
+
+<div class="card" data-tags="capacita,finance,sicurezza,ml">
+  <div class="card-header">
+    <div class="card-icon ic-red"><i class="fa-solid fa-shield-halved"></i></div>
+    <div>
+      <div class="card-name">Fraud Detection ML</div>
+      <div class="card-category">Capacit&agrave; &middot; Fintech / Sicurezza</div>
+    </div>
+  </div>
+  <p class="card-desc">Modelli di rilevamento frodi in tempo reale per e-commerce, fintech e assicurazioni. Riduce i falsi positivi rispetto ai sistemi rule-based grazie all&rsquo;apprendimento continuo.</p>
+  <div class="card-tags"><span class="tag">Real-time</span><span class="tag">Fintech</span><span class="tag">Anomaly Detection</span></div>
+</div>
+
+<div class="card" data-tags="capacita,enterprise,rag,llm,agenti">
+  <div class="card-header">
+    <div class="card-icon ic-purple"><i class="fa-solid fa-database"></i></div>
+    <div>
+      <div class="card-name">RAG Enterprise Systems</div>
+      <div class="card-category">Capacit&agrave; &middot; Knowledge Management</div>
+    </div>
+  </div>
+  <p class="card-desc">Architetture che connettono LLM alla conoscenza interna dell&rsquo;organizzazione (documenti, manuali, policy). Risposte precise, tracciabili e sempre aggiornate senza allucinazioni.</p>
+  <div class="card-tags"><span class="tag">Knowledge Base</span><span class="tag">Vector DB</span><span class="tag">Enterprise</span></div>
+</div>
+
+<div class="card" data-tags="capacita,enterprise,avatar,voce,llm">
+  <div class="card-header">
+    <div class="card-icon ic-orange"><i class="fa-solid fa-user-astronaut"></i></div>
+    <div>
+      <div class="card-name">AI Avatar Assistenza Clienti</div>
+      <div class="card-category">Capacit&agrave; &middot; CX / Avatar</div>
+    </div>
+  </div>
+  <p class="card-desc">Avatar conversazionale con volto, voce e personalit&agrave; coerenti col brand per supporto H24 su web, app e totem fisici. Va oltre il chatbot: una presenza con identit&agrave; riconoscibile.</p>
+  <div class="card-tags"><span class="tag">Digital Human</span><span class="tag">H24</span><span class="tag">Totem</span></div>
+</div>
+
+<div class="card" data-tags="capacita,enterprise,ml,agenti">
+  <div class="card-header">
+    <div class="card-icon ic-blue"><i class="fa-solid fa-route"></i></div>
+    <div>
+      <div class="card-name">Multiagente per la Logistica</div>
+      <div class="card-category">Capacit&agrave; &middot; Supply Chain</div>
+    </div>
+  </div>
+  <p class="card-desc">Ottimizzazione in tempo reale di rotte, magazzini e supply chain tramite agenti AI coordinati. Riduzione dei costi operativi e resilienza a interruzioni e variabili di mercato.</p>
+  <div class="card-tags"><span class="tag">Ottimizzazione</span><span class="tag">Supply Chain</span><span class="tag">Multi-Agent</span></div>
+</div>
+
+<div class="card" data-tags="capacita,enterprise,ml,agenti,pubblica-amministrazione">
+  <div class="card-header">
+    <div class="card-icon ic-yellow"><i class="fa-solid fa-satellite-dish"></i></div>
+    <div>
+      <div class="card-name">Digital Twin con AI</div>
+      <div class="card-category">Capacit&agrave; &middot; Enterprise / PA</div>
+    </div>
+  </div>
+  <p class="card-desc">Replica digitale di processi, impianti o infrastrutture urbane alimentata da dati real-time e modelli predittivi. Consente simulazioni decisionali prima di qualsiasi intervento fisico.</p>
+  <div class="card-tags"><span class="tag">Digital Twin</span><span class="tag">IoT</span><span class="tag">Simulazione</span></div>
+</div>
+
+<div class="card" data-tags="capacita,enterprise,computer-vision,ml,sicurezza">
+  <div class="card-header">
+    <div class="card-icon ic-red"><i class="fa-solid fa-video"></i></div>
+    <div>
+      <div class="card-name">Computer Vision per la Sicurezza</div>
+      <div class="card-category">Capacit&agrave; &middot; Safety</div>
+    </div>
+  </div>
+  <p class="card-desc">Rilevamento comportamenti anomali in spazi pubblici, gestione intelligente degli accessi e supporto alle centrali operative. Privacy-by-design e conforme all&rsquo;AI Act europeo.</p>
+  <div class="card-tags"><span class="tag">Sorveglianza AI</span><span class="tag">AI Act</span><span class="tag">Edge AI</span></div>
+</div>
+
+<div class="card" data-tags="capacita,enterprise,ml,agenti">
+  <div class="card-header">
+    <div class="card-icon ic-green"><i class="fa-solid fa-solar-panel"></i></div>
+    <div>
+      <div class="card-name">AI per Energia e Sostenibilit&agrave;</div>
+      <div class="card-category">Capacit&agrave; &middot; GreenTech</div>
+    </div>
+  </div>
+  <p class="card-desc">Ottimizzazione dei consumi energetici, previsione della domanda su reti elettriche, gestione delle fonti rinnovabili e carbon footprint tracking automatizzato per aziende ed enti.</p>
+  <div class="card-tags"><span class="tag">ESG</span><span class="tag">Smart Grid</span><span class="tag">GreenAI</span></div>
+</div>
+
+<div class="card" data-tags="capacita,enterprise,ml,llm">
+  <div class="card-header">
+    <div class="card-icon ic-teal"><i class="fa-solid fa-flask"></i></div>
+    <div>
+      <div class="card-name">AI per Ricerca Scientifica e Biotech</div>
+      <div class="card-category">Capacit&agrave; &middot; Life Sciences</div>
+    </div>
+  </div>
+  <p class="card-desc">Accelerazione della scoperta di composti farmacologici, analisi di dati genomici, elaborazione di letteratura scientifica e supporto alla progettazione di trial clinici.</p>
+  <div class="card-tags"><span class="tag">Drug Discovery</span><span class="tag">Genomics</span><span class="tag">Biotech</span></div>
+</div>
+
+<div class="card" data-tags="capacita,immobiliare,finance,ml">
+  <div class="card-header">
+    <div class="card-icon ic-orange"><i class="fa-solid fa-chart-area"></i></div>
+    <div>
+      <div class="card-name">Real Estate Predictive Analytics</div>
+      <div class="card-category">Capacit&agrave; &middot; PropTech</div>
+    </div>
+  </div>
+  <p class="card-desc">Valutazione automatica degli immobili, previsione prezzi per micro-zona, analisi della domanda latente e scoring degli investimenti per fondi e sviluppatori immobiliari.</p>
+  <div class="card-tags"><span class="tag">PropTech</span><span class="tag">AVM</span><span class="tag">Investment AI</span></div>
+</div>
+
+<div class="card" data-tags="capacita,enterprise,llm,ml">
+  <div class="card-header">
+    <div class="card-icon ic-pink"><i class="fa-solid fa-people-arrows"></i></div>
+    <div>
+      <div class="card-name">Co-creazione Uomo-AI</div>
+      <div class="card-category">Capacit&agrave; &middot; Collaboration</div>
+    </div>
+  </div>
+  <p class="card-desc">Ambienti collaborativi in cui team umani e agenti AI lavorano in parallelo su progetti complessi: ricerca, strategia, design, sviluppo. Non automazione totale, ma amplificazione del team.</p>
+  <div class="card-tags"><span class="tag">Human-AI</span><span class="tag">Collaboration</span><span class="tag">Workflow</span></div>
+</div>
+
+<div class="empty-state" id="emptyState">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <h3>Nessun risultato trovato</h3>
+  <p>Prova con un termine diverso o rimuovi alcuni filtri attivi.</p>
+</div>
+
+</div>
+</section>
+
+<script>
+(function() {
+  var allCards = Array.from(document.querySelectorAll('.card[data-tags]'));
+  var searchInput = document.getElementById('searchInput');
+  var searchClear = document.getElementById('searchClear');
+  var ac = document.getElementById('autocomplete');
+  var countNum = document.getElementById('countNum');
+  var emptyState = document.getElementById('emptyState');
+  var chips = Array.from(document.querySelectorAll('.chip[data-filter]'));
+  var btnReset = document.getElementById('btnReset');
+
+  var activeFilters = { category: 'all' };
+  var searchQuery = '';
+  var acIdx = -1;
+
+  // Build suggestions
+  var suggestions = [];
+  allCards.forEach(function(card) {
+    var name = card.querySelector('.card-name').textContent.trim();
+    suggestions.push({ text: name, icon: 'fa-box' });
+    Array.from(card.querySelectorAll('.tag')).forEach(function(t) {
+      var txt = t.textContent.trim();
+      if (!suggestions.find(function(s) { return s.text === txt; })) {
+        suggestions.push({ text: txt, icon: 'fa-tag' });
+      }
+    });
+  });
+  ['AI Agents','LLM','Computer Vision','Machine Learning','XR','Turismo','Sanita','Finance',
+   'Compliance','Governance','RAG','Avatar','Digital Human','Sicurezza','Enterprise',
+   'Real Estate','Retail','PA','Cultura','Formazione'].forEach(function(kw) {
+    if (!suggestions.find(function(s) { return s.text === kw; })) {
+      suggestions.push({ text: kw, icon: 'fa-magnifying-glass' });
+    }
+  });
+
+  function escapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function highlight(text, q) {
+    if (!q) return text;
+    var re = new RegExp('(' + escapeRegex(q) + ')', 'gi');
+    return text.replace(re, '<span class="hl">$1</span>');
+  }
+
+  function updateCount(n) {
+    countNum.textContent = n;
+  }
+
+  function filterCards() {
+    var q = searchQuery.toLowerCase();
+    var visible = 0;
+    var delay = 0;
+
+    allCards.forEach(function(card) {
+      var tags = card.dataset.tags || '';
+      var name = card.querySelector('.card-name').textContent.toLowerCase();
+      var desc = card.querySelector('.card-desc').textContent.toLowerCase();
+      var tagTexts = Array.from(card.querySelectorAll('.tag')).map(function(t) { return t.textContent.toLowerCase(); }).join(' ');
+      var full = name + ' ' + desc + ' ' + tags + ' ' + tagTexts;
+
+      var show = true;
+
+      if (activeFilters.category && activeFilters.category !== 'all') {
+        show = tags.split(',').indexOf(activeFilters.category) >= 0;
+      }
+      if (show && activeFilters.sector) {
+        show = tags.split(',').indexOf(activeFilters.sector) >= 0;
+      }
+      if (show && activeFilters.tech) {
+        show = tags.split(',').indexOf(activeFilters.tech) >= 0;
+      }
+      if (show && q) {
+        show = full.indexOf(q) >= 0;
+      }
+
+      if (show) {
+        card.classList.remove('hidden');
+        card.style.animationDelay = (delay * 0.04) + 's';
+        visible++;
+        delay++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    updateCount(visible);
+    emptyState.classList.toggle('show', visible === 0);
+  }
+
+  // Chips
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      var type = chip.dataset.type;
+      var filter = chip.dataset.filter;
+
+      if (filter === 'all') {
+        delete activeFilters.category;
+        delete activeFilters.sector;
+        delete activeFilters.tech;
+        activeFilters.category = 'all';
+        chips.forEach(function(c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+      } else {
+        document.querySelector('.chip-all').classList.remove('active');
+        if (activeFilters[type] === filter) {
+          delete activeFilters[type];
+          chip.classList.remove('active');
+          if (!activeFilters.category && !activeFilters.sector && !activeFilters.tech) {
+            activeFilters.category = 'all';
+            document.querySelector('.chip-all').classList.add('active');
+          }
+        } else {
+          document.querySelectorAll('.chip[data-type="' + type + '"]').forEach(function(c) { c.classList.remove('active'); });
+          activeFilters[type] = filter;
+          chip.classList.add('active');
+        }
+      }
+      filterCards();
+    });
+  });
+
+  // Search
+  searchInput.addEventListener('input', function() {
+    searchQuery = searchInput.value.trim();
+    searchClear.classList.toggle('visible', searchQuery.length > 0);
+    showAC(searchQuery);
+    filterCards();
+  });
+
+  searchClear.addEventListener('click', function() {
+    searchInput.value = '';
+    searchQuery = '';
+    searchClear.classList.remove('visible');
+    hideAC();
+    filterCards();
+  });
+
+  function showAC(q) {
+    if (!q || q.length < 1) { hideAC(); return; }
+    var matches = suggestions.filter(function(s) {
+      return s.text.toLowerCase().indexOf(q.toLowerCase()) >= 0;
+    }).slice(0, 7);
+    if (matches.length === 0) { hideAC(); return; }
+
+    ac.innerHTML = matches.map(function(s, i) {
+      return '<div class="ac-item" data-idx="' + i + '" data-text="' + s.text + '">' +
+        '<i class="fa-solid ' + s.icon + '"></i>' +
+        highlight(s.text, q) +
+        '</div>';
+    }).join('');
+
+    Array.from(ac.querySelectorAll('.ac-item')).forEach(function(item) {
+      item.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        searchInput.value = item.dataset.text;
+        searchQuery = item.dataset.text;
+        searchClear.classList.add('visible');
+        hideAC();
+        filterCards();
+      });
+    });
+
+    ac.classList.add('open');
+    acIdx = -1;
+  }
+
+  function hideAC() {
+    ac.classList.remove('open');
+    acIdx = -1;
+  }
+
+  searchInput.addEventListener('keydown', function(e) {
+    var items = Array.from(ac.querySelectorAll('.ac-item'));
+    if (e.key === 'ArrowDown') {
+      acIdx = Math.min(acIdx + 1, items.length - 1);
+      items.forEach(function(it, i) { it.classList.toggle('active', i === acIdx); });
+      e.preventDefault();
+    } else if (e.key === 'ArrowUp') {
+      acIdx = Math.max(acIdx - 1, -1);
+      items.forEach(function(it, i) { it.classList.toggle('active', i === acIdx); });
+      e.preventDefault();
+    } else if (e.key === 'Enter') {
+      if (acIdx >= 0 && items[acIdx]) {
+        searchInput.value = items[acIdx].dataset.text;
+        searchQuery = items[acIdx].dataset.text;
+        searchClear.classList.add('visible');
+        hideAC();
+        filterCards();
+      }
+    } else if (e.key === 'Escape') {
+      hideAC();
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) hideAC();
+  });
+
+  btnReset.addEventListener('click', function() {
+    activeFilters = { category: 'all' };
+    chips.forEach(function(c) { c.classList.remove('active'); });
+    document.querySelector('.chip-all').classList.add('active');
+    searchInput.value = '';
+    searchQuery = '';
+    searchClear.classList.remove('visible');
+    hideAC();
+    filterCards();
+  });
+
+  filterCards();
+})();
+</script>
+</body>
+</html>
