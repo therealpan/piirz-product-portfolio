@@ -1,0 +1,2758 @@
+{
+  "meta": {
+    "version": 1,
+    "lastModified": "2026-03-09T22:52:29.732Z",
+    "languages": [
+      "it",
+      "en",
+      "fr",
+      "de",
+      "es"
+    ]
+  },
+  "ui": {
+    "it": {
+      "flag": "🇮🇹",
+      "badge": "Portafoglio Prodotti 2025",
+      "heroTag": "AI · ML · XR · Computer Vision",
+      "heroTitle": "Prodotti &amp; <span>Capacità Progettuali</span>",
+      "heroDesc": "Soluzioni AI su misura per ogni settore. Dalla strategia all'implementazione, dall'agente intelligente alla piattaforma enterprise.",
+      "searchPlaceholder": "Cerca prodotti, tecnologie, settori…",
+      "filterBy": "Filtra per",
+      "filterCategory": "Categoria",
+      "filterSector": "Settore",
+      "filterTech": "Tecnologia",
+      "filterAll": "Tutti",
+      "filterPlatforms": "Piattaforme",
+      "filterConsulting": "Consulenza",
+      "filterProducts": "Prodotti",
+      "filterSecurity": "Sicurezza",
+      "filterTraining": "Formazione",
+      "filterCapabilities": "Capacità",
+      "secTourism": "Turismo",
+      "secCulture": "Cultura",
+      "secHealth": "Sanità",
+      "secPA": "PA",
+      "secRealEstate": "Real Estate",
+      "techVoice": "Voce",
+      "showing": "Mostrando",
+      "solutions": "soluzioni",
+      "resetFilters": "Reset filtri",
+      "divExisting": "Prodotti Esistenti",
+      "divCapabilities": "Capacità Progettuali",
+      "emptyTitle": "Nessun risultato trovato",
+      "emptyDesc": "Prova con un termine diverso o rimuovi alcuni filtri.",
+      "ctaContactText": "Non trovi quello che cerchi o vuoi discutere un progetto?",
+      "ctaContactLink": "Scrivici a hello@piirz.com",
+      "emailSubjectPrefix": "Richiesta approfondimento su",
+      "emailLabel": "Richiedi info",
+      "name": "Italiano",
+      "detailLabel": "Dettagli",
+      "attachLabel": "Allegati",
+      "secEnterprise": "Enterprise",
+      "secFinance": "Finanza",
+      "secRetail": "Retail"
+    },
+    "en": {
+      "flag": "🇬🇧",
+      "badge": "Product Portfolio 2025",
+      "heroTag": "AI · ML · XR · Computer Vision",
+      "heroTitle": "Products &amp; <span>Project Capabilities</span>",
+      "heroDesc": "Custom AI solutions for every sector. From strategy to implementation, from intelligent agents to enterprise platforms.",
+      "searchPlaceholder": "Search products, technologies, sectors…",
+      "filterBy": "Filter by",
+      "filterCategory": "Category",
+      "filterSector": "Sector",
+      "filterTech": "Technology",
+      "filterAll": "All",
+      "filterPlatforms": "Platforms",
+      "filterConsulting": "Consulting",
+      "filterProducts": "Products",
+      "filterSecurity": "Security",
+      "filterTraining": "Training",
+      "filterCapabilities": "Capabilities",
+      "secTourism": "Tourism",
+      "secCulture": "Culture",
+      "secHealth": "Healthcare",
+      "secPA": "Gov / PA",
+      "secRealEstate": "Real Estate",
+      "techVoice": "Voice",
+      "showing": "Showing",
+      "solutions": "solutions",
+      "resetFilters": "Reset filters",
+      "divExisting": "Existing Products",
+      "divCapabilities": "Project Capabilities",
+      "emptyTitle": "No results found",
+      "emptyDesc": "Try a different term or remove some active filters.",
+      "ctaContactText": "Cannot find what you are looking for or want to discuss a project?",
+      "ctaContactLink": "Write to hello@piirz.com",
+      "emailSubjectPrefix": "Information request about",
+      "emailLabel": "Request info",
+      "name": "English",
+      "detailLabel": "Details",
+      "attachLabel": "Attachments",
+      "secEnterprise": "Enterprise",
+      "secFinance": "Finance",
+      "secRetail": "Retail"
+    },
+    "fr": {
+      "flag": "🇫🇷",
+      "badge": "Portefeuille Produits 2025",
+      "heroTag": "IA · ML · XR · Vision par Ordinateur",
+      "heroTitle": "Produits &amp; <span>Capacités Projets</span>",
+      "heroDesc": "Solutions IA sur mesure pour chaque secteur. De la stratégie à l'implémentation, de l'agent intelligent à la plateforme enterprise.",
+      "searchPlaceholder": "Rechercher produits, technologies, secteurs…",
+      "filterBy": "Filtrer par",
+      "filterCategory": "Catégorie",
+      "filterSector": "Secteur",
+      "filterTech": "Technologie",
+      "filterAll": "Tous",
+      "filterPlatforms": "Plateformes",
+      "filterConsulting": "Conseil",
+      "filterProducts": "Produits",
+      "filterSecurity": "Sécurité",
+      "filterTraining": "Formation",
+      "filterCapabilities": "Capacités",
+      "secTourism": "Tourisme",
+      "secCulture": "Culture",
+      "secHealth": "Santé",
+      "secPA": "Administration",
+      "secRealEstate": "Immobilier",
+      "techVoice": "Voix",
+      "showing": "Affichage de",
+      "solutions": "solutions",
+      "resetFilters": "Réinitialiser",
+      "divExisting": "Produits Existants",
+      "divCapabilities": "Capacités Projets",
+      "emptyTitle": "Aucun résultat trouvé",
+      "emptyDesc": "Essayez un terme différent ou supprimez certains filtres.",
+      "ctaContactText": "Vous ne trouvez pas ce que vous cherchez ou souhaitez discuter un projet?",
+      "ctaContactLink": "Écrivez-nous à hello@piirz.com",
+      "emailSubjectPrefix": "Demande d'informations sur",
+      "emailLabel": "Demander des infos",
+      "name": "Français",
+      "detailLabel": "Détails",
+      "attachLabel": "Pièces jointes",
+      "secEnterprise": "Enterprise",
+      "secFinance": "Finance",
+      "secRetail": "Commerce"
+    },
+    "de": {
+      "flag": "🇩🇪",
+      "badge": "Produktportfolio 2025",
+      "heroTag": "KI · ML · XR · Computer Vision",
+      "heroTitle": "Produkte &amp; <span>Projektkompetenzen</span>",
+      "heroDesc": "Maßgeschneiderte KI-Lösungen für jeden Sektor. Von der Strategie bis zur Implementierung, vom intelligenten Agenten zur Enterprise-Plattform.",
+      "searchPlaceholder": "Produkte, Technologien, Sektoren suchen…",
+      "filterBy": "Filtern nach",
+      "filterCategory": "Kategorie",
+      "filterSector": "Sektor",
+      "filterTech": "Technologie",
+      "filterAll": "Alle",
+      "filterPlatforms": "Plattformen",
+      "filterConsulting": "Beratung",
+      "filterProducts": "Produkte",
+      "filterSecurity": "Sicherheit",
+      "filterTraining": "Schulung",
+      "filterCapabilities": "Kompetenzen",
+      "secTourism": "Tourismus",
+      "secCulture": "Kultur",
+      "secHealth": "Gesundheit",
+      "secPA": "Öffentl. Verwaltung",
+      "secRealEstate": "Immobilien",
+      "techVoice": "Sprache",
+      "showing": "Angezeigt",
+      "solutions": "Lösungen",
+      "resetFilters": "Filter zurücksetzen",
+      "divExisting": "Bestehende Produkte",
+      "divCapabilities": "Projektkompetenzen",
+      "emptyTitle": "Keine Ergebnisse gefunden",
+      "emptyDesc": "Versuchen Sie einen anderen Begriff oder entfernen Sie aktive Filter.",
+      "ctaContactText": "Nicht gefunden oder möchten Sie ein Projekt besprechen?",
+      "ctaContactLink": "Schreiben Sie uns: hello@piirz.com",
+      "emailSubjectPrefix": "Informationsanfrage zu",
+      "emailLabel": "Info anfragen",
+      "name": "Deutsch",
+      "detailLabel": "Details",
+      "attachLabel": "Anhänge",
+      "secEnterprise": "Enterprise",
+      "secFinance": "Finanzen",
+      "secRetail": "Einzelhandel"
+    },
+    "es": {
+      "flag": "🇪🇸",
+      "badge": "Portafolio de Productos 2025",
+      "heroTag": "IA · ML · XR · Visión por Computador",
+      "heroTitle": "Productos &amp; <span>Capacidades de Proyecto</span>",
+      "heroDesc": "Soluciones de IA a medida para cada sector. De la estrategia a la implementación, del agente inteligente a la plataforma enterprise.",
+      "searchPlaceholder": "Buscar productos, tecnologías, sectores…",
+      "filterBy": "Filtrar por",
+      "filterCategory": "Categoría",
+      "filterSector": "Sector",
+      "filterTech": "Tecnología",
+      "filterAll": "Todos",
+      "filterPlatforms": "Plataformas",
+      "filterConsulting": "Consultoría",
+      "filterProducts": "Productos",
+      "filterSecurity": "Seguridad",
+      "filterTraining": "Formación",
+      "filterCapabilities": "Capacidades",
+      "secTourism": "Turismo",
+      "secCulture": "Cultura",
+      "secHealth": "Salud",
+      "secPA": "Administración Pública",
+      "secRealEstate": "Inmobiliaria",
+      "techVoice": "Voz",
+      "showing": "Mostrando",
+      "solutions": "soluciones",
+      "resetFilters": "Restablecer filtros",
+      "divExisting": "Productos Existentes",
+      "divCapabilities": "Capacidades de Proyecto",
+      "emptyTitle": "No se encontraron resultados",
+      "emptyDesc": "Prueba con un término diferente o elimina algunos filtros activos.",
+      "ctaContactText": "No encuentras lo que buscas o quieres hablar de un proyecto?",
+      "ctaContactLink": "Eschíbenos a hello@piirz.com",
+      "emailSubjectPrefix": "Solicitud de información sobre",
+      "emailLabel": "Pedir información",
+      "name": "Español",
+      "detailLabel": "Detalles",
+      "attachLabel": "Adjuntos",
+      "secEnterprise": "Enterprise",
+      "secFinance": "Finanzas",
+      "secRetail": "Retail"
+    }
+  },
+  "products": [
+    {
+      "key": "swarmOS",
+      "icon": "fa-solid fa-hexagon-nodes",
+      "iconColor": "orange",
+      "tags": [
+        "piattaforma",
+        "enterprise",
+        "agenti",
+        "llm",
+        "rag"
+      ],
+      "techTags": [
+        "Agenti AI",
+        "LLM",
+        "RAG",
+        "BI",
+        "Enterprise"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "SwarmOS",
+        "en": "SwarmOS",
+        "fr": "SwarmOS",
+        "de": "SwarmOS",
+        "es": "SwarmOS"
+      },
+      "category": {
+        "it": "Piattaforma · Enterprise",
+        "en": "Platform · Enterprise",
+        "fr": "Plateforme · Enterprise",
+        "de": "Plattform · Enterprise",
+        "es": "Plataforma · Enterprise"
+      },
+      "description": {
+        "it": "Piattaforma proprietaria di orchestrazione agenti AI per l'automazione enterprise. Gestisce agenti ibridi (LLM, API, RAG), workflow auditabili e dashboard BI con architettura privacy-by-design.",
+        "en": "Proprietary AI agent orchestration platform for enterprise automation. Manages hybrid agents (LLMs, APIs, RAG), auditable workflows and BI dashboards with privacy-by-design architecture.",
+        "fr": "Plateforme propriétaire d'orchestration d'agents IA pour l'automatisation enterprise. Gère des agents hybrides (LLM, API, RAG), des workflows auditables et des tableaux de bord BI.",
+        "de": "Proprietäre KI-Agenten-Orchestrierungsplattform für Enterprise-Automatisierung. Verwaltet hybride Agenten (LLMs, APIs, RAG), auditierbare Workflows und BI-Dashboards.",
+        "es": "Plataforma propietaria de orquestación de agentes IA para automatización enterprise. Gestiona agentes híbridos (LLMs, APIs, RAG), flujos de trabajo auditables y dashboards BI."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "aiDiscovery",
+      "icon": "fa-solid fa-compass-drafting",
+      "iconColor": "purple",
+      "tags": [
+        "consulenza",
+        "enterprise",
+        "agenti",
+        "llm"
+      ],
+      "techTags": [
+        "Roadmap",
+        "ROI",
+        "Assessment"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "AI Discovery",
+        "en": "AI Discovery",
+        "fr": "AI Discovery",
+        "de": "AI Discovery",
+        "es": "AI Discovery"
+      },
+      "category": {
+        "it": "Consulenza · Strategy",
+        "en": "Consulting · Strategy",
+        "fr": "Conseil · Stratégie",
+        "de": "Beratung · Strategie",
+        "es": "Consultoría · Estrategia"
+      },
+      "description": {
+        "it": "Analisi strutturata in 3-6 settimane per identificare le opportunità AI ad alto valore. Produce una roadmap concreta con valutazione di costi, impatti, rischi e ROI.",
+        "en": "Structured 3-6 week analysis to identify high-value AI opportunities. Delivers a concrete roadmap with cost, impact, risk and ROI assessment for each initiative.",
+        "fr": "Analyse structurée de 3 à 6 semaines pour identifier les opportunités IA à haute valeur. Produit une feuille de route concrète avec évaluation des coûts, impacts, risques et ROI.",
+        "de": "Strukturierte 3-6-Wochen-Analyse zur Identifizierung hochwertiger KI-Chancen. Liefert eine konkrete Roadmap mit Kosten-, Impact-, Risiko- und ROI-Bewertung.",
+        "es": "Análisis estructurado de 3-6 semanas para identificar oportunidades de IA de alto valor. Produce una hoja de ruta con evaluación de costes, impactos, riesgos y ROI."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "aiTutor",
+      "icon": "fa-solid fa-chalkboard-user",
+      "iconColor": "blue",
+      "tags": [
+        "prodotto",
+        "formazione",
+        "enterprise",
+        "llm",
+        "rag"
+      ],
+      "techTags": [
+        "Adoption",
+        "RAG",
+        "Change Mgmt"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "AI Tutor",
+        "en": "AI Tutor",
+        "fr": "AI Tutor",
+        "de": "AI Tutor",
+        "es": "AI Tutor"
+      },
+      "category": {
+        "it": "Prodotto · Adoption",
+        "en": "Product · Adoption",
+        "fr": "Produit · Adoption",
+        "de": "Produkt · Adoption",
+        "es": "Producto · Adopción"
+      },
+      "description": {
+        "it": "Assistente AI addestrato sull'AI Discovery aziendale. Guida il team nell'adozione quotidiana dei nuovi processi riducendo frizioni e resistenze interne.",
+        "en": "AI assistant trained exclusively on your company's AI Discovery results. Guides the team in daily adoption of new processes, reducing friction and internal resistance.",
+        "fr": "Assistant IA formé exclusivement sur les résultats de votre AI Discovery. Guide l'équipe dans l'adoption quotidienne des nouveaux processus, réduisant les résistances internes.",
+        "de": "KI-Assistent, der ausschließlich auf den Ergebnissen Ihrer AI Discovery trainiert wurde. Führt das Team bei der täglichen Adoption neuer Prozesse und reduziert internen Widerstand.",
+        "es": "Asistente IA entrenado exclusivamente en los resultados de tu AI Discovery. Guía al equipo en la adopción diaria de nuevos procesos, reduciendo fricciones y resistencia interna."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "framework",
+      "icon": "fa-solid fa-layer-group",
+      "iconColor": "teal",
+      "tags": [
+        "consulenza",
+        "enterprise",
+        "agenti"
+      ],
+      "techTags": [
+        "Governance",
+        "Framework",
+        "C-Level"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "AI Implementation Framework",
+        "en": "AI Implementation Framework",
+        "fr": "AI Implementation Framework",
+        "de": "AI Implementation Framework",
+        "es": "AI Implementation Framework"
+      },
+      "category": {
+        "it": "Consulenza · Framework",
+        "en": "Consulting · Framework",
+        "fr": "Conseil · Framework",
+        "de": "Beratung · Framework",
+        "es": "Consultoría · Framework"
+      },
+      "description": {
+        "it": "Consulenza esecutiva a quattro fasi (Contesto → Intelligenza → Integrazione → Evoluzione) per convertire esigenze aziendali in sistemi AI implementabili e governati.",
+        "en": "Four-phase executive consulting (Context → Intelligence → Integration → Evolution) to convert business needs into implementable, governed AI systems.",
+        "fr": "Conseil exécutif en quatre phases (Contexte → Intelligence → Intégration → Évolution) pour convertir les besoins métier en systèmes IA implémentables et gouvernés.",
+        "de": "Vierphäsige Unternehmensberatung (Kontext → Intelligenz → Integration → Evolution) zur Umsetzung von Geschäftsanforderungen in implementierbare, gesteuerte KI-Systeme.",
+        "es": "Consultoría ejecutiva en cuatro fases (Contexto → Inteligencia → Integración → Evolución) para convertir necesidades empresariales en sistemas IA implementables y gobernados."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "advisory",
+      "icon": "fa-solid fa-building-shield",
+      "iconColor": "pink",
+      "tags": [
+        "consulenza",
+        "sicurezza",
+        "enterprise"
+      ],
+      "techTags": [
+        "Advisory",
+        "Governance",
+        "Cybersecurity"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "Strategic Architecture Advisory",
+        "en": "Strategic Architecture Advisory",
+        "fr": "Strategic Architecture Advisory",
+        "de": "Strategic Architecture Advisory",
+        "es": "Strategic Architecture Advisory"
+      },
+      "category": {
+        "it": "Consulenza · Governance",
+        "en": "Consulting · Governance",
+        "fr": "Conseil · Gouvernance",
+        "de": "Beratung · Governance",
+        "es": "Consultoría · Gobernanza"
+      },
+      "description": {
+        "it": "Advisory su AI, governance e cybersecurity. Si interviene prima dell'adozione tecnologica, stabilendo struttura, chiarezza e framework di controllo per enti pubblici e privati.",
+        "en": "Advisory on AI, governance and cybersecurity. We intervene before technology adoption, establishing structure, clarity and control frameworks for public and private entities.",
+        "fr": "Conseil en IA, gouvernance et cybersécurité. Nous intervenons avant l'adoption technologique, établissant structure, clarté et cadres de contrôle pour entités publiques et privées.",
+        "de": "Beratung zu KI, Governance und Cybersicherheit. Wir greifen vor der Technologieadoption ein und etablieren Struktur, Klarheit und Kontrollrahmen für öffentliche und private Einrichtungen.",
+        "es": "Asesoría en IA, gobernanza y ciberseguridad. Intervenimos antes de la adopción tecnológica, estableciendo estructura, claridad y marcos de control para entidades públicas y privadas."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "redTeam",
+      "icon": "fa-solid fa-shield-virus",
+      "iconColor": "red",
+      "tags": [
+        "sicurezza",
+        "enterprise",
+        "ml"
+      ],
+      "techTags": [
+        "Red Team",
+        "Audit",
+        "ML Security"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "AI Red Team &amp; Backdoor Detection",
+        "en": "AI Red Team &amp; Backdoor Detection",
+        "fr": "AI Red Team &amp; Backdoor Detection",
+        "de": "AI Red Team &amp; Backdoor Detection",
+        "es": "AI Red Team &amp; Backdoor Detection"
+      },
+      "category": {
+        "it": "Sicurezza · Audit",
+        "en": "Security · Audit",
+        "fr": "Sécurité · Audit",
+        "de": "Sicherheit · Audit",
+        "es": "Seguridad · Auditoría"
+      },
+      "description": {
+        "it": "Audit specializzato per ambienti digitali critici: rilevamento backdoor, model poisoning, prompt injection e anomalie comportamentali nei sistemi AI. Include remediation e hardening.",
+        "en": "Specialized audit for critical digital environments: backdoor detection, model poisoning, prompt injection and behavioral anomalies in AI systems. Includes remediation and hardening.",
+        "fr": "Audit spécialisé pour environnements numériques critiques : détection de backdoors, empoisonnement de modèles, injection de prompts et anomalies comportementales dans les systèmes IA.",
+        "de": "Spezialisiertes Audit für kritische digitale Umgebungen: Backdoor-Erkennung, Modellvergiftung, Prompt-Injection und Verhaltensanomalien in KI-Systemen. Inklusive Remediation und Hardening.",
+        "es": "Auditoría especializada para entornos digitales críticos: detección de backdoors, envenenamiento de modelos, inyección de prompts y anomalías de comportamiento en sistemas IA."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "compliance",
+      "icon": "fa-solid fa-gavel",
+      "iconColor": "yellow",
+      "tags": [
+        "piattaforma",
+        "sicurezza",
+        "enterprise",
+        "computer-vision",
+        "llm"
+      ],
+      "techTags": [
+        "Copyright",
+        "AI Vision",
+        "Compliance"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "AI Compliance Platform",
+        "en": "AI Compliance Platform",
+        "fr": "AI Compliance Platform",
+        "de": "AI Compliance Platform",
+        "es": "AI Compliance Platform"
+      },
+      "category": {
+        "it": "Piattaforma · Legal",
+        "en": "Platform · Legal",
+        "fr": "Plateforme · Juridique",
+        "de": "Plattform · Legal",
+        "es": "Plataforma · Legal"
+      },
+      "description": {
+        "it": "Monitoraggio automatico di compliance, copyright e brand protection su contenuti digitali tramite AI Vision, LLM e knowledge graph con alert real-time.",
+        "en": "Automated compliance, copyright and brand protection monitoring across digital content (text, images, video) via AI Vision, LLM and knowledge graph with real-time alerts.",
+        "fr": "Surveillance automatisée de la conformité, du droit d'auteur et de la protection de marque sur les contenus numériques via AI Vision, LLM et graphe de connaissances.",
+        "de": "Automatisierte Überwachung von Compliance, Urheberrecht und Markenschutz über digitale Inhalte mittels AI Vision, LLM und Wissensgraph mit Echtzeit-Benachrichtigungen.",
+        "es": "Monitorización automática de cumplimiento, derechos de autor y protección de marca en contenidos digitales mediante AI Vision, LLM y grafo de conocimiento con alertas en tiempo real."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "ambassador",
+      "icon": "fa-solid fa-user-tie",
+      "iconColor": "purple",
+      "tags": [
+        "prodotto",
+        "avatar",
+        "voce",
+        "llm"
+      ],
+      "techTags": [
+        "Digital Human",
+        "Social AI",
+        "Brand"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "Digital Ambassador",
+        "en": "Digital Ambassador",
+        "fr": "Digital Ambassador",
+        "de": "Digital Ambassador",
+        "es": "Digital Ambassador"
+      },
+      "category": {
+        "it": "Prodotto · Brand",
+        "en": "Product · Brand",
+        "fr": "Produit · Marque",
+        "de": "Produkt · Marke",
+        "es": "Producto · Marca"
+      },
+      "description": {
+        "it": "Human digitale AI come ambassador di brand con vita social propria, presenza mediatica organica e audit delle conversazioni per insight reali sugli stakeholder.",
+        "en": "Digital human AI as brand ambassador with its own social presence, organic media coverage and conversation audits for real stakeholder insights.",
+        "fr": "Humain numérique IA comme ambassadeur de marque avec sa propre présence sociale, une couverture médiatique organique et des audits de conversations pour des insights réels.",
+        "de": "Digitaler KI-Mensch als Markenbotschafter mit eigenem sozialen Auftritt, organischer Medienpräsenz und Konversationsaudits für echte Stakeholder-Einblicke.",
+        "es": "Humano digital IA como embajador de marca con presencia social propia, cobertura mediática orgánica y auditorías de conversaciones para insights reales de stakeholders."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "ella",
+      "icon": "fa-solid fa-map-location-dot",
+      "iconColor": "orange",
+      "tags": [
+        "prodotto",
+        "turismo",
+        "agenti",
+        "voce",
+        "llm",
+        "computer-vision"
+      ],
+      "techTags": [
+        "WhatsApp",
+        "Tourism AI",
+        "BI"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "Ella Voyage",
+        "en": "Ella Voyage",
+        "fr": "Ella Voyage",
+        "de": "Ella Voyage",
+        "es": "Ella Voyage"
+      },
+      "category": {
+        "it": "Prodotto · Turismo",
+        "en": "Product · Tourism",
+        "fr": "Produit · Tourisme",
+        "de": "Produkt · Tourismus",
+        "es": "Producto · Turismo"
+      },
+      "description": {
+        "it": "Companion AI per il turismo su WhatsApp/Messenger: consigli personalizzati, riconoscimento visivo, traduzione real-time e dashboard BI per operatori e destinazioni.",
+        "en": "AI travel companion on WhatsApp/Messenger: personalized recommendations, visual recognition, real-time translation and BI dashboard for operators and destinations.",
+        "fr": "Compagnon IA pour le tourisme sur WhatsApp/Messenger : recommandations personnalisées, reconnaissance visuelle, traduction en temps réel et tableau de bord BI pour opérateurs.",
+        "de": "KI-Reisebegleiter auf WhatsApp/Messenger: personalisierte Empfehlungen, visuelle Erkennung, Echtzeit-Übersetzung und BI-Dashboard für Betreiber und Reiseziele.",
+        "es": "Compañero IA para el turismo en WhatsApp/Messenger: recomendaciones personalizadas, reconocimiento visual, traducción en tiempo real y dashboard BI para operadores y destinos."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "arte",
+      "icon": "fa-solid fa-palette",
+      "iconColor": "teal",
+      "tags": [
+        "prodotto",
+        "cultura",
+        "avatar",
+        "voce",
+        "llm",
+        "rag"
+      ],
+      "techTags": [
+        "Avatar",
+        "Musei",
+        "Knowledge Base"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "Parla con l'Arte",
+        "en": "Parla con l'Arte",
+        "fr": "Parla con l'Arte",
+        "de": "Parla con l'Arte",
+        "es": "Parla con l'Arte"
+      },
+      "category": {
+        "it": "Prodotto · Cultura",
+        "en": "Product · Culture",
+        "fr": "Produit · Culture",
+        "de": "Produkt · Kultur",
+        "es": "Producto · Cultura"
+      },
+      "description": {
+        "it": "Ogni opera diventa una presenza accessibile via chat, voce, telefono e avatar interattivo, basata sulla conoscenza curatoriale documentata dell'istituzione.",
+        "en": "Each artwork becomes a directly accessible presence via chat, voice, phone and interactive avatar, based on the institution's own documented curatorial knowledge.",
+        "fr": "Chaque œuvre devient une présence accessible via chat, voix, téléphone et avatar interactif, basée sur les connaissances curatoriales documentées de l'institution.",
+        "de": "Jedes Kunstwerk wird zu einer direkt zugänglichen Präsenz via Chat, Sprache, Telefon und interaktivem Avatar, basierend auf dokumentiertem kuratorischen Wissen der Institution.",
+        "es": "Cada obra se convierte en una presencia accesible vía chat, voz, teléfono y avatar interactivo, basada en el conocimiento curatorial documentado de la institución."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "libri",
+      "icon": "fa-solid fa-book-open-reader",
+      "iconColor": "pink",
+      "tags": [
+        "prodotto",
+        "cultura",
+        "avatar",
+        "voce",
+        "llm"
+      ],
+      "techTags": [
+        "Voice AI",
+        "Publishing",
+        "Culture"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "Parla con i Libri",
+        "en": "Parla con i Libri",
+        "fr": "Parla con i Libri",
+        "de": "Parla con i Libri",
+        "es": "Parla con i Libri"
+      },
+      "category": {
+        "it": "Prodotto · Cultura",
+        "en": "Product · Culture",
+        "fr": "Produit · Culture",
+        "de": "Produkt · Kultur",
+        "es": "Producto · Cultura"
+      },
+      "description": {
+        "it": "Avatar AI vocale degli autori letterari per conversazioni interattive su testi, personaggi e ispirazione. Per lettori, studenti e istituzioni culturali.",
+        "en": "Voice AI avatar of literary authors for interactive conversations about texts, characters and inspiration. For readers, students and cultural institutions.",
+        "fr": "Avatar IA vocal des auteurs littéraires pour des conversations interactives sur les textes, personnages et inspiration. Pour lecteurs, étudiants et institutions culturelles.",
+        "de": "Sprach-KI-Avatar literarischer Autoren für interaktive Gespräche über Texte, Charaktere und Inspiration. Für Leser, Studenten und Kultureinrichtungen.",
+        "es": "Avatar IA de voz de autores literarios para conversaciones interactivas sobre textos, personajes e inspiración. Para lectores, estudiantes e instituciones culturales."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "bepi",
+      "icon": "fa-solid fa-camera-retro",
+      "iconColor": "blue",
+      "tags": [
+        "prodotto",
+        "turismo",
+        "agenti",
+        "computer-vision",
+        "llm"
+      ],
+      "techTags": [
+        "Multimodal",
+        "Travel Guide",
+        "Vision"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "Bepi Creator",
+        "en": "Bepi Creator",
+        "fr": "Bepi Creator",
+        "de": "Bepi Creator",
+        "es": "Bepi Creator"
+      },
+      "category": {
+        "it": "Prodotto · Turismo",
+        "en": "Product · Tourism",
+        "fr": "Produit · Tourisme",
+        "de": "Produkt · Tourismus",
+        "es": "Producto · Turismo"
+      },
+      "description": {
+        "it": "Guide di viaggio iper-personalizzate per tema e destinazione, con agente AI multimodale che analizza le foto scattate dal turista in tempo reale.",
+        "en": "Hyper-personalized travel guides by theme and destination, with a multimodal AI agent that analyzes tourist photos in real time providing contextual insights.",
+        "fr": "Guides de voyage hyper-personnalisés par thème et destination, avec un agent IA multimodal qui analyse les photos prises par le touriste en temps réel.",
+        "de": "Hyper-personalisierte Reiseführer nach Thema und Ziel, mit einem multimodalen KI-Agenten, der Touristenfotos in Echtzeit analysiert und kontextuelle Einblicke liefert.",
+        "es": "Guías de viaje hiperpersonalizadas por tema y destino, con un agente IA multimodal que analiza las fotos del turista en tiempo real proporcionando insights contextuales."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "mira",
+      "icon": "fa-solid fa-hand-holding-heart",
+      "iconColor": "green",
+      "tags": [
+        "prodotto",
+        "sanita",
+        "agenti",
+        "voce",
+        "llm",
+        "computer-vision"
+      ],
+      "techTags": [
+        "Eldercare",
+        "Safety",
+        "IoT"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "Mira",
+        "en": "Mira",
+        "fr": "Mira",
+        "de": "Mira",
+        "es": "Mira"
+      },
+      "category": {
+        "it": "Prodotto · Welfare",
+        "en": "Product · Welfare",
+        "fr": "Produit · Bien-être",
+        "de": "Produkt · Wohlfahrt",
+        "es": "Producto · Bienestar"
+      },
+      "description": {
+        "it": "Assistente AI per anziani con compagnia conversazionale, rilevamento cadute, monitoraggio comportamentale, promemoria farmaci e integrazione con il network familiare.",
+        "en": "AI companion for the elderly with conversational support, fall detection, behavioral monitoring, medication reminders and family/healthcare network integration.",
+        "fr": "Assistant IA pour personnes âgées avec compagnie conversationnelle, détection de chutes, surveillance comportementale, rappels médicaments et intégration famille/santé.",
+        "de": "KI-Assistent für ältere Menschen mit Gesprächsbegleitung, Sturzerkennung, Verhaltensüberwachung, Medikamentenerinnerungen und Familien-/Gesundheitsnetzwerk-Integration.",
+        "es": "Asistente IA para personas mayores con compañía conversacional, detección de caídas, monitorización conductual, recordatorios de medicamentos e integración familiar/sanitaria."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "bi",
+      "icon": "fa-solid fa-comments-dollar",
+      "iconColor": "orange",
+      "tags": [
+        "piattaforma",
+        "enterprise",
+        "retail",
+        "llm",
+        "rag",
+        "agenti"
+      ],
+      "techTags": [
+        "NL Query",
+        "Shopify",
+        "BI"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "Conversational BI",
+        "en": "Conversational BI",
+        "fr": "Conversational BI",
+        "de": "Conversational BI",
+        "es": "Conversational BI"
+      },
+      "category": {
+        "it": "Piattaforma · Data",
+        "en": "Platform · Data",
+        "fr": "Plateforme · Données",
+        "de": "Plattform · Daten",
+        "es": "Plataforma · Datos"
+      },
+      "description": {
+        "it": "Interfaccia conversazionale per interrogare dati aziendali in linguaggio naturale, con integrazione e-commerce (Shopify), report e visualizzazioni on-demand.",
+        "en": "Conversational interface to query business data in natural language, with e-commerce integration (Shopify), on-demand reports and visualizations.",
+        "fr": "Interface conversationnelle pour interroger les données métier en langage naturel, avec intégration e-commerce (Shopify), rapports et visualisations à la demande.",
+        "de": "Konversationale Schnittstelle zur Abfrage von Geschäftsdaten in natürlicher Sprache, mit E-Commerce-Integration (Shopify), Berichten und On-Demand-Visualisierungen.",
+        "es": "Interfaz conversacional para consultar datos empresariales en lenguaje natural, con integración e-commerce (Shopify), informes y visualizaciones bajo demanda."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "semantic",
+      "icon": "fa-solid fa-house-circle-check",
+      "iconColor": "yellow",
+      "tags": [
+        "prodotto",
+        "immobiliare",
+        "llm",
+        "rag",
+        "agenti"
+      ],
+      "techTags": [
+        "Semantic Search",
+        "Lead Capture",
+        "API"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "Ricerca Conversazionale Semantica",
+        "en": "Conversational Semantic Search",
+        "fr": "Recherche Conversationnelle Sémantique",
+        "de": "Konversationale Semantische Suche",
+        "es": "Búsqueda Conversacional Semántica"
+      },
+      "category": {
+        "it": "Prodotto · Real Estate",
+        "en": "Product · Real Estate",
+        "fr": "Produit · Immobilier",
+        "de": "Produkt · Immobilien",
+        "es": "Producto · Inmobiliaria"
+      },
+      "description": {
+        "it": "Motore AI per piattaforme con database di contenuti: interrogazione in linguaggio naturale, ranking semantico, lead capture e gestione multi-canale.",
+        "en": "AI engine for content database platforms: natural language querying, semantic ranking, lead capture and multi-channel management (email, WhatsApp, Telegram).",
+        "fr": "Moteur IA pour plateformes avec bases de données de contenus : requêtes en langage naturel, classement sémantique, capture de leads et gestion multicanale.",
+        "de": "KI-Engine für Plattformen mit Inhaltsdatenbanken: Abfragen in natürlicher Sprache, semantisches Ranking, Lead-Erfassung und Multichannel-Verwaltung.",
+        "es": "Motor IA para plataformas con bases de datos de contenidos: consultas en lenguaje natural, ranking semántico, captura de leads y gestión multicanal."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "dueDiligence",
+      "icon": "fa-solid fa-file-contract",
+      "iconColor": "teal",
+      "tags": [
+        "prodotto",
+        "immobiliare",
+        "agenti",
+        "llm"
+      ],
+      "techTags": [
+        "Due Diligence",
+        "Document AI",
+        "Cadastre"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "AI Due Diligence Real Estate",
+        "en": "AI Real Estate Due Diligence",
+        "fr": "Due Diligence Immobilière par IA",
+        "de": "KI Immobilien Due Diligence",
+        "es": "Due Diligence Inmobiliaria con IA"
+      },
+      "category": {
+        "it": "Prodotto · Real Estate",
+        "en": "Product · Real Estate",
+        "fr": "Produit · Immobilier",
+        "de": "Produkt · Immobilien",
+        "es": "Producto · Inmobiliaria"
+      },
+      "description": {
+        "it": "Applicazione web AI per la due diligence immobiliare: analisi documentale automatizzata, integrazione catastale, generazione report PDF e dashboard personale.",
+        "en": "AI web app for real estate due diligence: automated document analysis, cadastral integration, PDF report generation and personal dashboard for operators.",
+        "fr": "Application web IA pour la due diligence immobilière : analyse documentaire automatisée, intégration cadastrale, génération de rapports PDF et tableau de bord personnel.",
+        "de": "KI-Webanwendung für Immobilien-Due-Diligence: automatisierte Dokumentenanalyse, Katasterintegration, PDF-Berichtsgenerierung und persönliches Dashboard.",
+        "es": "Aplicación web IA para due diligence inmobiliaria: análisis documental automatizado, integración catastral, generación de informes PDF y panel personal para operadores."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "academy",
+      "icon": "fa-solid fa-certificate",
+      "iconColor": "purple",
+      "tags": [
+        "formazione",
+        "enterprise",
+        "agenti"
+      ],
+      "techTags": [
+        "Workshop",
+        "Certification",
+        "Executive"
+      ],
+      "section": "existing",
+      "name": {
+        "it": "PiirZ Academy",
+        "en": "PiirZ Academy",
+        "fr": "PiirZ Academy",
+        "de": "PiirZ Academy",
+        "es": "PiirZ Academy"
+      },
+      "category": {
+        "it": "Formazione · Education",
+        "en": "Training · Education",
+        "fr": "Formation · Éducation",
+        "de": "Schulung · Bildung",
+        "es": "Formación · Educación"
+      },
+      "description": {
+        "it": "Formazione pratica su orchestrazione agenti, design di sistemi AI e governance. Workshop, certificazioni e programmi per team tecnici ed executive leadership.",
+        "en": "Hands-on training on agent orchestration, AI system design and governance. Workshops, certifications and tailored programs for technical teams and executive leaders.",
+        "fr": "Formation pratique sur l'orchestration d'agents, la conception de systèmes IA et la gouvernance. Ateliers, certifications et programmes pour équipes techniques et leaders.",
+        "de": "Praxisnahe Schulung zu Agenten-Orchestrierung, KI-Systemdesign und Governance. Workshops, Zertifizierungen und maßgeschneiderte Programme für technische Teams und Führungskräfte.",
+        "es": "Formación práctica en orquestación de agentes, diseño de sistemas IA y gobernanza. Talleres, certificaciones y programas para equipos técnicos y líderes ejecutivos."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "salesAgent",
+      "icon": "fa-solid fa-bullseye-arrow",
+      "iconColor": "orange",
+      "tags": [
+        "capacita",
+        "retail",
+        "enterprise",
+        "agenti",
+        "llm"
+      ],
+      "techTags": [
+        "CRM",
+        "Lead Gen",
+        "Omnichannel"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Sales AI Agent",
+        "en": "Sales AI Agent",
+        "fr": "Sales AI Agent",
+        "de": "Sales AI Agent",
+        "es": "Sales AI Agent"
+      },
+      "category": {
+        "it": "Capacità · Sales Automation",
+        "en": "Capability · Sales Automation",
+        "fr": "Capacité · Automatisation Ventes",
+        "de": "Kompetenz · Vertriebsautom.",
+        "es": "Capacidad · Automatización Ventas"
+      },
+      "description": {
+        "it": "Agente conversazionale che qualifica lead, gestisce obiezioni e accompagna il prospect lungo il funnel in autonomia. Integrazione nativa con CRM e pipeline commerciali.",
+        "en": "Conversational agent that qualifies leads, handles objections and guides prospects autonomously through the funnel on any channel. Native CRM and pipeline integration.",
+        "fr": "Agent conversationnel qui qualifie les leads, gère les objections et accompagne le prospect dans le funnel en autonomie sur tous les canaux. Intégration CRM native.",
+        "de": "Konversationsagent, der Leads qualifiziert, Einwände behandelt und Interessenten autonom durch den Funnel führt. Native CRM- und Pipeline-Integration.",
+        "es": "Agente conversacional que califica leads, gestiona objeciones y acompaña al prospecto por el funnel de forma autónoma. Integración nativa con CRM y pipelines comerciales."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "franchise",
+      "icon": "fa-solid fa-network-wired",
+      "iconColor": "blue",
+      "tags": [
+        "capacita",
+        "enterprise",
+        "retail",
+        "agenti",
+        "ml"
+      ],
+      "techTags": [
+        "Franchise",
+        "Network AI",
+        "Compliance"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Franchising Intelligence",
+        "en": "Franchising Intelligence",
+        "fr": "Franchising Intelligence",
+        "de": "Franchising Intelligence",
+        "es": "Franchising Intelligence"
+      },
+      "category": {
+        "it": "Capacità · Network Mgmt",
+        "en": "Capability · Network Mgmt",
+        "fr": "Capacité · Gestion Réseau",
+        "de": "Kompetenz · Netzwerkmanagement",
+        "es": "Capacidad · Gestión de Red"
+      },
+      "description": {
+        "it": "Sistema di monitoraggio e governance per reti in franchising: analisi performance per punto vendita, compliance operativa e formazione automatizzata degli affiliati.",
+        "en": "Monitoring and governance system for franchise networks: performance analysis per location, operational compliance and automated affiliate training.",
+        "fr": "Système de surveillance et gouvernance pour réseaux en franchise : analyse de performance par point de vente, conformité opérationnelle et formation automatisée.",
+        "de": "Überwachungs- und Governance-System für Franchise-Netzwerke: Leistungsanalyse pro Standort, operative Compliance und automatisierte Franchisee-Schulung.",
+        "es": "Sistema de monitorización y gobernanza para redes de franquicias: análisis de rendimiento por punto de venta, cumplimiento operativo y formación automatizada de afiliados."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "cvRetail",
+      "icon": "fa-solid fa-eye",
+      "iconColor": "teal",
+      "tags": [
+        "capacita",
+        "retail",
+        "computer-vision",
+        "ml"
+      ],
+      "techTags": [
+        "Heatmap",
+        "People Counting",
+        "Privacy"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Computer Vision per il Retail",
+        "en": "Computer Vision for Retail",
+        "fr": "Vision par Ordinateur pour le Retail",
+        "de": "Computer Vision für den Einzelhandel",
+        "es": "Visión por Computador para el Retail"
+      },
+      "category": {
+        "it": "Capacità · In-Store Analytics",
+        "en": "Capability · In-Store Analytics",
+        "fr": "Capacité · Analytique Magasin",
+        "de": "Kompetenz · In-Store-Analytik",
+        "es": "Capacidad · Analítica en Tienda"
+      },
+      "description": {
+        "it": "Analisi del comportamento in-store: flussi di clienti, heatmap di attenzione sugli scaffali, rilevamento code e ottimizzazione del layout. Privacy-by-design.",
+        "en": "In-store behavior analysis: customer flows, shelf attention heatmaps, queue detection and layout optimization. Privacy-by-design architecture.",
+        "fr": "Analyse du comportement en magasin : flux clients, heatmaps d'attention sur les rayons, détection de files et optimisation de l'agencement. Architecture privacy-by-design.",
+        "de": "In-Store-Verhaltensanalyse: Kundenströme, Aufmerksamkeits-Heatmaps im Regal, Warteschlangenerkennung und Layout-Optimierung. Privacy-by-Design-Architektur.",
+        "es": "Análisis de comportamiento en tienda: flujos de clientes, mapas de calor de atención en estantes, detección de colas y optimización del diseño. Arquitectura privacy-by-design."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "predictive",
+      "icon": "fa-solid fa-gear",
+      "iconColor": "red",
+      "tags": [
+        "capacita",
+        "enterprise",
+        "ml"
+      ],
+      "techTags": [
+        "Industry 4.0",
+        "IoT",
+        "Predictive"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Predictive Maintenance ML",
+        "en": "Predictive Maintenance ML",
+        "fr": "Predictive Maintenance ML",
+        "de": "Predictive Maintenance ML",
+        "es": "Predictive Maintenance ML"
+      },
+      "category": {
+        "it": "Capacità · Industria",
+        "en": "Capability · Industry",
+        "fr": "Capacité · Industrie",
+        "de": "Kompetenz · Industrie",
+        "es": "Capacidad · Industria"
+      },
+      "description": {
+        "it": "Modelli ML per la manutenzione predittiva in contesti industriali e infrastrutturali. Riduce i fermi macchina anticipando guasti prima che si verifichino.",
+        "en": "Machine learning models for predictive maintenance in industrial and infrastructure settings. Reduces downtime by anticipating failures before they occur.",
+        "fr": "Modèles ML pour la maintenance prédictive dans les contextes industriels et infrastructurels. Réduit les arrêts machine en anticipant les pannes avant qu'elles surviennent.",
+        "de": "ML-Modelle für vorausschauende Wartung in industriellen und infrastrukturellen Umgebungen. Reduziert Ausfallzeiten durch frühzeitige Fehlererkennung.",
+        "es": "Modelos ML para mantenimiento predictivo en entornos industriales e infraestructurales. Reduce paradas de máquina anticipando fallos antes de que ocurran."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "xrTraining",
+      "icon": "fa-solid fa-vr-cardboard",
+      "iconColor": "purple",
+      "tags": [
+        "capacita",
+        "formazione",
+        "xr",
+        "enterprise"
+      ],
+      "techTags": [
+        "AR",
+        "VR",
+        "Simulation",
+        "Safety"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "XR Training &amp; Simulation",
+        "en": "XR Training &amp; Simulation",
+        "fr": "XR Training &amp; Simulation",
+        "de": "XR Training &amp; Simulation",
+        "es": "XR Training &amp; Simulation"
+      },
+      "category": {
+        "it": "Capacità · XR / Formazione",
+        "en": "Capability · XR / Training",
+        "fr": "Capacité · XR / Formation",
+        "de": "Kompetenz · XR / Schulung",
+        "es": "Capacidad · XR / Formación"
+      },
+      "description": {
+        "it": "Ambienti in realtà aumentata o virtuale per la formazione professionale in settori ad alto rischio. Scenari simulati, assessment integrato e tracciamento performance.",
+        "en": "Augmented or virtual reality environments for professional training in high-risk sectors (industry, healthcare, safety). Simulated scenarios and integrated assessment.",
+        "fr": "Environnements en réalité augmentée ou virtuelle pour la formation professionnelle dans les secteurs à haut risque. Scénarios simulés et évaluation intégrée.",
+        "de": "Augmented- oder Virtual-Reality-Umgebungen für die Berufsausbildung in Hochrisikobereichen. Simulierte Szenarien und integrierte Leistungsbewertung.",
+        "es": "Entornos de realidad aumentada o virtual para formación profesional en sectores de alto riesgo. Escenarios simulados, evaluación integrada y seguimiento del desempeño."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "healthcare",
+      "icon": "fa-solid fa-stethoscope",
+      "iconColor": "green",
+      "tags": [
+        "capacita",
+        "sanita",
+        "agenti",
+        "llm",
+        "ml"
+      ],
+      "techTags": [
+        "Triage",
+        "Telemedicine",
+        "GDPR"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "AI per la Sanità e il Welfare",
+        "en": "AI for Healthcare & Welfare",
+        "fr": "IA pour la Santé et le Bien-être",
+        "de": "KI für Gesundheit und Wohlfahrt",
+        "es": "IA para la Salud y el Bienestar"
+      },
+      "category": {
+        "it": "Capacità · Healthcare",
+        "en": "Capability · Healthcare",
+        "fr": "Capacité · Santé",
+        "de": "Kompetenz · Gesundheit",
+        "es": "Capacidad · Salud"
+      },
+      "description": {
+        "it": "Supporto clinico, triage conversazionale, monitoraggio remoto del paziente e gestione della continuità assistenziale. Piena conformità GDPR e normative sanitarie europee.",
+        "en": "Clinical support, conversational triage, remote patient monitoring and care continuity management. Full GDPR and European healthcare regulatory compliance.",
+        "fr": "Soutien clinique, triage conversationnel, surveillance à distance du patient et gestion de la continuité des soins. Pleine conformité RGPD et réglementations sanitaires européennes.",
+        "de": "Klinische Unterstützung, konversationales Triage, Fernpatienten-Überwachung und Versorgungskontinuität. Volle DSGVO- und europäische Gesundheitsregulierungs-Konformität.",
+        "es": "Apoyo clínico, triaje conversacional, monitorización remota del paciente y gestión de la continuidad asistencial. Pleno cumplimiento RGPD y normativas sanitarias europeas."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "docIntelligence",
+      "icon": "fa-solid fa-file-waveform",
+      "iconColor": "yellow",
+      "tags": [
+        "capacita",
+        "enterprise",
+        "llm",
+        "ml",
+        "computer-vision"
+      ],
+      "techTags": [
+        "OCR AI",
+        "Contracts",
+        "Audit Trail"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Multimodal Document Intelligence",
+        "en": "Multimodal Document Intelligence",
+        "fr": "Multimodal Document Intelligence",
+        "de": "Multimodal Document Intelligence",
+        "es": "Multimodal Document Intelligence"
+      },
+      "category": {
+        "it": "Capacità · Document AI",
+        "en": "Capability · Document AI",
+        "fr": "Capacité · Document IA",
+        "de": "Kompetenz · Dokument-KI",
+        "es": "Capacidad · IA Documental"
+      },
+      "description": {
+        "it": "Estrazione, classificazione e analisi automatica di documenti complessi (contratti, fatture, atti) tramite LLM e visione artificiale. Output strutturato e audit trail completo.",
+        "en": "Automated extraction, classification and analysis of complex documents (contracts, invoices, deeds) via LLM and computer vision. Structured output and full audit trail.",
+        "fr": "Extraction, classification et analyse automatique de documents complexes (contrats, factures, actes) via LLM et vision artificielle. Sortie structurée et piste d'audit complète.",
+        "de": "Automatisierte Extraktion, Klassifizierung und Analyse komplexer Dokumente (Verträge, Rechnungen, Urkunden) via LLM und Computer Vision. Strukturierter Output und Audit-Trail.",
+        "es": "Extracción, clasificación y análisis automático de documentos complejos (contratos, facturas, escrituras) mediante LLM y visión artificial. Salida estructurada y trazabilidad completa."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "adaptive",
+      "icon": "fa-solid fa-user-graduate",
+      "iconColor": "blue",
+      "tags": [
+        "capacita",
+        "formazione",
+        "llm",
+        "agenti"
+      ],
+      "techTags": [
+        "EdTech",
+        "Adaptive",
+        "Assessment"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Adaptive Learning Platform",
+        "en": "Adaptive Learning Platform",
+        "fr": "Adaptive Learning Platform",
+        "de": "Adaptive Learning Platform",
+        "es": "Adaptive Learning Platform"
+      },
+      "category": {
+        "it": "Capacità · EdTech",
+        "en": "Capability · EdTech",
+        "fr": "Capacité · EdTech",
+        "de": "Kompetenz · EdTech",
+        "es": "Capacidad · EdTech"
+      },
+      "description": {
+        "it": "Piattaforme di apprendimento adattivo che personalizzano contenuti, ritmo e valutazione in base al profilo dell'utente. Per scuole, università e formazione aziendale.",
+        "en": "Adaptive learning platforms that personalize content, pace and assessment based on user profile. For schools, universities and corporate training.",
+        "fr": "Plateformes d'apprentissage adaptatif personnalisant contenu, rythme et évaluation selon le profil de l'utilisateur. Pour écoles, universités et formation en entreprise.",
+        "de": "Adaptive Lernplattformen, die Inhalte, Tempo und Bewertung nach Nutzerprofil personalisieren. Für Schulen, Universitäten und Unternehmensschulungen.",
+        "es": "Plataformas de aprendizaje adaptativo que personalizan contenidos, ritmo y evaluación según el perfil del usuario. Para escuelas, universidades y formación empresarial."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "sentiment",
+      "icon": "fa-solid fa-chart-mixed",
+      "iconColor": "pink",
+      "tags": [
+        "capacita",
+        "enterprise",
+        "retail",
+        "ml",
+        "llm"
+      ],
+      "techTags": [
+        "Social Listening",
+        "NLP",
+        "Dashboard"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Sentiment &amp; Brand Intelligence",
+        "en": "Sentiment &amp; Brand Intelligence",
+        "fr": "Sentiment &amp; Brand Intelligence",
+        "de": "Sentiment &amp; Brand Intelligence",
+        "es": "Sentiment &amp; Brand Intelligence"
+      },
+      "category": {
+        "it": "Capacità · Marketing",
+        "en": "Capability · Marketing",
+        "fr": "Capacité · Marketing",
+        "de": "Kompetenz · Marketing",
+        "es": "Capacidad · Marketing"
+      },
+      "description": {
+        "it": "Monitoraggio continuo della reputazione di brand su social, news e forum. Dashboard real-time con trend analysis, alert e reportistica per il management.",
+        "en": "Continuous brand reputation monitoring across social media, news and forums. Real-time dashboard with trend analysis, alerts and management reporting. Multilingual NLP.",
+        "fr": "Surveillance continue de la réputation de marque sur réseaux sociaux, actualités et forums. Tableau de bord temps réel avec analyse de tendances et alertes pour le management.",
+        "de": "Kontinuierliche Marken-Reputationsüberwachung in sozialen Medien, News und Foren. Echtzeit-Dashboard mit Trendanalyse und Benachrichtigungen für das Management.",
+        "es": "Monitorización continua de la reputación de marca en redes sociales, noticias y foros. Dashboard en tiempo real con análisis de tendencias y alertas para la dirección."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "aml",
+      "icon": "fa-solid fa-money-bill-transfer",
+      "iconColor": "orange",
+      "tags": [
+        "capacita",
+        "finance",
+        "sicurezza",
+        "ml",
+        "agenti"
+      ],
+      "techTags": [
+        "AML",
+        "KYC",
+        "RegTech"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "AI per AML e Compliance Finanziaria",
+        "en": "AI for AML & Financial Compliance",
+        "fr": "IA pour LCB-FT et Conformité Financière",
+        "de": "KI für Geldwäschebekämpfung und Compliance",
+        "es": "IA para AML y Cumplimiento Financiero"
+      },
+      "category": {
+        "it": "Capacità · Finance / RegTech",
+        "en": "Capability · Finance / RegTech",
+        "fr": "Capacité · Finance / RegTech",
+        "de": "Kompetenz · Finance / RegTech",
+        "es": "Capacidad · Finance / RegTech"
+      },
+      "description": {
+        "it": "Rilevamento pattern anomali in transazioni, supporto alle segnalazioni antiriciclaggio e automazione KYC. Esperienza con banche centrali e istituzioni finanziarie internazionali.",
+        "en": "Detection of anomalous transaction patterns, AML reporting support and KYC automation. Proven track record with central banks and international financial institutions.",
+        "fr": "Détection de patterns anormaux dans les transactions, soutien aux déclarations anti-blanchiment et automatisation KYC. Expérience avec banques centrales et institutions financières.",
+        "de": "Erkennung anomaler Transaktionsmuster, AML-Meldungsunterstützung und KYC-Automatisierung. Nachgewiesene Erfahrung mit Zentralbanken und internationalen Finanzinstitutionen.",
+        "es": "Detección de patrones anómalos en transacciones, apoyo a comunicaciones antilavado y automatización KYC. Experiencia con bancos centrales e instituciones financieras internacionales."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "smartCity",
+      "icon": "fa-solid fa-city",
+      "iconColor": "teal",
+      "tags": [
+        "capacita",
+        "pubblica-amministrazione",
+        "turismo",
+        "ml",
+        "agenti"
+      ],
+      "techTags": [
+        "GovTech",
+        "Smart City",
+        "Predictive"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "AI per Smart City e PA",
+        "en": "AI for Smart City & Gov",
+        "fr": "IA pour Smart City et Administration",
+        "de": "KI für Smart City und öffentliche Verwaltung",
+        "es": "IA para Smart City y Administración Pública"
+      },
+      "category": {
+        "it": "Capacità · GovTech",
+        "en": "Capability · GovTech",
+        "fr": "Capacité · GovTech",
+        "de": "Kompetenz · GovTech",
+        "es": "Capacidad · GovTech"
+      },
+      "description": {
+        "it": "Ottimizzazione dei servizi ai cittadini, analisi predittiva della domanda, gestione intelligente delle risorse urbane e supporto decisionale per policy maker.",
+        "en": "Optimization of citizen services, predictive demand analysis, intelligent resource management and decision support for policy makers. GDPR-native solutions.",
+        "fr": "Optimisation des services aux citoyens, analyse prédictive de la demande, gestion intelligente des ressources urbaines et aide à la décision pour les décideurs politiques.",
+        "de": "Optimierung von Bürgerdiensten, prädiktive Nachfrageanalyse, intelligentes Ressourcenmanagement und Entscheidungsunterstützung für politische Entscheidungsträger.",
+        "es": "Optimización de servicios a ciudadanos, análisis predictivo de la demanda, gestión inteligente de recursos urbanos y apoyo a la toma de decisiones de responsables políticos."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "fraud",
+      "icon": "fa-solid fa-shield-halved",
+      "iconColor": "red",
+      "tags": [
+        "capacita",
+        "finance",
+        "sicurezza",
+        "ml"
+      ],
+      "techTags": [
+        "Real-time",
+        "Fintech",
+        "Anomaly Detection"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Fraud Detection ML",
+        "en": "Fraud Detection ML",
+        "fr": "Fraud Detection ML",
+        "de": "Fraud Detection ML",
+        "es": "Fraud Detection ML"
+      },
+      "category": {
+        "it": "Capacità · Fintech / Sicurezza",
+        "en": "Capability · Fintech / Security",
+        "fr": "Capacité · Fintech / Sécurité",
+        "de": "Kompetenz · Fintech / Sicherheit",
+        "es": "Capacidad · Fintech / Seguridad"
+      },
+      "description": {
+        "it": "Modelli di rilevamento frodi in tempo reale per e-commerce, fintech e assicurazioni. Riduce i falsi positivi rispetto ai sistemi rule-based grazie all'apprendimento continuo.",
+        "en": "Real-time fraud detection models for e-commerce, fintech and insurance. Reduces false positives vs. rule-based systems through continuous learning.",
+        "fr": "Modèles de détection de fraudes en temps réel pour l'e-commerce, la fintech et les assurances. Réduit les faux positifs vs systèmes rule-based grâce à l'apprentissage continu.",
+        "de": "Echtzeit-Betrugserkennung für E-Commerce, Fintech und Versicherungen. Reduziert Falsch-Positive gegenüber regelbasierten Systemen durch kontinuierliches Lernen.",
+        "es": "Modelos de detección de fraudes en tiempo real para e-commerce, fintech y seguros. Reduce los falsos positivos frente a sistemas basados en reglas mediante aprendizaje continuo."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "rag",
+      "icon": "fa-solid fa-database",
+      "iconColor": "purple",
+      "tags": [
+        "capacita",
+        "enterprise",
+        "rag",
+        "llm",
+        "agenti"
+      ],
+      "techTags": [
+        "Knowledge Base",
+        "Vector DB",
+        "Enterprise"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "RAG Enterprise Systems",
+        "en": "RAG Enterprise Systems",
+        "fr": "RAG Enterprise Systems",
+        "de": "RAG Enterprise Systems",
+        "es": "RAG Enterprise Systems"
+      },
+      "category": {
+        "it": "Capacità · Knowledge Mgmt",
+        "en": "Capability · Knowledge Mgmt",
+        "fr": "Capacité · Gestion des Savoirs",
+        "de": "Kompetenz · Wissensmanagement",
+        "es": "Capacidad · Gestión del Conocimiento"
+      },
+      "description": {
+        "it": "Architetture che connettono LLM alla conoscenza interna dell'organizzazione (documenti, manuali, policy). Risposte precise, tracciabili e sempre aggiornate.",
+        "en": "Architectures connecting LLMs to organizational internal knowledge (documents, manuals, policies). Accurate, traceable and always up-to-date answers without hallucinations.",
+        "fr": "Architectures connectant les LLM aux connaissances internes de l'organisation (documents, manuels, politiques). Réponses précises, traçables et toujours à jour.",
+        "de": "Architekturen, die LLMs mit dem internen Organisationswissen verbinden (Dokumente, Handbücher, Richtlinien). Präzise, nachvollziehbare und stets aktuelle Antworten.",
+        "es": "Arquitecturas que conectan LLMs al conocimiento interno de la organización (documentos, manuales, políticas). Respuestas precisas, trazables y siempre actualizadas."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "avatarCS",
+      "icon": "fa-solid fa-user-astronaut",
+      "iconColor": "orange",
+      "tags": [
+        "capacita",
+        "enterprise",
+        "avatar",
+        "voce",
+        "llm"
+      ],
+      "techTags": [
+        "Digital Human",
+        "H24",
+        "Totem"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "AI Avatar Assistenza Clienti",
+        "en": "AI Avatar Customer Service",
+        "fr": "Avatar IA Service Client",
+        "de": "KI-Avatar Kundenservice",
+        "es": "Avatar IA Atención al Cliente"
+      },
+      "category": {
+        "it": "Capacità · CX / Avatar",
+        "en": "Capability · CX / Avatar",
+        "fr": "Capacité · CX / Avatar",
+        "de": "Kompetenz · CX / Avatar",
+        "es": "Capacidad · CX / Avatar"
+      },
+      "description": {
+        "it": "Avatar conversazionale con volto, voce e personalità coerenti col brand per supporto H24 su web, app e totem fisici. Va oltre il chatbot: una presenza con identità.",
+        "en": "Conversational avatar with brand-consistent face, voice and personality for 24/7 support on web, apps and physical kiosks. Beyond chatbots: a presence with identity.",
+        "fr": "Avatar conversationnel avec visage, voix et personnalité cohérents avec la marque pour support 24h/7j sur web, apps et bornes physiques. Une présence avec identité.",
+        "de": "Konversations-Avatar mit markenkonsistentem Gesicht, Stimme und Persönlichkeit für 24/7-Support auf Web, Apps und physischen Kiosken. Eine Präsenz mit Identität.",
+        "es": "Avatar conversacional con rostro, voz y personalidad coherentes con la marca para soporte 24/7 en web, apps y quioscos físicos. Más allá del chatbot: una presencia con identidad."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "logistics",
+      "icon": "fa-solid fa-route",
+      "iconColor": "blue",
+      "tags": [
+        "capacita",
+        "enterprise",
+        "ml",
+        "agenti"
+      ],
+      "techTags": [
+        "Optimization",
+        "Supply Chain",
+        "Multi-Agent"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Multiagente per la Logistica",
+        "en": "Multi-Agent Logistics System",
+        "fr": "Système Multi-Agents pour la Logistique",
+        "de": "Multi-Agenten-System für Logistik",
+        "es": "Sistema Multi-Agente para Logística"
+      },
+      "category": {
+        "it": "Capacità · Supply Chain",
+        "en": "Capability · Supply Chain",
+        "fr": "Capacité · Chaîne d'Appro",
+        "de": "Kompetenz · Supply Chain",
+        "es": "Capacidad · Cadena de Suministro"
+      },
+      "description": {
+        "it": "Ottimizzazione in tempo reale di rotte, magazzini e supply chain tramite agenti AI coordinati. Riduzione dei costi operativi e resilienza a interruzioni di mercato.",
+        "en": "Real-time optimization of routes, warehouses and supply chains via coordinated AI agents. Reduces operational costs and builds resilience against market disruptions.",
+        "fr": "Optimisation en temps réel des routes, entrepôts et chaînes d'approvisionnement via agents IA coordonnés. Réduction des coûts opérationnels et résilience aux perturbations.",
+        "de": "Echtzeit-Optimierung von Routen, Lagern und Lieferketten über koordinierte KI-Agenten. Reduziert Betriebskosten und erhöht Resilienz gegenüber Marktstörungen.",
+        "es": "Optimización en tiempo real de rutas, almacenes y cadenas de suministro mediante agentes IA coordinados. Reduce costes operativos y mejora la resiliencia ante perturbaciones."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "digitalTwin",
+      "icon": "fa-solid fa-satellite-dish",
+      "iconColor": "yellow",
+      "tags": [
+        "capacita",
+        "enterprise",
+        "ml",
+        "agenti",
+        "pubblica-amministrazione"
+      ],
+      "techTags": [
+        "Digital Twin",
+        "IoT",
+        "Simulation"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Digital Twin AI",
+        "en": "Digital Twin AI",
+        "fr": "Digital Twin AI",
+        "de": "Digital Twin AI",
+        "es": "Digital Twin AI"
+      },
+      "category": {
+        "it": "Capacità · Enterprise / PA",
+        "en": "Capability · Enterprise / PA",
+        "fr": "Capacité · Enterprise / PA",
+        "de": "Kompetenz · Enterprise / ÖV",
+        "es": "Capacidad · Enterprise / PA"
+      },
+      "description": {
+        "it": "Replica digitale di processi, impianti o infrastrutture urbane alimentata da dati real-time e modelli predittivi. Simulazioni decisionali prima di interventi fisici.",
+        "en": "Digital replica of processes, plants or urban infrastructure fed by real-time data and predictive models. Decision simulations before any physical intervention.",
+        "fr": "Réplique numérique de processus, installations ou infrastructures urbaines alimentée par données temps réel et modèles prédictifs. Simulations décisionnelles avant interventions physiques.",
+        "de": "Digitales Abbild von Prozessen, Anlagen oder urbaner Infrastruktur, gespeist von Echtzeit-Daten und prädiktiven Modellen. Entscheidungssimulationen vor physischen Eingriffen.",
+        "es": "Réplica digital de procesos, instalaciones o infraestructuras urbanas alimentada por datos en tiempo real y modelos predictivos. Simulaciones de decisiones antes de intervenciones físicas."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "cvSecurity",
+      "icon": "fa-solid fa-video",
+      "iconColor": "red",
+      "tags": [
+        "capacita",
+        "enterprise",
+        "computer-vision",
+        "ml",
+        "sicurezza"
+      ],
+      "techTags": [
+        "AI Vision",
+        "AI Act",
+        "Edge AI"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Computer Vision per la Sicurezza",
+        "en": "Computer Vision for Security",
+        "fr": "Vision par Ordinateur pour la Sécurité",
+        "de": "Computer Vision für die Sicherheit",
+        "es": "Visión por Computador para la Seguridad"
+      },
+      "category": {
+        "it": "Capacità · Safety",
+        "en": "Capability · Safety",
+        "fr": "Capacité · Sûreté",
+        "de": "Kompetenz · Sicherheit",
+        "es": "Capacidad · Seguridad"
+      },
+      "description": {
+        "it": "Rilevamento comportamenti anomali in spazi pubblici, gestione intelligente degli accessi e supporto alle centrali operative. Privacy-by-design e conforme all'AI Act europeo.",
+        "en": "Detection of anomalous behaviors in public spaces, intelligent access management and control room support. Privacy-by-design and compliant with the EU AI Act.",
+        "fr": "Détection de comportements anormaux dans les espaces publics, gestion intelligente des accès et soutien aux centrales opérationnelles. Privacy-by-design conforme à l'AI Act européen.",
+        "de": "Erkennung anomaler Verhaltensweisen in öffentlichen Räumen, intelligentes Zugriffsmanagement und Leitstellenunterstützung. Privacy-by-Design, EU-KI-Gesetz-konform.",
+        "es": "Detección de comportamientos anómalos en espacios públicos, gestión inteligente de accesos y apoyo a centrales operativas. Privacy-by-design, conforme a la Ley de IA europea."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "energy",
+      "icon": "fa-solid fa-solar-panel",
+      "iconColor": "green",
+      "tags": [
+        "capacita",
+        "enterprise",
+        "ml",
+        "agenti"
+      ],
+      "techTags": [
+        "ESG",
+        "Smart Grid",
+        "GreenAI"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "AI per Energia e Sostenibilità",
+        "en": "AI for Energy & Sustainability",
+        "fr": "IA pour l'Énergie et la Durabilité",
+        "de": "KI für Energie und Nachhaltigkeit",
+        "es": "IA para Energía y Sostenibilidad"
+      },
+      "category": {
+        "it": "Capacità · GreenTech",
+        "en": "Capability · GreenTech",
+        "fr": "Capacité · GreenTech",
+        "de": "Kompetenz · GreenTech",
+        "es": "Capacidad · GreenTech"
+      },
+      "description": {
+        "it": "Ottimizzazione dei consumi energetici, previsione della domanda su reti elettriche, gestione delle fonti rinnovabili e carbon footprint tracking automatizzato.",
+        "en": "Energy consumption optimization, demand forecasting on power grids, renewable energy management and automated carbon footprint tracking for companies and public entities.",
+        "fr": "Optimisation de la consommation énergétique, prévision de la demande sur les réseaux électriques, gestion des énergies renouvelables et suivi automatique du bilan carbone.",
+        "de": "Energieverbrauchsoptimierung, Nachfrageprognose in Stromnetzen, Verwaltung erneuerbarer Energien und automatisiertes Carbon-Footprint-Tracking für Unternehmen und Behörden.",
+        "es": "Optimización del consumo energético, previsión de la demanda en redes eléctricas, gestión de energías renovables y seguimiento automático de la huella de carbono."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "biotech",
+      "icon": "fa-solid fa-flask",
+      "iconColor": "teal",
+      "tags": [
+        "capacita",
+        "enterprise",
+        "ml",
+        "llm"
+      ],
+      "techTags": [
+        "Drug Discovery",
+        "Genomics",
+        "Biotech"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "AI per Ricerca Scientifica e Biotech",
+        "en": "AI for Scientific Research & Biotech",
+        "fr": "IA pour la Recherche Scientifique et Biotech",
+        "de": "KI für Wissenschaft und Biotech",
+        "es": "IA para Investigación Científica y Biotech"
+      },
+      "category": {
+        "it": "Capacità · Life Sciences",
+        "en": "Capability · Life Sciences",
+        "fr": "Capacité · Sciences de la Vie",
+        "de": "Kompetenz · Life Sciences",
+        "es": "Capacidad · Ciencias de la Vida"
+      },
+      "description": {
+        "it": "Accelerazione della scoperta di composti farmacologici, analisi di dati genomici, elaborazione di letteratura scientifica e supporto alla progettazione di trial clinici.",
+        "en": "Acceleration of drug compound discovery, genomic data analysis, scientific literature processing and support for clinical trial design.",
+        "fr": "Accélération de la découverte de composés pharmaceutiques, analyse de données génomiques, traitement de la littérature scientifique et soutien à la conception d'essais cliniques.",
+        "de": "Beschleunigung der Entdeckung pharmazeutischer Verbindungen, Genomdatenanalyse, wissenschaftliche Literaturverarbeitung und Unterstützung bei klinischen Studien.",
+        "es": "Aceleración del descubrimiento de compuestos farmacológicos, análisis de datos genómicos, procesamiento de literatura científica y apoyo al diseño de ensayos clínicos."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "proptech",
+      "icon": "fa-solid fa-chart-area",
+      "iconColor": "orange",
+      "tags": [
+        "capacita",
+        "immobiliare",
+        "finance",
+        "ml"
+      ],
+      "techTags": [
+        "PropTech",
+        "AVM",
+        "Investment AI"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Real Estate Predictive Analytics",
+        "en": "Real Estate Predictive Analytics",
+        "fr": "Real Estate Predictive Analytics",
+        "de": "Real Estate Predictive Analytics",
+        "es": "Real Estate Predictive Analytics"
+      },
+      "category": {
+        "it": "Capacità · PropTech",
+        "en": "Capability · PropTech",
+        "fr": "Capacité · PropTech",
+        "de": "Kompetenz · PropTech",
+        "es": "Capacidad · PropTech"
+      },
+      "description": {
+        "it": "Valutazione automatica degli immobili, previsione prezzi per micro-zona, analisi della domanda latente e scoring degli investimenti per fondi e sviluppatori.",
+        "en": "Automated property valuation, micro-zone price forecasting, latent demand analysis and investment scoring for funds and real estate developers.",
+        "fr": "Évaluation automatique des biens, prévision des prix par micro-zone, analyse de la demande latente et scoring des investissements pour fonds et promoteurs immobiliers.",
+        "de": "Automatisierte Immobilienbewertung, Mikrozonen-Preisprognose, latente Nachfrageanalyse und Investitionsscoring für Fonds und Immobilienentwickler.",
+        "es": "Valoración automática de inmuebles, previsión de precios por micro-zona, análisis de demanda latente y scoring de inversiones para fondos y promotores inmobiliarios."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    },
+    {
+      "key": "coCreate",
+      "icon": "fa-solid fa-people-arrows",
+      "iconColor": "pink",
+      "tags": [
+        "capacita",
+        "enterprise",
+        "llm",
+        "ml"
+      ],
+      "techTags": [
+        "Human-AI",
+        "Collaboration",
+        "Workflow"
+      ],
+      "section": "capabilities",
+      "name": {
+        "it": "Co-creazione Uomo-AI",
+        "en": "Human-AI Co-creation",
+        "fr": "Co-création Humain-IA",
+        "de": "Mensch-KI-Ko-Kreation",
+        "es": "Co-creación Humano-IA"
+      },
+      "category": {
+        "it": "Capacità · Collaboration",
+        "en": "Capability · Collaboration",
+        "fr": "Capacité · Collaboration",
+        "de": "Kompetenz · Kollaboration",
+        "es": "Capacidad · Colaboración"
+      },
+      "description": {
+        "it": "Ambienti collaborativi in cui team umani e agenti AI lavorano in parallelo su progetti complessi: ricerca, strategia, design, sviluppo. Amplificazione del team.",
+        "en": "Collaborative environments where human teams and AI agents work in parallel on complex projects: research, strategy, design, development. Team amplification, not replacement.",
+        "fr": "Environnements collaboratifs où équipes humaines et agents IA travaillent en parallèle sur des projets complexes : recherche, stratégie, design, développement. Amplification d'équipe.",
+        "de": "Kollaborative Umgebungen, in denen menschliche Teams und KI-Agenten parallel an komplexen Projekten arbeiten: Forschung, Strategie, Design, Entwicklung. Team-Amplifikation.",
+        "es": "Entornos colaborativos donde equipos humanos y agentes IA trabajan en paralelo en proyectos complejos: investigación, estrategia, diseño, desarrollo. Amplificación del equipo."
+      },
+      "details": {
+        "it": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "en": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "fr": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "de": {
+          "html": "",
+          "links": [],
+          "images": []
+        },
+        "es": {
+          "html": "",
+          "links": [],
+          "images": []
+        }
+      },
+      "attachments": []
+    }
+  ]
+}
