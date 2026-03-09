@@ -15,7 +15,7 @@
       "flag": "🇮🇹",
       "badge": "Portafoglio Prodotti 2025",
       "heroTag": "AI · ML · XR · Computer Vision",
-      "heroTitle": "Prodotti &amp; <span>Capacità Progettuali</span>",
+      "heroTitle": "Prodotti & <span>Capacità Progettuali</span>",
       "heroDesc": "Soluzioni AI su misura per ogni settore. Dalla strategia all'implementazione, dall'agente intelligente alla piattaforma enterprise.",
       "searchPlaceholder": "Cerca prodotti, tecnologie, settori…",
       "filterBy": "Filtra per",
@@ -57,7 +57,7 @@
       "flag": "🇬🇧",
       "badge": "Product Portfolio 2025",
       "heroTag": "AI · ML · XR · Computer Vision",
-      "heroTitle": "Products &amp; <span>Project Capabilities</span>",
+      "heroTitle": "Products & <span>Project Capabilities</span>",
       "heroDesc": "Custom AI solutions for every sector. From strategy to implementation, from intelligent agents to enterprise platforms.",
       "searchPlaceholder": "Search products, technologies, sectors…",
       "filterBy": "Filter by",
@@ -99,7 +99,7 @@
       "flag": "🇫🇷",
       "badge": "Portefeuille Produits 2025",
       "heroTag": "IA · ML · XR · Vision par Ordinateur",
-      "heroTitle": "Produits &amp; <span>Capacités Projets</span>",
+      "heroTitle": "Produits & <span>Capacités Projets</span>",
       "heroDesc": "Solutions IA sur mesure pour chaque secteur. De la stratégie à l'implémentation, de l'agent intelligent à la plateforme enterprise.",
       "searchPlaceholder": "Rechercher produits, technologies, secteurs…",
       "filterBy": "Filtrer par",
@@ -141,7 +141,7 @@
       "flag": "🇩🇪",
       "badge": "Produktportfolio 2025",
       "heroTag": "KI · ML · XR · Computer Vision",
-      "heroTitle": "Produkte &amp; <span>Projektkompetenzen</span>",
+      "heroTitle": "Produkte & <span>Projektkompetenzen</span>",
       "heroDesc": "Maßgeschneiderte KI-Lösungen für jeden Sektor. Von der Strategie bis zur Implementierung, vom intelligenten Agenten zur Enterprise-Plattform.",
       "searchPlaceholder": "Produkte, Technologien, Sektoren suchen…",
       "filterBy": "Filtern nach",
@@ -183,7 +183,7 @@
       "flag": "🇪🇸",
       "badge": "Portafolio de Productos 2025",
       "heroTag": "IA · ML · XR · Visión por Computador",
-      "heroTitle": "Productos &amp; <span>Capacidades de Proyecto</span>",
+      "heroTitle": "Productos & <span>Capacidades de Proyecto</span>",
       "heroDesc": "Soluciones de IA a medida para cada sector. De la estrategia a la implementación, del agente inteligente a la plataforma enterprise.",
       "searchPlaceholder": "Buscar productos, tecnologías, sectores…",
       "filterBy": "Filtrar por",
@@ -571,11 +571,11 @@
       ],
       "section": "existing",
       "name": {
-        "it": "AI Red Team &amp; Backdoor Detection",
-        "en": "AI Red Team &amp; Backdoor Detection",
-        "fr": "AI Red Team &amp; Backdoor Detection",
-        "de": "AI Red Team &amp; Backdoor Detection",
-        "es": "AI Red Team &amp; Backdoor Detection"
+        "it": "AI Red Team & Backdoor Detection",
+        "en": "AI Red Team & Backdoor Detection",
+        "fr": "AI Red Team & Backdoor Detection",
+        "de": "AI Red Team & Backdoor Detection",
+        "es": "AI Red Team & Backdoor Detection"
       },
       "category": {
         "it": "Sicurezza · Audit",
@@ -1640,11 +1640,11 @@
       ],
       "section": "capabilities",
       "name": {
-        "it": "XR Training &amp; Simulation",
-        "en": "XR Training &amp; Simulation",
-        "fr": "XR Training &amp; Simulation",
-        "de": "XR Training &amp; Simulation",
-        "es": "XR Training &amp; Simulation"
+        "it": "XR Training & Simulation",
+        "en": "XR Training & Simulation",
+        "fr": "XR Training & Simulation",
+        "de": "XR Training & Simulation",
+        "es": "XR Training & Simulation"
       },
       "category": {
         "it": "Capacità · XR / Formazione",
@@ -1907,11 +1907,11 @@
       ],
       "section": "capabilities",
       "name": {
-        "it": "Sentiment &amp; Brand Intelligence",
-        "en": "Sentiment &amp; Brand Intelligence",
-        "fr": "Sentiment &amp; Brand Intelligence",
-        "de": "Sentiment &amp; Brand Intelligence",
-        "es": "Sentiment &amp; Brand Intelligence"
+        "it": "Sentiment & Brand Intelligence",
+        "en": "Sentiment & Brand Intelligence",
+        "fr": "Sentiment & Brand Intelligence",
+        "de": "Sentiment & Brand Intelligence",
+        "es": "Sentiment & Brand Intelligence"
       },
       "category": {
         "it": "Capacità · Marketing",
