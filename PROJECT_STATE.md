@@ -5,7 +5,8 @@
 - **`index.html`** (~780 lines) — fetches `data/products.json` and renders cards dynamically
 - **`data/products.json`** (93KB) — flat-file database with 38 products, 5 languages, UI translations
 - **`admin/index.html`** — full admin SPA for product CRUD (General, Details, Attachments tabs)
-- **`worker/`** — Cloudflare Worker API (auth, CRUD, file upload to R2, event logging to KV)
+- **`worker/`** — Cloudflare Worker API (auth, CRUD via KV, event logging to KV)
+- **Worker URL**: `https://piirz-portfolio-api.piirz.workers.dev`
 - **i18n system**: 5 languages (IT, EN, FR, DE, ES) from `products.json` `ui` section
 - **Filters**: category (7), sector (8), technology (8) — all client-side from `data-tags`
 - **Search**: autocomplete built from card names + tags
@@ -45,22 +46,15 @@
 - [x] Data-driven card rendering from JSON
 - [x] Product detail modal (description + details + attachments)
 - [x] Admin panel SPA (login, product list, editor with 3 tabs)
-- [x] Cloudflare Worker API code (auth, CRUD, R2 upload, KV logging)
+- [x] Cloudflare Worker API (auth, CRUD, KV storage, event logging)
 - [x] Analytics dashboard in admin panel
 - [x] Removed legacy piirz_portfolio.html
-
-## Pending: Cloudflare Deployment
-To activate the Worker API:
-1. `cd worker && npx wrangler login`
-2. `npx wrangler kv namespace create LOGS` → update `wrangler.toml` with real ID
-3. `npx wrangler r2 bucket create piirz-attachments`
-4. `npx wrangler secret put ADMIN_PASS` → set admin password
-5. Upload initial `products.json` to R2: `npx wrangler r2 object put piirz-attachments/products.json --file ../data/products.json`
-6. `npx wrangler deploy`
-7. Set `API_BASE` in both `index.html` and `admin/index.html`
+- [x] Cloudflare Worker deployed at `piirz-portfolio-api.piirz.workers.dev`
+- [x] KV namespaces: PRODUCTS (51f01ec8...) + LOGS (3f9dcc61...)
+- [x] Subdomain registered: `piirz.workers.dev`
+- [x] API_BASE configured in index.html and admin/index.html
 
 ## Known Issues
-- Admin panel works in "static mode" (reads products.json directly, downloads updated JSON on save) until Worker is deployed
 - `icon.png` was a JPEG mislabeled as PNG — always verify file format with `file` command
 
 ## Lessons Learned
