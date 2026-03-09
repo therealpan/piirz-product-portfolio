@@ -144,6 +144,15 @@ header{position:relative;z-index:10;padding:28px 48px 0;display:flex;align-items
   .filter-groups{gap:14px;}
   .header-badge{display:none;}
 }
+
+.cta-contact{text-align:center;padding:20px 48px 0;opacity:0;animation:fadeUp 0.6s 0.45s ease forwards;}
+.cta-contact-inner{display:inline-flex;align-items:center;gap:10px;background:rgba(255,140,0,0.06);border:1px solid rgba(255,140,0,0.18);border-radius:40px;padding:10px 20px 10px 14px;transition:background 0.3s,border-color 0.3s;}
+.cta-contact-inner:hover{background:rgba(255,140,0,0.1);border-color:rgba(255,140,0,0.35);}
+.cta-contact-icon{width:30px;height:30px;border-radius:50%;background:rgba(255,140,0,0.15);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--orange);flex-shrink:0;}
+.cta-contact-text{font-size:0.82rem;color:var(--text-muted);line-height:1.4;}
+.cta-contact-text a{color:var(--orange);text-decoration:none;font-weight:600;}
+.cta-contact-text a:hover{text-decoration:underline;}
+@media(max-width:600px){.cta-contact{padding-left:20px;padding-right:20px;}}
 </style>
 </head>
 <body>
@@ -185,6 +194,7 @@ header{position:relative;z-index:10;padding:28px 48px 0;display:flex;align-items
   </div>
 </section>
 
+<div class="cta-contact"><div class="cta-contact-inner"><div class="cta-contact-icon"><i class="fa-regular fa-envelope"></i></div><div class="cta-contact-text"><span data-i18n="ctaContactText"></span> <a href="mailto:hello@piirz.com" data-i18n="ctaContactLink"></a></div></div></div>
 <section class="filters-section">
   <div class="filters-label" data-i18n="filterBy"></div>
   <div class="filter-groups">
@@ -678,6 +688,8 @@ var LANGS = {
     nameEnergy:'AI per Energia e Sostenibilità',
     nameBiotech:'AI per Ricerca Scientifica e Biotech',
     nameCoCreate:'Co-creazione Uomo-AI',
+    ctaContactText:'Non trovi quello che cerchi o vuoi discutere un progetto?',
+    ctaContactLink:'Scrivici a hello@piirz.com',
     descSwarmOS:'Piattaforma proprietaria di orchestrazione agenti AI per l\'automazione enterprise. Gestisce agenti ibridi (LLM, API, RAG), workflow auditabili e dashboard BI con architettura privacy-by-design.',
     descAIDiscovery:'Analisi strutturata in 3-6 settimane per identificare le opportunità AI ad alto valore. Produce una roadmap concreta con valutazione di costi, impatti, rischi e ROI.',
     descAITutor:'Assistente AI addestrato sull\'AI Discovery aziendale. Guida il team nell\'adozione quotidiana dei nuovi processi riducendo frizioni e resistenze interne.',
@@ -796,6 +808,8 @@ var LANGS = {
     nameEnergy:'AI for Energy & Sustainability',
     nameBiotech:'AI for Scientific Research & Biotech',
     nameCoCreate:'Human-AI Co-creation',
+    ctaContactText:'Cannot find what you are looking for or want to discuss a project?',
+    ctaContactLink:'Write to hello@piirz.com',
     descSwarmOS:'Proprietary AI agent orchestration platform for enterprise automation. Manages hybrid agents (LLMs, APIs, RAG), auditable workflows and BI dashboards with privacy-by-design architecture.',
     descAIDiscovery:'Structured 3-6 week analysis to identify high-value AI opportunities. Delivers a concrete roadmap with cost, impact, risk and ROI assessment for each initiative.',
     descAITutor:'AI assistant trained exclusively on your company\'s AI Discovery results. Guides the team in daily adoption of new processes, reducing friction and internal resistance.',
@@ -914,6 +928,8 @@ var LANGS = {
     nameEnergy:'IA pour l\'Énergie et la Durabilité',
     nameBiotech:'IA pour la Recherche Scientifique et Biotech',
     nameCoCreate:'Co-création Humain-IA',
+    ctaContactText:'Vous ne trouvez pas ce que vous cherchez ou souhaitez discuter un projet?',
+    ctaContactLink:'Écrivez-nous à hello@piirz.com',
     descSwarmOS:'Plateforme propriétaire d\'orchestration d\'agents IA pour l\'automatisation enterprise. Gère des agents hybrides (LLM, API, RAG), des workflows auditables et des tableaux de bord BI.',
     descAIDiscovery:'Analyse structurée de 3 à 6 semaines pour identifier les opportunités IA à haute valeur. Produit une feuille de route concrète avec évaluation des coûts, impacts, risques et ROI.',
     descAITutor:'Assistant IA formé exclusivement sur les résultats de votre AI Discovery. Guide l\'équipe dans l\'adoption quotidienne des nouveaux processus, réduisant les résistances internes.',
@@ -1032,6 +1048,8 @@ var LANGS = {
     nameEnergy:'KI für Energie und Nachhaltigkeit',
     nameBiotech:'KI für Wissenschaft und Biotech',
     nameCoCreate:'Mensch-KI-Ko-Kreation',
+    ctaContactText:'Nicht gefunden oder möchten Sie ein Projekt besprechen?',
+    ctaContactLink:'Schreiben Sie uns: hello@piirz.com',
     descSwarmOS:'Proprietäre KI-Agenten-Orchestrierungsplattform für Enterprise-Automatisierung. Verwaltet hybride Agenten (LLMs, APIs, RAG), auditierbare Workflows und BI-Dashboards.',
     descAIDiscovery:'Strukturierte 3-6-Wochen-Analyse zur Identifizierung hochwertiger KI-Chancen. Liefert eine konkrete Roadmap mit Kosten-, Impact-, Risiko- und ROI-Bewertung.',
     descAITutor:'KI-Assistent, der ausschließlich auf den Ergebnissen Ihrer AI Discovery trainiert wurde. Führt das Team bei der täglichen Adoption neuer Prozesse und reduziert internen Widerstand.',
@@ -1150,6 +1168,8 @@ var LANGS = {
     nameEnergy:'IA para Energía y Sostenibilidad',
     nameBiotech:'IA para Investigación Científica y Biotech',
     nameCoCreate:'Co-creación Humano-IA',
+    ctaContactText:'No encuentras lo que buscas o quieres hablar de un proyecto?',
+    ctaContactLink:'Eschíbenos a hello@piirz.com',
     descSwarmOS:'Plataforma propietaria de orquestación de agentes IA para automatización enterprise. Gestiona agentes híbridos (LLMs, APIs, RAG), flujos de trabajo auditables y dashboards BI.',
     descAIDiscovery:'Análisis estructurado de 3-6 semanas para identificar oportunidades de IA de alto valor. Produce una hoja de ruta con evaluación de costes, impactos, riesgos y ROI.',
     descAITutor:'Asistente IA entrenado exclusivamente en los resultados de tu AI Discovery. Guía al equipo en la adopción diaria de nuevos procesos, reduciendo fricciones y resistencia interna.',
