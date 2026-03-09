@@ -1,12 +1,14 @@
 /**
  * PiirZ Portfolio API — Cloudflare Worker
  *
+ * Storage: KV only (no R2 required)
+ *   - PRODUCTS KV: stores products.json under key "data"
+ *   - LOGS KV: stores analytics events with timestamp keys
+ *
  * Endpoints:
- *   POST /api/auth/login       — Login, returns JWT-like token
- *   GET  /api/products         — Read products.json
+ *   POST /api/auth/login       — Login, returns HMAC token
+ *   GET  /api/products         — Read products.json (public)
  *   PUT  /api/products/:key    — Update a product (auth required)
- *   POST /api/upload            — Upload attachment to R2 (auth required)
- *   DELETE /api/upload/:id      — Delete attachment from R2 (auth required)
  *   POST /api/log              — Log an event (public)
  *   GET  /api/logs             — Read logs (auth required)
  *   GET  /api/logs/stats       — Aggregated log stats (auth required)
@@ -98,10 +100,8 @@ async function handleLogin(request, env) {
 }
 
 async function handleGetProducts(env) {
-  // Read products.json from R2 or fallback to static
-  const obj = await env.ATTACHMENTS.get('products.json');
-  if (obj) {
-    const data = await obj.text();
+  const data = await env.PRODUCTS.get('data');
+  if (data) {
     return new Response(data, {
       headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
     });
@@ -110,11 +110,10 @@ async function handleGetProducts(env) {
 }
 
 async function handleUpdateProduct(request, env, key) {
-  // Get current products
-  const obj = await env.ATTACHMENTS.get('products.json');
-  if (!obj) return error('Products DB not found', 404);
+  const raw = await env.PRODUCTS.get('data');
+  if (!raw) return error('Products DB not found', 404);
 
-  const db = JSON.parse(await obj.text());
+  const db = JSON.parse(raw);
   const idx = db.products.findIndex(p => p.key === key);
   if (idx === -1) return error('Product not found', 404);
 
@@ -139,56 +138,10 @@ async function handleUpdateProduct(request, env, key) {
 
   db.meta.lastModified = new Date().toISOString();
 
-  // Write back to R2
-  await env.ATTACHMENTS.put('products.json', JSON.stringify(db, null, 2), {
-    httpMetadata: { contentType: 'application/json' },
-  });
+  // Write back to KV
+  await env.PRODUCTS.put('data', JSON.stringify(db, null, 2));
 
   return json({ ok: true, product: db.products[idx] });
-}
-
-async function handleUpload(request, env) {
-  const formData = await request.formData();
-  const file = formData.get('file');
-  if (!file) return error('No file provided');
-
-  const productKey = formData.get('productKey');
-  if (!productKey) return error('productKey required');
-
-  const id = `${productKey}/${Date.now()}-${file.name}`;
-  const buffer = await file.arrayBuffer();
-
-  await env.ATTACHMENTS.put(`attachments/${id}`, buffer, {
-    httpMetadata: { contentType: file.type },
-    customMetadata: { originalName: file.name, productKey, uploadedAt: new Date().toISOString() },
-  });
-
-  return json({
-    ok: true,
-    attachment: {
-      id,
-      name: file.name,
-      type: file.name.split('.').pop().toLowerCase(),
-      size: buffer.byteLength,
-      file: `/api/file/${id}`,
-    },
-  });
-}
-
-async function handleDeleteUpload(env, id) {
-  await env.ATTACHMENTS.delete(`attachments/${id}`);
-  return json({ ok: true });
-}
-
-async function handleServeFile(env, path) {
-  const obj = await env.ATTACHMENTS.get(`attachments/${path}`);
-  if (!obj) return error('File not found', 404);
-
-  const headers = new Headers(CORS_HEADERS);
-  headers.set('Content-Type', obj.httpMetadata?.contentType || 'application/octet-stream');
-  headers.set('Cache-Control', 'public, max-age=31536000');
-
-  return new Response(obj.body, { headers });
 }
 
 async function handleLog(request, env) {
@@ -232,7 +185,6 @@ async function handleGetLogs(env, url) {
 }
 
 async function handleLogStats(env) {
-  // Aggregate stats from recent logs
   const list = await env.LOGS.list({ limit: 1000 });
   const stats = {
     total: 0,
@@ -282,32 +234,18 @@ export default {
         return handleLog(request, env);
       }
 
-      if (method === 'GET' && path.startsWith('/api/file/')) {
-        const filePath = path.slice('/api/file/'.length);
-        return handleServeFile(env, decodeURIComponent(filePath));
+      if (method === 'GET' && path === '/api/products') {
+        return handleGetProducts(env);
       }
 
       // Auth-required endpoints
-      if (path.startsWith('/api/') && path !== '/api/auth/login' && path !== '/api/log' && !path.startsWith('/api/file/')) {
+      if (path.startsWith('/api/')) {
         const user = await requireAuth(request, env);
         if (!user) return unauthorized();
-
-        if (method === 'GET' && path === '/api/products') {
-          return handleGetProducts(env);
-        }
 
         if (method === 'PUT' && path.startsWith('/api/products/')) {
           const key = path.split('/api/products/')[1];
           return handleUpdateProduct(request, env, key);
-        }
-
-        if (method === 'POST' && path === '/api/upload') {
-          return handleUpload(request, env);
-        }
-
-        if (method === 'DELETE' && path.startsWith('/api/upload/')) {
-          const id = decodeURIComponent(path.slice('/api/upload/'.length));
-          return handleDeleteUpload(env, id);
         }
 
         if (method === 'GET' && path === '/api/logs') {
@@ -319,7 +257,6 @@ export default {
         }
       }
 
-      // Not an API route — let static site handle it
       return error('Not found', 404);
 
     } catch (err) {

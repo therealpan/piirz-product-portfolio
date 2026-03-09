@@ -8,11 +8,8 @@ ADMIN_USER = "admin"
 
 [[kv_namespaces]]
 binding = "LOGS"
-id = "placeholder" # Run: wrangler kv namespace create LOGS
+id = "3f9dcc6165514a43a5698b15ea1c75b8"
 
-[[r2_buckets]]
-binding = "ATTACHMENTS"
-bucket_name = "piirz-attachments"
-
-[site]
-bucket = "../" # Serve static site from root
+[[kv_namespaces]]
+binding = "PRODUCTS"
+id = "51f01ec809c644e4a465c5489950e6cc"
