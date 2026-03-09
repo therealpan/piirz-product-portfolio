@@ -1470,7 +1470,10 @@ allCards.forEach(function(card) {
 function updateCardEmails() {
   var T = LANGS[currentLang];
   document.querySelectorAll('.card-email').forEach(function(link) {
-    var productName = link.getAttribute('data-product-name');
+    // Read name from DOM (already updated by applyLang) to handle data-i18n card names
+    var card = link.closest('.card');
+    var nameEl = card ? card.querySelector('.card-name') : null;
+    var productName = (nameEl && nameEl.textContent.trim()) ? nameEl.textContent.trim() : link.getAttribute('data-product-name');
     var subject = encodeURIComponent(T.emailSubjectPrefix + ' ' + productName);
     link.href = 'mailto:hello@piirz.com?subject=' + subject;
     var labelEl = link.querySelector('.email-label');
