@@ -299,6 +299,9 @@ async function handleUpload(request, env) {
     customMetadata: { originalName: file.name, uploadedAt: new Date().toISOString() },
   });
 
+  // Use absolute URL so it works from any frontend domain (GitHub Pages, etc.)
+  const origin = new URL(request.url).origin;
+
   return json({
     ok: true,
     file: {
@@ -306,7 +309,7 @@ async function handleUpload(request, env) {
       name: file.name,
       size: file.size,
       type: file.type,
-      url: `/api/file/${key}`,
+      url: `${origin}/api/file/${key}`,
     },
   });
 }

@@ -686,11 +686,18 @@ function openModal(key, focus) {
   if (p.attachments && p.attachments.length > 0) {
     document.getElementById('modalAttachLabel').textContent = T.attachLabel || 'Allegati';
     var attHtml = p.attachments.map(function(att){
-      var icon = att.type === 'pdf' ? 'fa-file-pdf' : att.type === 'pptx' ? 'fa-file-powerpoint' : 'fa-file';
+      var mime = (att.type || '').toLowerCase();
+      var icon = mime.includes('pdf') ? 'fa-file-pdf'
+               : (mime.includes('presentation') || mime.includes('powerpoint') || att.name.match(/\.pptx?$/i)) ? 'fa-file-powerpoint'
+               : (mime.includes('word') || att.name.match(/\.docx?$/i)) ? 'fa-file-word'
+               : (mime.includes('sheet') || mime.includes('excel') || att.name.match(/\.xlsx?$/i)) ? 'fa-file-excel'
+               : mime.includes('image') ? 'fa-file-image'
+               : 'fa-file';
       var size = att.size ? (att.size / 1024 < 1024 ? (att.size/1024).toFixed(0) + ' KB' : (att.size/1048576).toFixed(1) + ' MB') : '';
-      return '<a class="attach-item" href="' + att.file + '" target="_blank" data-key="' + key + '" data-att="' + att.id + '">' +
+      var label = att.name.split('.').pop().toUpperCase();
+      return '<a class="attach-item" href="' + (att.url || att.file || '#') + '" target="_blank" data-key="' + key + '" data-att="' + (att.key || att.id || att.name) + '">' +
         '<div class="attach-icon"><i class="fa-solid ' + icon + '"></i></div>' +
-        '<div><div class="attach-name">' + att.name + '</div><div class="attach-meta">' + (att.type || '').toUpperCase() + (size ? ' · ' + size : '') + '</div></div>' +
+        '<div><div class="attach-name">' + att.name + '</div><div class="attach-meta">' + label + (size ? ' · ' + size : '') + '</div></div>' +
       '</a>';
     }).join('');
     document.getElementById('modalAttachments').innerHTML = attHtml;
