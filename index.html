@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PiirZ Digital — Know-how Progettuale</title>
+<title>PiirZ Digital — Expertise & Vision</title>
 
 <!-- Favicon -->
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
@@ -955,9 +955,12 @@ document.addEventListener('click', function(e){
   var toggleBtn = document.getElementById('themeToggle');
   var icon = document.getElementById('themeIcon');
 
+  var logoImg = document.querySelector('.logo img');
+
   function applyTheme(theme) {
     html.setAttribute('data-theme', theme);
     icon.className = theme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+    if (logoImg) logoImg.src = theme === 'light' ? 'assets/logo_hires.png' : 'assets/logo.png';
     try { localStorage.setItem('piirz-theme', theme); } catch(e) {}
   }
 
