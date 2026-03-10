@@ -5,7 +5,7 @@
 - **`index.html`** (~780 lines) — fetches `data/products.json` and renders cards dynamically
 - **`data/products.json`** (93KB) — flat-file database with 38 products, 5 languages, UI translations
 - **`admin/index.html`** — full admin SPA for product CRUD (General, Details, Attachments tabs)
-- **`worker/`** — Cloudflare Worker API (auth, CRUD via KV, event logging to KV)
+- **`worker/`** — Cloudflare Worker API (auth, CRUD via KV, event logging to KV, file uploads via R2)
 - **Worker URL**: `https://piirz-portfolio-api.piirz.workers.dev`
 - **i18n system**: 5 languages (IT, EN, FR, DE, ES) from `products.json` `ui` section
 - **Filters**: category (7), sector (8), technology (8) — all client-side from `data-tags`
@@ -53,6 +53,7 @@
 - [x] KV namespaces: PRODUCTS (51f01ec8...) + LOGS (3f9dcc61...)
 - [x] Subdomain registered: `piirz.workers.dev`
 - [x] API_BASE configured in index.html and admin/index.html
+- [x] R2 bucket `piirz-attachments` for file uploads (upload, serve, delete endpoints)
 
 ## Known Issues
 - `icon.png` was a JPEG mislabeled as PNG — always verify file format with `file` command

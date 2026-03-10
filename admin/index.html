@@ -258,6 +258,14 @@ var DB = null;
 var editingKey = null;
 var editingProduct = null;
 var currentTab = 'general';
+var isDirty = false;
+
+window.addEventListener('beforeunload', function(e) {
+  if (isDirty) {
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
 
 /* ═══ INIT ═══ */
 if (token) {
@@ -416,8 +424,17 @@ function openEditor(key) {
   showPage('editor');
 }
 
-document.getElementById('editorBack').addEventListener('click', function(){ showPage('products'); });
-document.getElementById('cancelBtn').addEventListener('click', function(){ showPage('products'); });
+function safeNavBack() {
+  if (isDirty && !confirm('Hai modifiche non salvate. Vuoi uscire senza salvare?')) return;
+  isDirty = false;
+  showPage('products');
+}
+document.getElementById('editorBack').addEventListener('click', safeNavBack);
+document.getElementById('cancelBtn').addEventListener('click', safeNavBack);
+
+// Mark editor as dirty when any field changes
+document.getElementById('editorContent').addEventListener('input', function() { isDirty = true; });
+document.getElementById('editorContent').addEventListener('change', function() { isDirty = true; });
 
 document.querySelectorAll('.editor-tab').forEach(function(tab){
   tab.addEventListener('click', function(){
@@ -469,11 +486,37 @@ function renderEditorTab() {
   }
 
   else if (currentTab === 'details') {
-    html += '<p style="color:var(--text-muted);font-size:13px;margin-bottom:20px;">Rich content shown in the product detail modal. Supports HTML.</p>';
+    var DETAILS_TEMPLATE = '<p class="lead">Breve descrizione introduttiva del prodotto (80-120 parole). Sostituisce la descrizione breve della card.</p>\n' +
+      '<h4>Casi d\'uso</h4>\n<ul>\n' +
+      '  <li><strong>Settore A:</strong> Descrizione anonima del caso d\'uso reale.</li>\n' +
+      '  <li><strong>Settore B:</strong> Descrizione anonima del caso d\'uso reale.</li>\n' +
+      '  <li><strong>Settore C:</strong> Descrizione anonima del caso d\'uso reale.</li>\n' +
+      '</ul>\n<h4>A chi è rivolto</h4>\n<p>Descrizione del target: ruoli, dimensione azienda, settori principali.</p>\n' +
+      '<h4>Cosa non include</h4>\n<p>Limitazioni chiare: cosa NON fa questo prodotto, cosa richiede da parte del cliente.</p>';
+
+    html += '<div style="background:rgba(255,140,0,0.06);border:1px solid rgba(255,140,0,0.2);border-radius:8px;padding:14px 16px;margin-bottom:20px;font-size:12px;color:var(--text-muted);">';
+    html += '<strong style="color:var(--orange);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;">Struttura attesa</strong> &nbsp;';
+    html += '<code style="font-size:11px;">&lt;p class="lead"&gt;</code> → ';
+    html += '<code style="font-size:11px;">&lt;h4&gt;Casi d\'uso&lt;/h4&gt;&lt;ul&gt;...&lt;/ul&gt;</code> → ';
+    html += '<code style="font-size:11px;">&lt;h4&gt;A chi è rivolto&lt;/h4&gt;&lt;p&gt;...&lt;/p&gt;</code> → ';
+    html += '<code style="font-size:11px;">&lt;h4&gt;Cosa non include&lt;/h4&gt;&lt;p&gt;...&lt;/p&gt;</code>';
+    html += '<br><em style="opacity:0.7">Usa &lt;strong&gt;Settore:&lt;/strong&gt; all\'interno di &lt;li&gt; per i casi d\'uso. Non inserire prezzi o tempistiche quantitative.</em></div>';
+
     LANGS.forEach(function(l){
       var det = (p.details && p.details[l.code]) || { html: '', links: [], images: [] };
-      html += '<div class="field-group"><label><span class="flag">' + l.flag + '</span> ' + l.name + ' — HTML Content</label>' +
-        '<textarea data-field="details-html" data-lang="' + l.code + '" rows="6" style="font-family:monospace;font-size:12px;">' + escapeHtml(det.html || '') + '</textarea></div>';
+      var hasContent = det.html && det.html.trim().length > 0;
+      var badge = hasContent
+        ? '<span style="background:rgba(34,197,94,0.12);color:#4ade80;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:8px;">✓ compilato</span>'
+        : '<span style="background:rgba(255,140,0,0.1);color:#f59e0b;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:8px;">⚠ mancante</span>';
+      html += '<div class="field-group"><label><span class="flag">' + l.flag + '</span> ' + l.name + ' — HTML Content' + badge + '</label>';
+      if (!hasContent) {
+        html += '<button type="button" onclick="' +
+          'var ta=this.nextElementSibling;' +
+          'ta.value=' + JSON.stringify(DETAILS_TEMPLATE) + ';' +
+          'ta.dispatchEvent(new Event(\'input\'));' +
+          '" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:4px 10px;border-radius:6px;border:1px solid rgba(255,140,0,0.3);background:rgba(255,140,0,0.07);color:var(--orange);cursor:pointer;margin-bottom:6px;">⊕ Inserisci template</button>';
+      }
+      html += '<textarea data-field="details-html" data-lang="' + l.code + '" rows="8" style="font-family:monospace;font-size:12px;" placeholder="Incolla o scrivi l\'HTML del contenuto. Clicca \'Inserisci template\' per la struttura base.">' + escapeHtml(det.html || '') + '</textarea></div>';
     });
   }
 
@@ -546,6 +589,7 @@ document.getElementById('saveBtn').addEventListener('click', function(){
         // Update local DB
         var idx = DB.products.findIndex(function(p){ return p.key === editingKey; });
         if (idx >= 0) DB.products[idx] = JSON.parse(JSON.stringify(editingProduct));
+        isDirty = false;
         toast('Product saved', 'success');
         showSaveMsg();
       })

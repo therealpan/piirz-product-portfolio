@@ -22,7 +22,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="PiirZ Digital — AI Products & Consulting Portfolio">
 <meta property="og:description" content="Portfolio interattivo di 35+ prodotti e capability AI. Consulenza, automazione e soluzioni enterprise.">
-<meta property="og:url" content="https://therealpan.github.io/piirz-product-portfolio/">
+<meta property="og:url" content="https://capabilities.piirz.eu/">
 <meta property="og:image" content="https://therealpan.github.io/piirz-product-portfolio/assets/icon-192.png">
 <meta property="og:site_name" content="PiirZ Digital">
 <meta property="og:locale" content="it_IT">
@@ -38,7 +38,7 @@
 <meta name="twitter:image" content="https://therealpan.github.io/piirz-product-portfolio/assets/icon-192.png">
 
 <!-- Canonical -->
-<link rel="canonical" href="https://therealpan.github.io/piirz-product-portfolio/">
+<link rel="canonical" href="https://capabilities.piirz.eu/">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -221,9 +221,57 @@ header{position:relative;z-index:10;padding:28px 48px 0;display:flex;align-items
   .modal{padding:20px;margin:12px;}
 }
 @media(max-width:600px){.cta-contact{padding-left:20px;padding-right:20px;}}
+
+/* ── Skip to content ── */
+.skip-link{position:absolute;top:-120px;left:16px;z-index:9999;background:var(--orange);color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;transition:top 0.15s;}
+.skip-link:focus{top:16px;}
+
+/* ── Skeleton loader ── */
+.skeleton-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;}
+.skeleton-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);height:194px;position:relative;overflow:hidden;}
+.skeleton-card::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 25%,rgba(255,255,255,0.04) 50%,transparent 75%);background-size:200% 100%;animation:shimmer 1.6s infinite;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ── .modal-details inner elements ── */
+.modal-details h4{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);margin:1.4rem 0 0.5rem;padding-bottom:4px;}
+.modal-details h4.exclusion-label{color:#f59e0b;}
+.modal-details h4.exclusion-label::before{content:'⚠  ';}
+.modal-details ul{list-style:none;padding-left:0;margin:0.3rem 0 0.8rem;}
+.modal-details li{position:relative;padding-left:1.2rem;margin-bottom:0.55rem;line-height:1.6;}
+.modal-details li::before{content:'–';position:absolute;left:0;color:var(--orange);font-weight:700;}
+.modal-details li strong{color:var(--text);font-weight:700;}
+.modal-details p.lead{font-size:0.93rem;line-height:1.75;color:var(--text-dim);margin-bottom:1.1rem;border-left:2px solid rgba(255,140,0,0.3);padding-left:14px;}
+
+/* ── Modal open animation ── */
+@keyframes modalIn{from{opacity:0;transform:translateY(14px) scale(0.97);}to{opacity:1;transform:none;}}
+.modal-overlay.open .modal{animation:modalIn 0.28s cubic-bezier(0.34,1.2,0.64,1) forwards;}
+
+/* ── Modal header: sticky ── */
+.modal-header{display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:10;background:var(--surface);padding-bottom:14px;border-bottom:1px solid var(--border);margin-bottom:0;}
+.modal-body-start{margin-top:18px;}
+
+/* ── Chip as button reset ── */
+.chip{font-family:inherit;font-size:12px;}
+
+/* ── Section divider subtitle ── */
+.section-divider>span{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.div-sub{font-family:'DM Sans',sans-serif;font-size:0.67rem;font-weight:400;letter-spacing:0.04em;text-transform:none;color:var(--text-muted);opacity:0.55;white-space:nowrap;}
+
+/* ── Footer ── */
+.site-footer{position:relative;z-index:5;border-top:1px solid var(--border);padding:22px 48px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:24px;}
+.footer-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.footer-links a{font-size:12px;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--text);}
+.footer-copy{font-size:11px;color:var(--text-muted);opacity:0.55;}
+@media(max-width:768px){
+  .skeleton-grid{grid-template-columns:1fr;}
+  .site-footer{flex-direction:column;text-align:center;padding:20px;}
+}
 </style>
 </head>
 <body>
+
+<a href="#main-content" class="skip-link">Vai al contenuto principale</a>
 
 <header>
   <div class="logo"><img src="assets/logo.png" alt="PiirZ Digital"></div>
@@ -245,6 +293,8 @@ header{position:relative;z-index:10;padding:28px 48px 0;display:flex;align-items
     </div>
   </div>
 </header>
+
+<main id="main-content">
 
 <section class="hero">
   <div class="hero-tag"><i class="fa-solid fa-bolt"></i> <span id="heroTag"></span></div>
@@ -286,10 +336,17 @@ header{position:relative;z-index:10;padding:28px 48px 0;display:flex;align-items
   <button class="btn-reset" id="btnReset"><i class="fa-solid fa-rotate-left"></i> <span id="resetLabel"></span></button>
 </div>
 
-<div class="section-divider" id="div1"><span id="divExisting"></span></div>
+<div id="loadingSkeleton" class="grid-section" aria-live="polite">
+  <div class="skeleton-grid">
+    <div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div>
+    <div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div>
+  </div>
+</div>
+
+<div class="section-divider" id="div1"><span><span id="divExisting"></span><span class="div-sub" id="divExistingSub"></span></span></div>
 <section class="grid-section"><div class="products-grid" id="grid1"></div></section>
 
-<div class="section-divider" id="div2"><span id="divCapabilities"></span></div>
+<div class="section-divider" id="div2"><span><span id="divCapabilities"></span><span class="div-sub" id="divCapabilitiesSub"></span></span></div>
 <section class="grid-section"><div class="products-grid" id="grid2"></div></section>
 
 <div id="emptyState" class="empty-state" style="display:none;">
@@ -298,10 +355,21 @@ header{position:relative;z-index:10;padding:28px 48px 0;display:flex;align-items
   <p id="emptyDesc"></p>
 </div>
 
+</main>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="https://piirz.com" target="_blank" rel="noopener">piirz.com</a>
+    <a href="mailto:hello@piirz.com">hello@piirz.com</a>
+    <a href="admin/">Admin</a>
+  </div>
+  <div class="footer-copy">© 2025 PiirZ Digital — All rights reserved</div>
+</footer>
+
 <!-- DETAIL MODAL -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
-    <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+    <button class="modal-close" id="modalClose" aria-label="Chiudi dettagli prodotto"><i class="fa-solid fa-xmark"></i></button>
     <div class="modal-header">
       <div class="card-icon" id="modalIcon"></div>
       <div>
@@ -309,8 +377,8 @@ header{position:relative;z-index:10;padding:28px 48px 0;display:flex;align-items
         <div class="modal-cat" id="modalCat"></div>
       </div>
     </div>
-    <div class="modal-desc" id="modalDesc"></div>
-    <div id="modalDetailsSection" style="display:none;">
+    <div class="modal-desc modal-body-start" id="modalDesc"></div>
+    <div id="modalDetailsSection" class="modal-body-start" style="display:none;">
       <div class="modal-section-title" id="modalDetailsLabel"></div>
       <div class="modal-details" id="modalDetails"></div>
     </div>
@@ -345,15 +413,29 @@ var acIdx = -1;
 /* ══════════════════════════════════════════════════
    LOAD DATA
    ══════════════════════════════════════════════════ */
-fetch('data/products.json')
-  .then(function(r){ return r.json(); })
-  .then(function(data){
-    DB = data;
-    buildFilters();
-    renderCards();
-    applyLang(detectBrowserLang());
-  })
-  .catch(function(e){ console.error('Failed to load products:', e); });
+function initDB(data) {
+  DB = data;
+  document.getElementById('loadingSkeleton').style.display = 'none';
+  buildFilters();
+  renderCards();
+  applyLang(detectBrowserLang());
+  // Deep link: open modal if URL has #productKey
+  var hash = location.hash.slice(1);
+  if (hash && getProduct(hash)) openModal(hash, 'details');
+}
+
+fetch(API_BASE + '/api/products')
+  .then(function(r){ if (!r.ok) throw new Error('API ' + r.status); return r.json(); })
+  .then(function(data){ initDB(data); })
+  .catch(function(){
+    fetch('data/products.json')
+      .then(function(r){ return r.json(); })
+      .then(function(data){ initDB(data); })
+      .catch(function(e){
+        console.error('Failed to load products:', e);
+        document.getElementById('loadingSkeleton').style.display = 'none';
+      });
+  });
 
 /* ══════════════════════════════════════════════════
    LANGUAGE
@@ -405,6 +487,20 @@ function applyLang(code) {
   // Dividers
   document.getElementById('divExisting').textContent = T.divExisting;
   document.getElementById('divCapabilities').textContent = T.divCapabilities;
+
+  // Divider subtitles (i18n)
+  var divSubs = {
+    it: { existing: 'Soluzioni già disponibili e deployabili', capabilities: 'Competenze attivabili su progetto' },
+    en: { existing: 'Ready-to-deploy solutions', capabilities: 'Project-activatable capabilities' },
+    fr: { existing: 'Solutions disponibles et déployables', capabilities: 'Compétences activables sur projet' },
+    de: { existing: 'Sofort einsetzbare Lösungen', capabilities: 'Projektbezogene Fähigkeiten' },
+    es: { existing: 'Soluciones disponibles para desplegar', capabilities: 'Capacidades activables por proyecto' }
+  };
+  var ds = divSubs[code] || divSubs.it;
+  var subEx = document.getElementById('divExistingSub');
+  var subCap = document.getElementById('divCapabilitiesSub');
+  if (subEx) subEx.textContent = ds.existing;
+  if (subCap) subCap.textContent = ds.capabilities;
 
   // Empty state
   document.getElementById('emptyTitle').textContent = T.emptyTitle;
@@ -487,9 +583,11 @@ function renderChipGroup(containerId, chips, type) {
   var container = document.getElementById(containerId);
   container.innerHTML = chips.map(function(c){
     var cls = 'chip ' + (c.cls || '');
-    return '<span class="' + cls.trim() + '" data-filter="' + c.filter + '" data-type="' + type + '"' +
+    var isActive = (c.cls && c.cls.indexOf('active') >= 0) ? 'true' : 'false';
+    return '<button type="button" class="' + cls.trim() + '" data-filter="' + c.filter + '" data-type="' + type + '"' +
       (c.i18n ? ' data-i18n="' + c.i18n + '"' : '') +
-      '><i class="fa-solid ' + c.icon + '"></i> <span class="chip-label">' + (c.label || '') + '</span></span>';
+      ' aria-pressed="' + isActive + '"' +
+      '><i class="fa-solid ' + c.icon + '"></i> <span class="chip-label">' + (c.label || '') + '</span></button>';
   }).join('');
 }
 
@@ -560,14 +658,24 @@ function openModal(key, focus) {
   document.getElementById('modalIcon').innerHTML = '<i class="' + p.icon + '"></i>';
   document.getElementById('modalTitle').textContent = p.name[currentLang] || p.name.en;
   document.getElementById('modalCat').textContent = p.category[currentLang] || p.category.en;
-  document.getElementById('modalDesc').textContent = p.description[currentLang] || p.description.en;
 
-  // Details
+  // Details — try current lang, fallback to 'it'
   var detSection = document.getElementById('modalDetailsSection');
-  var det = p.details && p.details[currentLang];
-  if (det && det.html) {
+  var det = p.details && (p.details[currentLang] || p.details['it']);
+  var hasDetails = det && det.html;
+
+  // Show short description only when no details available
+  var descEl = document.getElementById('modalDesc');
+  descEl.textContent = p.description[currentLang] || p.description.en;
+  descEl.style.display = hasDetails ? 'none' : 'block';
+
+  if (hasDetails) {
     document.getElementById('modalDetailsLabel').textContent = T.detailLabel || 'Dettagli';
     document.getElementById('modalDetails').innerHTML = det.html;
+    // Mark last h4 as exclusion section (affordance warning)
+    var h4s = document.querySelectorAll('#modalDetails h4');
+    h4s.forEach(function(h){ h.classList.remove('exclusion-label'); });
+    if (h4s.length > 0) h4s[h4s.length - 1].classList.add('exclusion-label');
     detSection.style.display = 'block';
   } else {
     detSection.style.display = 'none';
@@ -601,17 +709,27 @@ function openModal(key, focus) {
   document.getElementById('modalCta').href = 'mailto:hello@piirz.com?subject=' + subject;
   document.getElementById('modalCtaLabel').textContent = T.emailLabel || 'Richiedi info';
 
+  // Update URL hash for deep linking
+  history.replaceState(null, '', '#' + key);
+
+  // Reset modal scroll position
+  document.querySelector('.modal').scrollTop = 0;
+
   overlay.classList.add('open');
 
   // Scroll to focus section
   if (focus === 'attachments' && attSection.style.display === 'block') {
-    setTimeout(function(){ attSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
+    setTimeout(function(){ attSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 120);
   }
 }
 
-document.getElementById('modalClose').addEventListener('click', function(){ document.getElementById('modalOverlay').classList.remove('open'); });
-document.getElementById('modalOverlay').addEventListener('click', function(e){ if (e.target === this) this.classList.remove('open'); });
-document.addEventListener('keydown', function(e){ if (e.key === 'Escape') document.getElementById('modalOverlay').classList.remove('open'); });
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  history.replaceState(null, '', location.pathname + location.search);
+}
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modalOverlay').addEventListener('click', function(e){ if (e.target === this) closeModal(); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
 
 /* ══════════════════════════════════════════════════
    EVENT LOGGING
@@ -744,12 +862,21 @@ document.querySelector('.filter-groups').addEventListener('click', function(e){
     }
   }
   filterCards();
+  // Sync aria-pressed for all chips after state change
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.setAttribute('aria-pressed', c.classList.contains('active') ? 'true' : 'false');
+  });
 });
 
 document.getElementById('btnReset').addEventListener('click', function(){
   activeFilters = { category: 'all' };
-  document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
-  document.querySelector('.chip-all').classList.add('active');
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.classList.remove('active');
+    c.setAttribute('aria-pressed', 'false');
+  });
+  var chipAll = document.querySelector('.chip-all');
+  chipAll.classList.add('active');
+  chipAll.setAttribute('aria-pressed', 'true');
   searchInput.value = ''; searchQuery = ''; searchClear.classList.remove('visible'); hideAC(); filterCards();
 });
 
