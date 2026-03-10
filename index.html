@@ -62,9 +62,12 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 /* HEADER */
 header{position:relative;z-index:10;padding:28px 48px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+a.logo{display:flex;align-items:center;text-decoration:none;}
 .logo img{height:48px;filter:drop-shadow(0 0 20px rgba(255,140,0,0.3));transition:filter 0.3s;}
 .logo img:hover{filter:drop-shadow(0 0 30px rgba(255,140,0,0.5));}
 .header-right{display:flex;align-items:center;gap:12px;}
+.home-link{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--border);border-radius:20px;background:rgba(255,255,255,0.03);transition:color 0.2s,border-color 0.2s,background 0.2s;}
+.home-link:hover{color:var(--orange);border-color:rgba(255,140,0,0.4);background:rgba(255,140,0,0.06);}
 .header-badge{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);border:1px solid var(--border);padding:6px 14px;border-radius:20px;background:rgba(255,255,255,0.03);}
 
 /* LANG SELECTOR */
@@ -310,8 +313,9 @@ header{position:relative;z-index:10;padding:28px 48px 0;display:flex;align-items
 <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
 
 <header>
-  <div class="logo"><img src="assets/logo.png" alt="PiirZ Digital"></div>
+  <a href="https://piirz.com" target="_blank" rel="noopener" class="logo"><img src="assets/logo.png" alt="PiirZ Digital"></a>
   <div class="header-right">
+    <a href="https://piirz.com" target="_blank" rel="noopener" class="home-link"><i class="fa-solid fa-house"></i> piirz.com</a>
     <div class="header-badge" id="badge"></div>
     <button class="theme-toggle" id="themeToggle" aria-label="Cambia tema"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
     <div class="lang-selector" id="langSelector">
