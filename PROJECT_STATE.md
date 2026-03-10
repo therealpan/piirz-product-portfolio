@@ -36,6 +36,12 @@
 ```
 
 ## Completed Components
+- [x] Titolo "Know-how Progettuale" in 5 lingue (heroTitle + page title)
+- [x] Quill.js WYSIWYG editor per dettagli prodotto (dark theme, 5 istanze per lingua)
+- [x] Groq AI integration: auto-translate (llama-3.1-8b) + generate details (llama-3.3-70b)
+- [x] AI Settings modal: Groq API key + system prompt configurabile
+- [x] Log analytics: Chart.js doughnut (events by type) + bar (top products)
+- [x] Log filters: event type, product, date from/to + reset
 - [x] Multilingual portfolio with 5 languages
 - [x] Interactive filters (category, sector, technology)
 - [x] Live search with autocomplete
