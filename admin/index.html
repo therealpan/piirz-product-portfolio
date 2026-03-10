@@ -594,6 +594,7 @@ function loadProducts() {
 }
 
 function renderProductTable(filter) {
+  if (!DB) return;
   var tbody = document.getElementById('productTableBody');
   var q = (filter || '').toLowerCase();
   var html = '';
@@ -836,9 +837,9 @@ function handleFiles(files) {
   if (!API_BASE) { toast('API not configured — upload disabled in static mode', 'error'); return; }
   Array.from(files).forEach(function(file){
     apiUpload(file, editingKey).then(function(data){
-      if (data.ok) {
+      if (data.ok && data.file) {
         if (!editingProduct.attachments) editingProduct.attachments = [];
-        editingProduct.attachments.push(data.attachment);
+        editingProduct.attachments.push(data.file);
         renderEditorTab();
         toast('Uploaded: ' + file.name, 'success');
       }
