@@ -404,6 +404,7 @@ var DEFAULT_GROQ_PROMPT =
    STATE
 ═══════════════════════════════════════════════ */
 var token = localStorage.getItem('piirz_token') || '';
+var currentUser = '';
 var DB = null;
 var editingKey = null;
 var editingProduct = null;
@@ -421,6 +422,13 @@ window.addEventListener('beforeunload', function(e) {
 /* ═══════════════════════════════════════════════
    INIT
 ═══════════════════════════════════════════════ */
+function getUserFromToken(t) {
+  try { return atob(t).split(':')[0] || ''; } catch { return ''; }
+}
+
+// Restore username from storage or decode from token
+currentUser = localStorage.getItem('piirz_username') || getUserFromToken(token) || 'admin';
+
 if (token) { showApp(); }
 else { document.getElementById('loginPage').style.display = 'flex'; }
 
@@ -434,7 +442,9 @@ document.getElementById('loginForm').addEventListener('submit', function(e){
     password: document.getElementById('loginPass').value
   }).then(function(data){
     token = data.token;
+    currentUser = data.user || getUserFromToken(data.token) || 'admin';
     localStorage.setItem('piirz_token', token);
+    localStorage.setItem('piirz_username', currentUser);
     showApp();
   }).catch(function(){
     document.getElementById('loginError').style.display = 'block';
@@ -442,7 +452,10 @@ document.getElementById('loginForm').addEventListener('submit', function(e){
 });
 
 document.getElementById('logoutBtn').addEventListener('click', function(){
-  token = ''; localStorage.removeItem('piirz_token'); location.reload();
+  token = '';
+  localStorage.removeItem('piirz_token');
+  localStorage.removeItem('piirz_username');
+  location.reload();
 });
 
 /* ─── CHANGE PASSWORD ─── */
@@ -543,6 +556,10 @@ function apiUpload(file, productKey) {
 function showApp() {
   document.getElementById('loginPage').style.display = 'none';
   document.getElementById('app').classList.add('active');
+  // Show current username in sidebar
+  document.getElementById('currentUser').textContent = currentUser;
+  // AI settings (API key + system prompt) visible only to admin
+  document.getElementById('aiSettingsBtn').style.display = (currentUser === 'admin') ? '' : 'none';
   loadProducts();
 }
 

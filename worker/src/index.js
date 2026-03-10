@@ -20,6 +20,11 @@
  *
  * Password override: stored in PRODUCTS KV under key "_admin_pass".
  *   If present, it overrides env.ADMIN_PASS at runtime (no redeploy needed).
+ *
+ * Secondary users: stored in PRODUCTS KV under key "_users".
+ *   Format: { "username": { "password": "..." }, ... }
+ *   Initialize via: wrangler kv key put --binding=PRODUCTS "_users" '{"maurizio":{"password":"..."}}'
+ *   Tokens for secondary users are signed with the admin secret (same requireAuth for all).
  */
 
 const CORS_HEADERS = {
@@ -96,6 +101,12 @@ async function getEffectivePassword(env) {
   return override || env.ADMIN_PASS;
 }
 
+// Secondary users stored in PRODUCTS KV under "_users".
+async function getUsersDB(env) {
+  const raw = await env.PRODUCTS.get('_users');
+  return raw ? JSON.parse(raw) : {};
+}
+
 async function requireAuth(request, env) {
   const auth = request.headers.get('Authorization');
   if (!auth || !auth.startsWith('Bearer ')) return null;
@@ -109,30 +120,48 @@ async function requireAuth(request, env) {
 async function handleLogin(request, env) {
   const { username, password } = await request.json();
   const effectivePass = await getEffectivePassword(env);
+
+  // Admin check
   if (username === env.ADMIN_USER && password === effectivePass) {
     const token = await createToken(username, effectivePass);
-    return json({ token, expires: Date.now() + 86400000 });
+    return json({ token, expires: Date.now() + 86400000, user: username });
   }
+
+  // Secondary users — tokens are signed with the admin secret so requireAuth works for all
+  const users = await getUsersDB(env);
+  if (users[username] && users[username].password === password) {
+    const token = await createToken(username, effectivePass);
+    return json({ token, expires: Date.now() + 86400000, user: username });
+  }
+
   return error('Invalid credentials', 401);
 }
 
-async function handleChangePassword(request, env) {
+async function handleChangePassword(request, env, user) {
   const { currentPassword, newPassword } = await request.json();
 
   if (!newPassword || newPassword.length < 8) {
     return error('La nuova password deve avere almeno 8 caratteri', 400);
   }
 
-  const effectivePass = await getEffectivePassword(env);
-  if (currentPassword !== effectivePass) {
-    // 400 (not 401) so the client doesn't auto-logout on wrong current password
-    return error('Password attuale non corretta', 400);
+  if (user === env.ADMIN_USER) {
+    // Admin: verify against effective password, store override in KV
+    const effectivePass = await getEffectivePassword(env);
+    if (currentPassword !== effectivePass) {
+      return error('Password attuale non corretta', 400);
+    }
+    await env.PRODUCTS.put('_admin_pass', newPassword);
+    // HMAC secret changes → all tokens invalidated → client must re-login
+  } else {
+    // Secondary user: verify and update only their own entry in _users
+    const users = await getUsersDB(env);
+    if (!users[user] || users[user].password !== currentPassword) {
+      return error('Password attuale non corretta', 400);
+    }
+    users[user].password = newPassword;
+    await env.PRODUCTS.put('_users', JSON.stringify(users));
   }
 
-  // Store the new password in KV — overrides env.ADMIN_PASS at runtime
-  await env.PRODUCTS.put('_admin_pass', newPassword);
-
-  // All existing tokens are now invalid (HMAC secret changed) — client must re-login
   return json({ ok: true });
 }
 
@@ -338,7 +367,7 @@ export default {
         if (!user) return unauthorized();
 
         if (method === 'PUT' && path === '/api/auth/password') {
-          return handleChangePassword(request, env);
+          return handleChangePassword(request, env, user);
         }
 
         if (method === 'PUT' && path.startsWith('/api/products/')) {
