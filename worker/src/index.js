@@ -316,12 +316,25 @@ async function handleTrackClick(id, request, env) {
 
 async function handleCreateLink(request, env) {
   const body = await request.json();
-  const { name, url, campaign } = body;
+  const { name, url, campaign, slug } = body;
   if (!name || !url) return error('name e url sono obbligatori', 400);
   try { new URL(url); } catch { return error('URL non valido', 400); }
 
   const links = await getLinks(env);
-  const id = generateLinkId();
+
+  let id;
+  if (slug) {
+    // Normalize: lowercase, spaces→hyphens, strip invalid chars
+    const cleanSlug = slug.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    if (!/^[a-z0-9][a-z0-9-]{1,48}[a-z0-9]$/.test(cleanSlug)) {
+      return error('Slug non valido: usa solo lettere minuscole, numeri e trattini (min 3, max 50 caratteri)', 400);
+    }
+    if (links[cleanSlug]) return error('Slug già in uso, scegline un altro', 409);
+    id = cleanSlug;
+  } else {
+    id = generateLinkId();
+  }
+
   links[id] = {
     id,
     name,

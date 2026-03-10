@@ -179,7 +179,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 /* LINK TRACKING */
 .link-form{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:24px;}
-.link-form-grid{display:grid;grid-template-columns:1fr 1fr 2fr auto;gap:12px;align-items:flex-end;}
+.link-form-grid{display:grid;grid-template-columns:1fr 1fr 1fr 2fr auto;gap:12px;align-items:flex-end;}
+.link-slug-hint{font-size:10px;color:var(--text-muted);margin-top:3px;font-family:monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .link-form-grid .field-group{margin-bottom:0;}
 .link-table{width:100%;border-collapse:separate;border-spacing:0;}
 .link-table th{text-align:left;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);padding:8px 12px;border-bottom:1px solid var(--border);}
@@ -375,6 +376,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
           <div class="field-group">
             <label>Campagna / Cliente</label>
             <input type="text" id="linkCampaign" placeholder="es. Cliente Rossi">
+          </div>
+          <div class="field-group">
+            <label>Slug personalizzato <span style="color:var(--text-muted);font-weight:400;">(opz.)</span></label>
+            <input type="text" id="linkSlug" placeholder="es. brochure-rossi" maxlength="50">
+            <div class="link-slug-hint" id="linkSlugHint">/t/slug-automatico</div>
           </div>
           <div class="field-group">
             <label>URL di destinazione</label>
@@ -1398,9 +1404,17 @@ function renderLinksTable(list) {
   });
 }
 
+// Slug hint — update preview as user types
+document.getElementById('linkSlug').addEventListener('input', function(){
+  var hint = document.getElementById('linkSlugHint');
+  var val = this.value.trim().toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+  hint.textContent = val ? '/t/' + val : '/t/slug-automatico';
+});
+
 document.getElementById('createLinkBtn').addEventListener('click', function(){
   var name = document.getElementById('linkName').value.trim();
   var campaign = document.getElementById('linkCampaign').value.trim();
+  var slug = document.getElementById('linkSlug').value.trim();
   var url = document.getElementById('linkUrl').value.trim();
   var errEl = document.getElementById('linkFormError');
   errEl.style.display = 'none';
@@ -1410,11 +1424,15 @@ document.getElementById('createLinkBtn').addEventListener('click', function(){
   var btn = document.getElementById('createLinkBtn');
   btn.disabled = true;
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creazione...';
-  api('POST', '/api/links', { name: name, url: url, campaign: campaign })
+  var payload = { name: name, url: url, campaign: campaign };
+  if (slug) payload.slug = slug;
+  api('POST', '/api/links', payload)
     .then(function(data){
       toast('Link creato!', 'success');
       document.getElementById('linkName').value = '';
       document.getElementById('linkCampaign').value = '';
+      document.getElementById('linkSlug').value = '';
+      document.getElementById('linkSlugHint').textContent = '/t/slug-automatico';
       document.getElementById('linkUrl').value = '';
       loadLinks();
       loadLinksWidget();
