@@ -1,17 +1,25 @@
 /**
  * PiirZ Portfolio API — Cloudflare Worker
  *
- * Storage: KV only (no R2 required)
+ * Storage:
  *   - PRODUCTS KV: stores products.json under key "data"
  *   - LOGS KV: stores analytics events with timestamp keys
+ *   - ATTACHMENTS R2: stores file uploads (attachments/)
  *
  * Endpoints:
  *   POST /api/auth/login       — Login, returns HMAC token
+ *   PUT  /api/auth/password    — Change admin password (auth required)
  *   GET  /api/products         — Read products.json (public)
  *   PUT  /api/products/:key    — Update a product (auth required)
  *   POST /api/log              — Log an event (public)
  *   GET  /api/logs             — Read logs (auth required)
  *   GET  /api/logs/stats       — Aggregated log stats (auth required)
+ *   POST /api/upload           — Upload a file to R2 (auth required)
+ *   DELETE /api/upload/:id     — Delete a file from R2 (auth required)
+ *   GET  /api/file/*           — Serve a file from R2 (public, cached)
+ *
+ * Password override: stored in PRODUCTS KV under key "_admin_pass".
+ *   If present, it overrides env.ADMIN_PASS at runtime (no redeploy needed).
  */
 
 const CORS_HEADERS = {
@@ -81,22 +89,51 @@ async function verifyToken(token, secret) {
   }
 }
 
+// Returns the effective admin password: KV override takes precedence over env secret.
+// This allows changing the password at runtime without redeploying the Worker.
+async function getEffectivePassword(env) {
+  const override = await env.PRODUCTS.get('_admin_pass');
+  return override || env.ADMIN_PASS;
+}
+
 async function requireAuth(request, env) {
   const auth = request.headers.get('Authorization');
   if (!auth || !auth.startsWith('Bearer ')) return null;
   const token = auth.slice(7);
-  return verifyToken(token, env.ADMIN_PASS);
+  const secret = await getEffectivePassword(env);
+  return verifyToken(token, secret);
 }
 
 // ─── Route Handlers ────────────────────────────────────────
 
 async function handleLogin(request, env) {
   const { username, password } = await request.json();
-  if (username === env.ADMIN_USER && password === env.ADMIN_PASS) {
-    const token = await createToken(username, env.ADMIN_PASS);
+  const effectivePass = await getEffectivePassword(env);
+  if (username === env.ADMIN_USER && password === effectivePass) {
+    const token = await createToken(username, effectivePass);
     return json({ token, expires: Date.now() + 86400000 });
   }
   return error('Invalid credentials', 401);
+}
+
+async function handleChangePassword(request, env) {
+  const { currentPassword, newPassword } = await request.json();
+
+  if (!newPassword || newPassword.length < 8) {
+    return error('La nuova password deve avere almeno 8 caratteri', 400);
+  }
+
+  const effectivePass = await getEffectivePassword(env);
+  if (currentPassword !== effectivePass) {
+    // 400 (not 401) so the client doesn't auto-logout on wrong current password
+    return error('Password attuale non corretta', 400);
+  }
+
+  // Store the new password in KV — overrides env.ADMIN_PASS at runtime
+  await env.PRODUCTS.put('_admin_pass', newPassword);
+
+  // All existing tokens are now invalid (HMAC secret changed) — client must re-login
+  return json({ ok: true });
 }
 
 async function handleGetProducts(env) {
@@ -211,6 +248,57 @@ async function handleLogStats(env) {
   return json(stats);
 }
 
+// ─── R2 File Handlers ─────────────────────────────────────
+
+async function handleUpload(request, env) {
+  const contentType = request.headers.get('Content-Type') || '';
+
+  if (!contentType.includes('multipart/form-data')) {
+    return error('Expected multipart/form-data', 400);
+  }
+
+  const formData = await request.formData();
+  const file = formData.get('file');
+  if (!file) return error('No file provided', 400);
+
+  const timestamp = Date.now();
+  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+  const key = `attachments/${timestamp}_${safeName}`;
+
+  await env.ATTACHMENTS.put(key, file.stream(), {
+    httpMetadata: { contentType: file.type },
+    customMetadata: { originalName: file.name, uploadedAt: new Date().toISOString() },
+  });
+
+  return json({
+    ok: true,
+    file: {
+      key,
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      url: `/api/file/${key}`,
+    },
+  });
+}
+
+async function handleDeleteUpload(env, fileKey) {
+  await env.ATTACHMENTS.delete(fileKey);
+  return json({ ok: true });
+}
+
+async function handleServeFile(env, filePath) {
+  const object = await env.ATTACHMENTS.get(filePath);
+  if (!object) return error('File not found', 404);
+
+  const headers = new Headers(CORS_HEADERS);
+  object.writeHttpMetadata(headers);
+  headers.set('ETag', object.httpEtag);
+  headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+
+  return new Response(object.body, { headers });
+}
+
 // ─── Router ────────────────────────────────────────────────
 
 export default {
@@ -238,10 +326,20 @@ export default {
         return handleGetProducts(env);
       }
 
+      // Public file serving from R2
+      if (method === 'GET' && path.startsWith('/api/file/')) {
+        const filePath = path.slice('/api/file/'.length);
+        return handleServeFile(env, filePath);
+      }
+
       // Auth-required endpoints
       if (path.startsWith('/api/')) {
         const user = await requireAuth(request, env);
         if (!user) return unauthorized();
+
+        if (method === 'PUT' && path === '/api/auth/password') {
+          return handleChangePassword(request, env);
+        }
 
         if (method === 'PUT' && path.startsWith('/api/products/')) {
           const key = path.split('/api/products/')[1];
@@ -254,6 +352,15 @@ export default {
 
         if (method === 'GET' && path === '/api/logs/stats') {
           return handleLogStats(env);
+        }
+
+        if (method === 'POST' && path === '/api/upload') {
+          return handleUpload(request, env);
+        }
+
+        if (method === 'DELETE' && path.startsWith('/api/upload/')) {
+          const fileKey = decodeURIComponent(path.slice('/api/upload/'.length));
+          return handleDeleteUpload(env, fileKey);
         }
       }
 

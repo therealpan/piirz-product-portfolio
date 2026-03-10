@@ -224,8 +224,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </nav>
     <div class="sidebar-footer">
       <div class="user"><i class="fa-solid fa-user"></i> <span id="currentUser">admin</span></div>
-      <div style="display:flex;gap:8px;margin-top:8px;">
+      <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
         <button class="btn btn-ghost btn-sm" id="aiSettingsBtn" title="AI Settings (Groq)"><i class="fa-solid fa-robot"></i> AI</button>
+        <button class="btn btn-ghost btn-sm" id="changePwdBtn" title="Cambia password"><i class="fa-solid fa-key"></i></button>
         <button class="btn btn-ghost btn-sm" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
       </div>
     </div>
@@ -348,6 +349,30 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   </div>
 </div>
 
+<!-- CHANGE PASSWORD MODAL -->
+<div class="groq-overlay" id="pwdOverlay">
+  <div class="groq-box" style="max-width:420px;">
+    <h3><i class="fa-solid fa-key" style="color:var(--orange)"></i> Cambia Password Admin</h3>
+    <div class="field-group">
+      <label>Password attuale</label>
+      <input type="password" id="pwdCurrent" autocomplete="current-password" placeholder="••••••••">
+    </div>
+    <div class="field-group">
+      <label>Nuova password</label>
+      <input type="password" id="pwdNew" autocomplete="new-password" placeholder="Min. 8 caratteri">
+    </div>
+    <div class="field-group">
+      <label>Conferma nuova password</label>
+      <input type="password" id="pwdConfirm" autocomplete="new-password" placeholder="Ripeti la nuova password">
+    </div>
+    <div id="pwdError" style="color:var(--red);font-size:12px;margin-bottom:12px;display:none;"></div>
+    <div style="display:flex;justify-content:flex-end;gap:8px;">
+      <button class="btn btn-ghost btn-sm" id="closePwdBtn">Annulla</button>
+      <button class="btn btn-primary btn-sm" id="savePwdBtn" style="width:auto;"><i class="fa-solid fa-floppy-disk"></i> Salva</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -418,6 +443,69 @@ document.getElementById('loginForm').addEventListener('submit', function(e){
 
 document.getElementById('logoutBtn').addEventListener('click', function(){
   token = ''; localStorage.removeItem('piirz_token'); location.reload();
+});
+
+/* ─── CHANGE PASSWORD ─── */
+document.getElementById('changePwdBtn').addEventListener('click', function(){
+  document.getElementById('pwdCurrent').value = '';
+  document.getElementById('pwdNew').value = '';
+  document.getElementById('pwdConfirm').value = '';
+  document.getElementById('pwdError').style.display = 'none';
+  document.getElementById('pwdOverlay').classList.add('open');
+  setTimeout(function(){ document.getElementById('pwdCurrent').focus(); }, 80);
+});
+
+document.getElementById('closePwdBtn').addEventListener('click', function(){
+  document.getElementById('pwdOverlay').classList.remove('open');
+});
+
+document.getElementById('pwdOverlay').addEventListener('click', function(e){
+  if (e.target === this) this.classList.remove('open');
+});
+
+document.getElementById('savePwdBtn').addEventListener('click', function(){
+  var cur  = document.getElementById('pwdCurrent').value.trim();
+  var nw   = document.getElementById('pwdNew').value;
+  var conf = document.getElementById('pwdConfirm').value;
+  var errEl = document.getElementById('pwdError');
+
+  errEl.style.display = 'none';
+
+  if (!cur || !nw || !conf) {
+    errEl.textContent = 'Compila tutti i campi.';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (nw.length < 8) {
+    errEl.textContent = 'La nuova password deve avere almeno 8 caratteri.';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (nw !== conf) {
+    errEl.textContent = 'Le password non coincidono.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  var btn = document.getElementById('savePwdBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Salvataggio…';
+
+  api('PUT', '/api/auth/password', { currentPassword: cur, newPassword: nw })
+    .then(function(){
+      document.getElementById('pwdOverlay').classList.remove('open');
+      showToast('✓ Password aggiornata. Effettua nuovamente il login.', 'success');
+      // Invalidate session — new HMAC secret makes the current token invalid
+      setTimeout(function(){
+        token = ''; localStorage.removeItem('piirz_token'); location.reload();
+      }, 2200);
+    })
+    .catch(function(err){
+      errEl.textContent = err.message || 'Errore durante il cambio password.';
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Salva';
+    });
 });
 
 /* ═══════════════════════════════════════════════
