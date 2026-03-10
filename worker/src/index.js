@@ -17,6 +17,13 @@
  *   POST /api/upload           — Upload a file to R2 (auth required)
  *   DELETE /api/upload/:id     — Delete a file from R2 (auth required)
  *   GET  /api/file/*           — Serve a file from R2 (public, cached)
+ *   GET  /t/:id                — Tracking redirect (public, increments click counter)
+ *   POST /api/links            — Create a tracking link (auth required)
+ *   GET  /api/links            — List all tracking links with stats (auth required)
+ *   DELETE /api/links/:id      — Delete a tracking link (auth required)
+ *
+ * Tracking links: stored in PRODUCTS KV under key "_links".
+ *   Format: { [id]: { id, name, url, campaign, clicks, createdAt, lastClick } }
  *
  * Password override: stored in PRODUCTS KV under key "_admin_pass".
  *   If present, it overrides env.ADMIN_PASS at runtime (no redeploy needed).
@@ -277,6 +284,76 @@ async function handleLogStats(env) {
   return json(stats);
 }
 
+// ─── Link Tracking ─────────────────────────────────────────
+
+async function getLinks(env) {
+  const raw = await env.PRODUCTS.get('_links');
+  return raw ? JSON.parse(raw) : {};
+}
+
+async function saveLinks(env, links) {
+  await env.PRODUCTS.put('_links', JSON.stringify(links));
+}
+
+function generateLinkId() {
+  // 7-char alphanumeric, URL-safe
+  return Math.random().toString(36).slice(2, 9);
+}
+
+async function handleTrackClick(id, request, env) {
+  const links = await getLinks(env);
+  if (!links[id]) {
+    return new Response('Link non trovato', { status: 404, headers: CORS_HEADERS });
+  }
+  links[id].clicks = (links[id].clicks || 0) + 1;
+  links[id].lastClick = Date.now();
+  await saveLinks(env, links);
+  return new Response(null, {
+    status: 302,
+    headers: { ...CORS_HEADERS, Location: links[id].url },
+  });
+}
+
+async function handleCreateLink(request, env) {
+  const body = await request.json();
+  const { name, url, campaign } = body;
+  if (!name || !url) return error('name e url sono obbligatori', 400);
+  try { new URL(url); } catch { return error('URL non valido', 400); }
+
+  const links = await getLinks(env);
+  const id = generateLinkId();
+  links[id] = {
+    id,
+    name,
+    url,
+    campaign: campaign || '',
+    clicks: 0,
+    createdAt: Date.now(),
+    lastClick: null,
+  };
+  await saveLinks(env, links);
+
+  const origin = new URL(request.url).origin;
+  return json({ ok: true, link: { ...links[id], trackingUrl: `${origin}/t/${id}` } });
+}
+
+async function handleListLinks(request, env) {
+  const links = await getLinks(env);
+  const origin = new URL(request.url).origin;
+  const list = Object.values(links)
+    .map(l => ({ ...l, trackingUrl: `${origin}/t/${l.id}` }))
+    .sort((a, b) => b.createdAt - a.createdAt);
+  return json(list);
+}
+
+async function handleDeleteLink(id, env) {
+  const links = await getLinks(env);
+  if (!links[id]) return error('Link non trovato', 404);
+  delete links[id];
+  await saveLinks(env, links);
+  return json({ ok: true });
+}
+
 // ─── R2 File Handlers ─────────────────────────────────────
 
 async function handleUpload(request, env) {
@@ -364,6 +441,12 @@ export default {
         return handleServeFile(env, filePath);
       }
 
+      // Public tracking redirect — /t/:id
+      if (method === 'GET' && path.startsWith('/t/')) {
+        const linkId = path.slice(3);
+        return handleTrackClick(linkId, request, env);
+      }
+
       // Auth-required endpoints
       if (path.startsWith('/api/')) {
         const user = await requireAuth(request, env);
@@ -393,6 +476,18 @@ export default {
         if (method === 'DELETE' && path.startsWith('/api/upload/')) {
           const fileKey = decodeURIComponent(path.slice('/api/upload/'.length));
           return handleDeleteUpload(env, fileKey);
+        }
+
+        // Link tracking — CRUD
+        if (method === 'POST' && path === '/api/links') {
+          return handleCreateLink(request, env);
+        }
+        if (method === 'GET' && path === '/api/links') {
+          return handleListLinks(request, env);
+        }
+        if (method === 'DELETE' && path.startsWith('/api/links/')) {
+          const linkId = path.slice('/api/links/'.length);
+          return handleDeleteLink(linkId, env);
         }
       }
 

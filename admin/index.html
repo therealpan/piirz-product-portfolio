@@ -177,6 +177,31 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .toast.success{border-color:rgba(34,197,94,0.3);}
 .toast.error{border-color:rgba(239,68,68,0.3);}
 
+/* LINK TRACKING */
+.link-form{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:24px;}
+.link-form-grid{display:grid;grid-template-columns:1fr 1fr 2fr auto;gap:12px;align-items:flex-end;}
+.link-form-grid .field-group{margin-bottom:0;}
+.link-table{width:100%;border-collapse:separate;border-spacing:0;}
+.link-table th{text-align:left;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);padding:8px 12px;border-bottom:1px solid var(--border);}
+.link-table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;}
+.link-table tr:hover td{background:rgba(255,255,255,0.02);}
+.click-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--orange);}
+.tracking-url{font-family:monospace;font-size:11px;color:var(--text-muted);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;}
+.btn-copy{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.25);color:#60a5fa;padding:3px 8px;font-size:10px;font-weight:600;border-radius:5px;cursor:pointer;transition:all 0.15s;}
+.btn-copy:hover{background:rgba(59,130,246,0.18);}
+/* Home links widget */
+.links-widget{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:24px;}
+.links-widget .widget-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.links-widget .widget-title{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);}
+.links-widget .widget-more{font-size:11px;color:var(--orange);cursor:pointer;}
+.links-widget .widget-more:hover{text-decoration:underline;}
+.link-row-mini{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
+.link-row-mini:last-child{border-bottom:none;}
+.link-row-mini .lrm-name{flex:1;font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.link-row-mini .lrm-campaign{font-size:11px;color:var(--text-muted);margin-right:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:140px;}
+.link-row-mini .lrm-clicks{font-size:13px;font-weight:700;color:var(--orange);min-width:40px;text-align:right;}
+.link-empty{color:var(--text-muted);font-size:13px;padding:12px 0;}
+
 @media(max-width:768px){
   .sidebar{width:100%;position:relative;border-right:none;border-bottom:1px solid var(--border);}
   .sidebar-nav{display:flex;overflow-x:auto;padding:8px 12px;}
@@ -186,6 +211,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .app.active{flex-direction:column;}
   .lang-fields{grid-template-columns:1fr;}
   .log-charts{grid-template-columns:1fr;}
+  .link-form-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -220,6 +246,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div>
     <nav class="sidebar-nav">
       <div class="nav-item active" data-page="products"><i class="fa-solid fa-boxes-stacked"></i> Products</div>
+      <div class="nav-item" data-page="links"><i class="fa-solid fa-link"></i> Link Tracking</div>
       <div class="nav-item" data-page="logs"><i class="fa-solid fa-chart-line"></i> Analytics</div>
     </nav>
     <div class="sidebar-footer">
@@ -238,6 +265,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="page active" id="page-products">
       <h1 class="page-title">Products</h1>
       <p class="page-desc">Manage your AI product portfolio. Edit details, descriptions, and attachments.</p>
+
+      <!-- Link Tracking mini-widget -->
+      <div class="links-widget" id="linksWidget">
+        <div class="widget-header">
+          <div class="widget-title"><i class="fa-solid fa-link" style="margin-right:6px;"></i>Link Tracking — Top Links</div>
+          <span class="widget-more" id="goToLinksPage">Vedi tutti →</span>
+        </div>
+        <div id="linksWidgetBody"><div class="link-empty">Nessun link ancora. <span style="color:var(--orange);cursor:pointer;" id="goToLinksPage2">Creane uno →</span></div></div>
+      </div>
+
       <div class="product-search">
         <input type="text" id="productSearch" placeholder="Search products...">
       </div>
@@ -319,6 +356,52 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       </table>
       <div style="text-align:center;padding:20px;">
         <button class="btn btn-ghost btn-sm" id="loadMoreLogs">Load more</button>
+      </div>
+    </div>
+
+    <!-- LINK TRACKING PAGE -->
+    <div class="page" id="page-links">
+      <h1 class="page-title">Link Tracking</h1>
+      <p class="page-desc">Genera link tracciati per campagne e clienti. Ogni click viene registrato in tempo reale.</p>
+
+      <!-- Create link form -->
+      <div class="link-form">
+        <h3 style="font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:14px;"><i class="fa-solid fa-plus" style="color:var(--orange);margin-right:6px;"></i>Nuovo Link</h3>
+        <div class="link-form-grid">
+          <div class="field-group">
+            <label>Nome / Etichetta</label>
+            <input type="text" id="linkName" placeholder="es. Brochure AI">
+          </div>
+          <div class="field-group">
+            <label>Campagna / Cliente</label>
+            <input type="text" id="linkCampaign" placeholder="es. Cliente Rossi">
+          </div>
+          <div class="field-group">
+            <label>URL di destinazione</label>
+            <input type="url" id="linkUrl" placeholder="https://...">
+          </div>
+          <button class="btn btn-primary" id="createLinkBtn" style="white-space:nowrap;"><i class="fa-solid fa-link"></i> Crea Link</button>
+        </div>
+        <div id="linkFormError" style="color:var(--red);font-size:12px;margin-top:10px;display:none;"></div>
+      </div>
+
+      <!-- Links table -->
+      <div style="overflow-x:auto;">
+        <table class="link-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Campagna</th>
+              <th>Tracking URL</th>
+              <th>Destinazione</th>
+              <th>Click</th>
+              <th>Ultimo click</th>
+              <th>Creato</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="linksTableBody"><tr><td colspan="8" style="color:var(--text-muted);text-align:center;padding:24px;">Caricamento...</td></tr></tbody>
+        </table>
       </div>
     </div>
 
@@ -561,6 +644,7 @@ function showApp() {
   // AI settings (API key + system prompt) visible only to admin
   document.getElementById('aiSettingsBtn').style.display = (currentUser === 'admin') ? '' : 'none';
   loadProducts();
+  loadLinksWidget();
 }
 
 /* ═══════════════════════════════════════════════
@@ -578,6 +662,7 @@ function showPage(id) {
   document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
   document.getElementById('page-' + id).classList.add('active');
   if (id === 'logs') loadLogs();
+  if (id === 'links') loadLinks();
 }
 
 /* ═══════════════════════════════════════════════
@@ -1217,6 +1302,126 @@ function renderTopProductsChart(topProducts) {
     }
   });
 }
+
+/* ═══════════════════════════════════════════════
+   LINK TRACKING
+═══════════════════════════════════════════════ */
+var linksCache = [];
+
+function loadLinks() {
+  if (!API_BASE) { renderLinksTable([]); return; }
+  api('GET', '/api/links').then(function(list){
+    linksCache = list || [];
+    renderLinksTable(linksCache);
+  }).catch(function(e){ toast('Errore caricamento link: ' + e.message, 'error'); });
+}
+
+function loadLinksWidget() {
+  if (!API_BASE) return;
+  api('GET', '/api/links').then(function(list){
+    linksCache = list || [];
+    renderLinksWidget(linksCache);
+  }).catch(function(){});
+}
+
+function renderLinksWidget(list) {
+  var body = document.getElementById('linksWidgetBody');
+  if (!body) return;
+  if (!list || list.length === 0) {
+    body.innerHTML = '<div class="link-empty">Nessun link ancora. <span style="color:var(--orange);cursor:pointer;" id="goToLinksPage2">Creane uno →</span></div>';
+    var btn2 = document.getElementById('goToLinksPage2');
+    if (btn2) btn2.addEventListener('click', function(){ goToLinksFromWidget(); });
+    return;
+  }
+  var top = list.slice().sort(function(a,b){ return (b.clicks||0)-(a.clicks||0); }).slice(0,5);
+  body.innerHTML = top.map(function(l){
+    return '<div class="link-row-mini">' +
+      '<span class="lrm-name">' + escapeHtml(l.name) + '</span>' +
+      (l.campaign ? '<span class="lrm-campaign">' + escapeHtml(l.campaign) + '</span>' : '') +
+      '<span class="lrm-clicks"><i class="fa-solid fa-arrow-pointer" style="font-size:10px;margin-right:3px;"></i>' + (l.clicks||0) + '</span>' +
+    '</div>';
+  }).join('');
+}
+
+function goToLinksFromWidget() {
+  document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+  document.querySelector('.nav-item[data-page="links"]').classList.add('active');
+  showPage('links');
+}
+
+document.getElementById('goToLinksPage').addEventListener('click', goToLinksFromWidget);
+
+function renderLinksTable(list) {
+  var tbody = document.getElementById('linksTableBody');
+  if (!tbody) return;
+  if (!list || list.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="8" style="color:var(--text-muted);text-align:center;padding:28px;">Nessun link creato.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = list.map(function(l){
+    var created = l.createdAt ? new Date(l.createdAt).toLocaleDateString('it-IT',{day:'2-digit',month:'short',year:'2-digit'}) : '—';
+    var lastClick = l.lastClick ? new Date(l.lastClick).toLocaleDateString('it-IT',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}) : '—';
+    return '<tr>' +
+      '<td style="font-weight:600;">' + escapeHtml(l.name) + '</td>' +
+      '<td style="color:var(--text-muted);font-size:12px;">' + escapeHtml(l.campaign||'—') + '</td>' +
+      '<td><span class="tracking-url" title="' + escapeAttr(l.trackingUrl) + '">' + escapeHtml(l.trackingUrl) + '</span>' +
+        '<button class="btn-copy" data-url="' + escapeAttr(l.trackingUrl) + '" style="margin-top:4px;"><i class="fa-solid fa-copy"></i> Copia</button></td>' +
+      '<td><a href="' + escapeAttr(l.url) + '" target="_blank" style="color:var(--text-muted);font-size:12px;word-break:break-all;">' + escapeHtml(l.url.length>50?l.url.slice(0,50)+'…':l.url) + '</a></td>' +
+      '<td><span class="click-badge"><i class="fa-solid fa-arrow-pointer"></i>' + (l.clicks||0) + '</span></td>' +
+      '<td style="font-size:12px;color:var(--text-muted);">' + lastClick + '</td>' +
+      '<td style="font-size:12px;color:var(--text-muted);">' + created + '</td>' +
+      '<td><button class="btn btn-danger btn-sm" data-link-id="' + escapeAttr(l.id) + '"><i class="fa-solid fa-trash"></i></button></td>' +
+    '</tr>';
+  }).join('');
+
+  // Copy buttons
+  tbody.querySelectorAll('.btn-copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(btn.dataset.url).then(function(){
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copiato!';
+        setTimeout(function(){ btn.innerHTML = '<i class="fa-solid fa-copy"></i> Copia'; }, 2000);
+      });
+    });
+  });
+
+  // Delete buttons
+  tbody.querySelectorAll('[data-link-id]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if (!confirm('Eliminare questo link? I click già tracciati andranno persi.')) return;
+      var id = btn.dataset.linkId;
+      api('DELETE', '/api/links/' + id).then(function(){
+        toast('Link eliminato', 'success');
+        loadLinks();
+        loadLinksWidget();
+      }).catch(function(e){ toast('Errore: ' + e.message, 'error'); });
+    });
+  });
+}
+
+document.getElementById('createLinkBtn').addEventListener('click', function(){
+  var name = document.getElementById('linkName').value.trim();
+  var campaign = document.getElementById('linkCampaign').value.trim();
+  var url = document.getElementById('linkUrl').value.trim();
+  var errEl = document.getElementById('linkFormError');
+  errEl.style.display = 'none';
+  if (!name) { errEl.textContent = 'Inserisci un nome.'; errEl.style.display = ''; return; }
+  if (!url) { errEl.textContent = 'Inserisci un URL di destinazione.'; errEl.style.display = ''; return; }
+  try { new URL(url); } catch(e) { errEl.textContent = 'URL non valido (includi https://).'; errEl.style.display = ''; return; }
+  var btn = document.getElementById('createLinkBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creazione...';
+  api('POST', '/api/links', { name: name, url: url, campaign: campaign })
+    .then(function(data){
+      toast('Link creato!', 'success');
+      document.getElementById('linkName').value = '';
+      document.getElementById('linkCampaign').value = '';
+      document.getElementById('linkUrl').value = '';
+      loadLinks();
+      loadLinksWidget();
+    })
+    .catch(function(e){ errEl.textContent = 'Errore: ' + e.message; errEl.style.display = ''; })
+    .finally(function(){ btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-link"></i> Crea Link'; });
+});
 
 /* ═══════════════════════════════════════════════
    UTILS
