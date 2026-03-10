@@ -165,7 +165,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .ql-toolbar button:hover .ql-fill,.ql-toolbar button.ql-active .ql-fill{fill:var(--orange);}
 .ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-stroke{stroke:var(--orange);}
 
-/* GROQ MODAL */
+/* AI MODAL */
 .groq-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:500;padding:20px;}
 .groq-overlay.open{display:flex;}
 .groq-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);width:100%;max-width:580px;padding:28px;max-height:90vh;overflow-y:auto;}
@@ -225,7 +225,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="sidebar-footer">
       <div class="user"><i class="fa-solid fa-user"></i> <span id="currentUser">admin</span></div>
       <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
-        <button class="btn btn-ghost btn-sm" id="aiSettingsBtn" title="AI Settings (Groq)"><i class="fa-solid fa-robot"></i> AI</button>
+        <button class="btn btn-ghost btn-sm" id="aiSettingsBtn" title="AI Settings"><i class="fa-solid fa-robot"></i> AI</button>
         <button class="btn btn-ghost btn-sm" id="changePwdBtn" title="Cambia password"><i class="fa-solid fa-key"></i></button>
         <button class="btn btn-ghost btn-sm" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
       </div>
@@ -325,19 +325,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   </main>
 </div>
 
-<!-- GROQ SETTINGS MODAL -->
+<!-- AI SETTINGS MODAL -->
 <div class="groq-overlay" id="groqOverlay">
   <div class="groq-box">
-    <h3><i class="fa-solid fa-robot" style="color:var(--purple)"></i> AI Settings — Groq</h3>
+    <h3><i class="fa-solid fa-robot" style="color:var(--purple)"></i> AI Settings</h3>
     <div class="field-group">
-      <label>Groq API Key</label>
-      <input type="password" id="groqKeyInput" placeholder="gsk_...">
-      <div style="font-size:11px;color:var(--text-muted);margin-top:5px;">Ottienila su <a href="https://console.groq.com" target="_blank" style="color:var(--purple)">console.groq.com</a> · Salvata solo nel browser locale</div>
+      <label>API Key</label>
+      <input type="password" id="groqKeyInput" placeholder="••••••••••••••••">
+      <div style="font-size:11px;color:var(--text-muted);margin-top:5px;">Salvata solo nel browser locale</div>
     </div>
     <div class="field-group">
       <label>System Prompt — Generazione Dettagli</label>
       <textarea id="groqPromptInput" rows="12" style="font-family:monospace;font-size:11px;line-height:1.5;"></textarea>
-      <div style="font-size:11px;color:var(--text-muted);margin-top:5px;">Usa <code>{lang}</code> come placeholder per la lingua di output. Modello usato: llama-3.3-70b-versatile</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:5px;">Usa <code>{lang}</code> come placeholder per la lingua di output.</div>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
       <button class="btn btn-ghost btn-sm" id="resetGroqPromptBtn">↺ Reset prompt</button>
@@ -717,7 +717,7 @@ function renderEditorTab() {
     html += '<code style="font-size:11px;">&lt;h4&gt;Casi d\'uso&lt;/h4&gt;&lt;ul&gt;...&lt;/ul&gt;</code> → ';
     html += '<code style="font-size:11px;">&lt;h4&gt;A chi è rivolto&lt;/h4&gt;</code> → ';
     html += '<code style="font-size:11px;">&lt;h4&gt;Cosa non include&lt;/h4&gt;</code>';
-    html += '<br><em style="opacity:0.7">I pulsanti "Genera con AI" richiedono la Groq API key (⚙ AI in basso a sinistra). La classe "lead" viene aggiunta automaticamente al primo paragrafo al salvataggio.</em></div>';
+    html += '<br><em style="opacity:0.7">I pulsanti "Genera con AI" richiedono l\'API key (⚙ AI in basso a sinistra). La classe "lead" viene aggiunta automaticamente al primo paragrafo al salvataggio.</em></div>';
 
     LANGS.forEach(function(l){
       var det = (p.details && p.details[l.code]) || { html: '', links: [], images: [] };
@@ -924,11 +924,11 @@ function showSaveMsg() {
 }
 
 /* ═══════════════════════════════════════════════
-   GROQ — CORE
+   AI — CORE
 ═══════════════════════════════════════════════ */
 function callGroq(messages, model) {
-  var key = localStorage.getItem('piirz_groq_key');
-  if (!key) return Promise.reject(new Error('Groq API key non configurata. Clicca ⚙ AI nel menu.'));
+  var key = localStorage.getItem('piirz_ai_key') || localStorage.getItem('piirz_groq_key'); // migrate legacy key
+  if (!key) return Promise.reject(new Error('API key non configurata. Clicca ⚙ AI nel menu.'));
   return fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
@@ -942,7 +942,7 @@ function callGroq(messages, model) {
     if (!resp.ok) return resp.json().then(function(e){ throw new Error(e.error && e.error.message ? e.error.message : 'HTTP ' + resp.status); });
     return resp.json();
   }).then(function(data){
-    if (!data.choices || !data.choices[0]) throw new Error('Risposta Groq non valida');
+    if (!data.choices || !data.choices[0]) throw new Error('Risposta AI non valida');
     return data.choices[0].message.content.trim();
   });
 }
@@ -979,7 +979,7 @@ function generateDetails(lang) {
   var btn = document.querySelector('[data-generate-lang="' + lang + '"]');
   if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generando...'; }
 
-  var systemPrompt = (localStorage.getItem('piirz_groq_details_prompt') || DEFAULT_GROQ_PROMPT).replace(/\{lang\}/g, LANG_NAMES[lang]);
+  var systemPrompt = (localStorage.getItem('piirz_ai_prompt') || localStorage.getItem('piirz_groq_details_prompt') || DEFAULT_GROQ_PROMPT).replace(/\{lang\}/g, LANG_NAMES[lang]);
 
   var userMsg = 'Prodotto: ' + (p.name.it || p.name.en || p.key) + '\n' +
     'Descrizione: ' + (p.description.it || p.description.en || '') + '\n' +
@@ -1010,10 +1010,11 @@ function generateDetails(lang) {
   });
 }
 
-/* ─── GROQ SETTINGS MODAL ─── */
+/* ─── AI SETTINGS MODAL ─── */
 document.getElementById('aiSettingsBtn').addEventListener('click', function(){
-  document.getElementById('groqKeyInput').value = localStorage.getItem('piirz_groq_key') || '';
-  document.getElementById('groqPromptInput').value = localStorage.getItem('piirz_groq_details_prompt') || DEFAULT_GROQ_PROMPT;
+  // Read from new key, fallback to legacy key for migration
+  document.getElementById('groqKeyInput').value = localStorage.getItem('piirz_ai_key') || localStorage.getItem('piirz_groq_key') || '';
+  document.getElementById('groqPromptInput').value = localStorage.getItem('piirz_ai_prompt') || localStorage.getItem('piirz_groq_details_prompt') || DEFAULT_GROQ_PROMPT;
   document.getElementById('groqOverlay').classList.add('open');
 });
 
@@ -1032,10 +1033,13 @@ document.getElementById('resetGroqPromptBtn').addEventListener('click', function
 document.getElementById('saveGroqBtn').addEventListener('click', function(){
   var key = document.getElementById('groqKeyInput').value.trim();
   var prompt = document.getElementById('groqPromptInput').value.trim();
-  if (key) localStorage.setItem('piirz_groq_key', key);
-  else localStorage.removeItem('piirz_groq_key');
-  if (prompt) localStorage.setItem('piirz_groq_details_prompt', prompt);
-  else localStorage.removeItem('piirz_groq_details_prompt');
+  if (key) localStorage.setItem('piirz_ai_key', key);
+  else localStorage.removeItem('piirz_ai_key');
+  if (prompt) localStorage.setItem('piirz_ai_prompt', prompt);
+  else localStorage.removeItem('piirz_ai_prompt');
+  // Clean up legacy keys if present
+  localStorage.removeItem('piirz_groq_key');
+  localStorage.removeItem('piirz_groq_details_prompt');
   document.getElementById('groqOverlay').classList.remove('open');
   toast('Impostazioni AI salvate', 'success');
 });
