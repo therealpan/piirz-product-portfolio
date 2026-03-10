@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -267,6 +267,42 @@ header{position:relative;z-index:10;padding:28px 48px 0;display:flex;align-items
   .skeleton-grid{grid-template-columns:1fr;}
   .site-footer{flex-direction:column;text-align:center;padding:20px;}
 }
+
+/* ── Theme Toggle Button ── */
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.04);border:1px solid var(--border);cursor:pointer;color:var(--text-muted);font-size:14px;transition:all 0.2s;flex-shrink:0;}
+.theme-toggle:hover{border-color:rgba(255,140,0,0.4);color:var(--orange);background:rgba(255,140,0,0.06);}
+
+/* ── Card hover activates Dettagli button ── */
+.card:hover .card-detail-btn{color:var(--orange);border-color:rgba(255,140,0,0.45);background:rgba(255,140,0,0.07);}
+
+/* ── LIGHT THEME ─────────────────────────────────── */
+[data-theme="light"]{
+  --bg:#f2f4f7;
+  --surface:#ffffff;
+  --surface2:#eaecf0;
+  --border:rgba(0,0,0,0.09);
+  --text:#111827;
+  --text-muted:#6b7280;
+  --text-dim:#374151;
+  --glow:0 0 40px rgba(255,140,0,0.10);
+}
+[data-theme="light"] body{background:var(--bg);color:var(--text);}
+[data-theme="light"] body::before{background:radial-gradient(ellipse 800px 600px at 20% 10%,rgba(139,63,220,0.04) 0%,transparent 60%),radial-gradient(ellipse 600px 400px at 80% 80%,rgba(255,107,0,0.04) 0%,transparent 60%),radial-gradient(ellipse 400px 400px at 50% 50%,rgba(212,36,122,0.02) 0%,transparent 60%);}
+[data-theme="light"] .header-badge{background:rgba(0,0,0,0.03);}
+[data-theme="light"] .lang-btn{background:rgba(0,0,0,0.04);}
+[data-theme="light"] .lang-dropdown,[data-theme="light"] .autocomplete{box-shadow:0 8px 30px rgba(0,0,0,0.12);}
+[data-theme="light"] .card{box-shadow:0 1px 4px rgba(0,0,0,0.06),0 2px 10px rgba(0,0,0,0.04);}
+[data-theme="light"] .card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.11),0 0 24px rgba(255,140,0,0.07);}
+[data-theme="light"] .tag{background:rgba(0,0,0,0.05);border-color:rgba(0,0,0,0.09);}
+[data-theme="light"] .modal{box-shadow:0 20px 60px rgba(0,0,0,0.14);}
+[data-theme="light"] .modal-overlay{background:rgba(0,0,0,0.45);}
+[data-theme="light"] .modal-close:hover{background:rgba(0,0,0,0.05);}
+[data-theme="light"] .modal-header{background:var(--surface);}
+[data-theme="light"] .attach-item{background:rgba(0,0,0,0.025);}
+[data-theme="light"] .skeleton-card::after{background:linear-gradient(90deg,transparent 25%,rgba(0,0,0,0.04) 50%,transparent 75%);background-size:200% 100%;}
+[data-theme="light"] ::-webkit-scrollbar-track{background:var(--bg);}
+[data-theme="light"] ::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15);}
+[data-theme="light"] .theme-toggle{background:rgba(0,0,0,0.04);}
 </style>
 </head>
 <body>
@@ -277,6 +313,7 @@ header{position:relative;z-index:10;padding:28px 48px 0;display:flex;align-items
   <div class="logo"><img src="assets/logo.png" alt="PiirZ Digital"></div>
   <div class="header-right">
     <div class="header-badge" id="badge"></div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambia tema"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
     <div class="lang-selector" id="langSelector">
       <button class="lang-btn" id="langBtn">
         <span class="flag" id="currentFlag">&#127470;&#127481;</span>
@@ -909,6 +946,31 @@ document.addEventListener('click', function(e){
     if (card) logEvent('info_request', card.dataset.key);
   }
 });
+
+/* ══════════════════════════════════════════════════
+   THEME TOGGLE (light / dark)
+   ══════════════════════════════════════════════════ */
+(function(){
+  var html = document.documentElement;
+  var toggleBtn = document.getElementById('themeToggle');
+  var icon = document.getElementById('themeIcon');
+
+  function applyTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    icon.className = theme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+    try { localStorage.setItem('piirz-theme', theme); } catch(e) {}
+  }
+
+  // Init: prefer saved preference, default = light
+  var saved = 'light';
+  try { saved = localStorage.getItem('piirz-theme') || 'light'; } catch(e) {}
+  applyTheme(saved);
+
+  toggleBtn.addEventListener('click', function(){
+    var current = html.getAttribute('data-theme') || 'light';
+    applyTheme(current === 'light' ? 'dark' : 'light');
+  });
+})();
 
 })();
 </script>
